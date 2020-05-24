@@ -10,6 +10,7 @@ public class AutoCamper {
         this.model = model;
         this.id = id;
     }
+    public AutoCamper(){}
 
 
     public String getModel() {

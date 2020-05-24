@@ -10,16 +10,13 @@ import java.util.Properties;
 
 public class DatabaseConnectionManager {
 
-    private String username;
-    private String password;
-    private String url;
-    Connection conn;
+    static String username;
+    static String password;
+    static String url;
+    static Connection conn;
 
 
-    public Connection getConnection() {
-        if (conn!=null){
-            System.out.println("New connection not required");
-        }
+    public static Connection getConnection() {
         Properties prop = new Properties();
         try {
             FileInputStream propertyFile = new FileInputStream("src/main/resources/application.properties");
@@ -50,3 +47,4 @@ public class DatabaseConnectionManager {
     }
 
 }
+

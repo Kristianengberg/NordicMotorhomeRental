@@ -1,12 +1,24 @@
 package nmr.demo.controllers;
 
 
-@org.springframework.stereotype.Controller
-public class Controller {
+import nmr.demo.repositories.AutoCamperRepositoryImpl;
+import nmr.demo.repositories.IAutoCamperRepository;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
-    public Controller(){
+@Controller
+class AutocamperController {
 
+    private IAutoCamperRepository autocamperRepository;
+    public AutocamperController(){
+        autocamperRepository = new AutoCamperRepositoryImpl();
     }
 
+    @GetMapping("/")
+    public String index(Model model){
+        model.addAttribute("autocamper",autocamperRepository.readAll());
+        return "index";
+    }
 
 }
