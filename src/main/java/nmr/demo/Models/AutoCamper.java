@@ -5,20 +5,24 @@ public class AutoCamper {
     private char model;
     private int bedSpace;
     private double price;
+    private double fuel;
     private double kilometers;
     private int serialNumbers;
 
     public AutoCamper() {
     }
 
-    public AutoCamper(String licensePlate, char model, int bedSpace, double price, double kilometers, int serialNumbers) {
+    public AutoCamper(String licensePlate, char model, int bedSpace, double price, double fuel, double kilometers, int serialNumbers) {
         this.licensePlate = licensePlate;
         this.model = model;
         this.bedSpace = bedSpace;
         this.price = price;
+        this.fuel = fuel;
         this.kilometers = kilometers;
         this.serialNumbers = serialNumbers;
     }
+
+
 
     public String getLicensePlate() {
         return licensePlate;
@@ -50,6 +54,14 @@ public class AutoCamper {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public double getFuel() {
+        return fuel;
+    }
+
+    public void setFuel(double fuel) {
+        this.fuel = fuel;
     }
 
     public double getKilometers() {
