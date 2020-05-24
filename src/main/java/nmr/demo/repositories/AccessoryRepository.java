@@ -1,10 +1,19 @@
 package nmr.demo.repositories;
 
-import java.sql.*;
-import java.util.ArrayList;
+// import nmr.demo.util.DataBaseConnectionManager;
+
 import java.util.List;
 
-public class AccessoryRepository implements InterfaceRepository {
+public class AccessoryRepository implements IRepository {
+
+    // private Connection conn;
+
+
+    /*public AccessoryRepository() {
+        this.conn = DataBaseConnectionManager.getDataBaseConnection();
+    }
+    */
+
     @Override
     public boolean create(Object model) {
         return false;

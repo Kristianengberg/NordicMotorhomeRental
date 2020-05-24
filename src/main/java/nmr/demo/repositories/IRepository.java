@@ -2,7 +2,7 @@ package nmr.demo.repositories;
 
 import java.util.List;
 
-public interface InterfaceRepository {
+public interface IRepository {
 
     // CRUD operations
     public boolean create(Object model);

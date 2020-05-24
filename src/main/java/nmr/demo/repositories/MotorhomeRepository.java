@@ -1,10 +1,22 @@
 package nmr.demo.repositories;
 
-import java.sql.*;
-import java.util.ArrayList;
+// import nmr.demo.util.DataBaseConnectionManager;
+
 import java.util.List;
 
-public class MotorhomeRepository implements InterfaceRepository{
+
+
+
+public class MotorhomeRepository implements IRepository {
+
+    // private Connection conn;
+
+
+    /*public MotorhomeRepository() {
+        this.conn = DataBaseConnectionManager.getDataBaseConnection();
+    }
+    */
+
 
 
     @Override
