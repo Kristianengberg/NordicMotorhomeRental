@@ -14,7 +14,11 @@ public class AutoCamperRepositoryImpl implements IAutoCamperRepository {
 
     private Connection conn;
     public AutoCamperRepositoryImpl(){
-        this.conn = DatabaseConnectionManager.getConnection();
+        try {
+            this.conn = DatabaseConnectionManager.getDBConnection();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
@@ -31,7 +35,7 @@ public class AutoCamperRepositoryImpl implements IAutoCamperRepository {
     public List<AutoCamper> readAll() {
         List<AutoCamper> allAutoCampers = new ArrayList<>();
         try {
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM test");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM autocamper");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 AutoCamper tempAutoCamper = new AutoCamper();

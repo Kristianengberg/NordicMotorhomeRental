@@ -1,5 +1,52 @@
 package nmr.demo.utilities;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
 
+public class DatabaseConnectionManager {
+
+    private final String URL;
+    private final String USER;
+    private final String PASSWORD;
+
+
+    public DatabaseConnectionManager() {
+
+        /*
+        Connect to config.properties
+         */
+        Properties prop = null;
+        try {
+            prop = new Properties();
+            FileInputStream fis = new FileInputStream("src/main/resources/config.properties");
+            prop.load(fis);
+            fis.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        this.URL = prop.getProperty("URL");
+        this.USER = prop.getProperty("USER");
+        this.PASSWORD = prop.getProperty("PASSWORD");
+
+    }
+
+    /*
+        Connection Manager
+         */
+
+    public static Connection getDBConnection() throws SQLException {
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/test?serverTimezone=UTC", "root", "12345678");
+    }
+
+}
+
+/*
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -47,4 +94,4 @@ public class DatabaseConnectionManager {
     }
 
 }
-
+*/
