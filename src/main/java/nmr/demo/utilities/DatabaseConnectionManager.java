@@ -9,40 +9,35 @@ import java.util.Properties;
 
 public class DatabaseConnectionManager {
 
-    private final String URL;
-    private final String USER;
-    private final String PASSWORD;
+    static String URL;
+    static String USER;
+    static String PASSWORD;
 
 
-    public DatabaseConnectionManager() {
+    public static Connection getDBConnection() {
 
         /*
         Connect to config.properties
          */
-        Properties prop = null;
+        Properties prop = new Properties();
         try {
-            prop = new Properties();
-            FileInputStream fis = new FileInputStream("src/main/resources/config.properties");
-            prop.load(fis);
-            fis.close();
+            FileInputStream propertyFile = new FileInputStream("src/main/resources/application.properties");
+            prop.load(propertyFile);
+            USER = prop.getProperty("username");
+            PASSWORD = prop.getProperty("password");
+            URL = prop.getProperty("url");
 
-        } catch (IOException e) {
+
+        }catch (IOException e) {
             e.printStackTrace();
         }
-
-        this.URL = prop.getProperty("URL");
-        this.USER = prop.getProperty("USER");
-        this.PASSWORD = prop.getProperty("PASSWORD");
-
-    }
 
     /*
         Connection Manager
          */
 
-    public static Connection getDBConnection() {
         try {
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/test?serverTimezone=UTC", "root", "12345678");
+            return DriverManager.getConnection(URL,USER,PASSWORD);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

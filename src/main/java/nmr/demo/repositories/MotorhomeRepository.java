@@ -64,10 +64,10 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
                 tempMotorHome.setLicensePlateNo(rs.getString(1));
                 tempMotorHome.setModel(rs.getString(2));
                 tempMotorHome.setBeds(rs.getInt(3));
-                tempMotorHome.setKilometers(rs.getDouble(4));
-                tempMotorHome.setPrice(rs.getDouble(5));
-                tempMotorHome.setEngineBlockNo(rs.getInt(6));
-                tempMotorHome.setAccessible(rs.getString(7));
+                tempMotorHome.setAccessible(rs.getString(4));
+                tempMotorHome.setKilometers(rs.getDouble(5));
+                tempMotorHome.setPrice(rs.getDouble(6));
+                tempMotorHome.setEngineBlockNo(rs.getInt(7));
                 allMotorHome.add(tempMotorHome);
             }
         } catch (SQLException e) {
