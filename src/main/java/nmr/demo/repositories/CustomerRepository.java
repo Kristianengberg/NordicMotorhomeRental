@@ -17,7 +17,7 @@ public class CustomerRepository implements IRepository<Customer> {
     private Connection conn;
 
 
-    public CustomerRepository() throws SQLException { //ret til i database at den skal lave try catch
+    public CustomerRepository() { //ret til i database at den skal lave try catch
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
 

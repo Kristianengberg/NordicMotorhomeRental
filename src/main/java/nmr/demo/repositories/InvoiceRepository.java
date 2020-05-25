@@ -15,7 +15,7 @@ public class InvoiceRepository implements IRepository<Invoice> {
     private Connection conn;
 
 
-    public InvoiceRepository() throws SQLException { //ret til i database at den skal lave try catch
+    public InvoiceRepository()  { //ret til i database at den skal lave try catch
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
 

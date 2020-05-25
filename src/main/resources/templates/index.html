@@ -7,13 +7,15 @@
 </head>
 <body>
 <div class="container">
-    <h1>Autocampere</h1>
+    <h1>MotorHomes</h1>
 
     <table>
 
         <tr th:each="motorhome : ${autocamper}">
+            <td th:text="${motorhome.getLicensePlateNo()}"></td>
             <td th:text="${motorhome.getModel()}"></td>
-            <td th:text="${motorhome.getModel()}"></td>
+            <td th:text="${motorhome.getBeds()}"></td>
+            <td th:text="${motorhome.getPrice()}"></td>
 
         </tr>
 

@@ -18,7 +18,7 @@ public class EmployeeRepository implements IRepository<Employee> {
     private Connection conn;
 
 
-    public EmployeeRepository() throws SQLException { //ret til i database at den skal lave try catch
+    public EmployeeRepository() { //ret til i database at den skal lave try catch
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
 
