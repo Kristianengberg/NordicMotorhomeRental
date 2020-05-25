@@ -1,10 +1,35 @@
 package nmr.demo.repositories;
 
 // import nmr.demo.util.DataBaseConnectionManager;
+import nmr.demo.Models.Customer;
 
 import java.util.List;
 
-public class CustomerRepository implements IRepository {
+public class CustomerRepository implements IRepository<Customer> {
+    @Override
+    public boolean create(Customer model) {
+        return false;
+    }
+
+    @Override
+    public Customer read(int id) {
+        return null;
+    }
+
+    @Override
+    public List<Customer> readAll() {
+        return null;
+    }
+
+    @Override
+    public boolean update(Customer model) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(int id) {
+        return false;
+    }
 
     // private Connection conn;
 
@@ -14,28 +39,5 @@ public class CustomerRepository implements IRepository {
     }
     */
 
-    @Override
-    public boolean create(Object model) {
-        return false;
-    }
 
-    @Override
-    public Object read(int id) {
-        return null;
-    }
-
-    @Override
-    public List<Object> readAll() {
-        return null;
-    }
-
-    @Override
-    public boolean update(Object student) {
-        return false;
-    }
-
-    @Override
-    public boolean delete(int id) {
-        return false;
-    }
 }

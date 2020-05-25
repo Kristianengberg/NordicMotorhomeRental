@@ -2,6 +2,9 @@ package nmr.demo.repositories;
 
 // import nmr.demo.util.DataBaseConnectionManager;
 
+import nmr.demo.Models.Invoice;
+import nmr.demo.Models.Motorhome;
+
 import java.util.List;
 
 
@@ -18,24 +21,22 @@ public class MotorhomeRepository implements IRepository {
     */
 
 
-
-    @Override
-    public boolean create(Object model) {
+    public boolean create(Motorhome model) {
         return false;
     }
 
     @Override
-    public Object read(int id) {
+    public Motorhome read(int id) {
         return null;
     }
 
     @Override
-    public List<Object> readAll() {
+    public List<Motorhome> readAll() {
         return null;
     }
 
     @Override
-    public boolean update(Object student) {
+    public boolean update(Motorhome model) {
         return false;
     }
 
