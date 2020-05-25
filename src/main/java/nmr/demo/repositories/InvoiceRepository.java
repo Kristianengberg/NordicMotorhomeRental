@@ -32,6 +32,7 @@ public class InvoiceRepository implements IRepository<Invoice> {
         Customer customerToReturn = new Customer();
         Accessories accessoriesToReturn = new Accessories();
         MotorHome licensePlateNoToReturn = new MotorHome();
+        
         try {
             PreparedStatement getSingleInvoice = conn.prepareStatement("SELECT * FROM Invoice WHERE id=" + id);
             ResultSet rs = getSingleInvoice.executeQuery();
