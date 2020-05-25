@@ -1,48 +1,49 @@
 package nmr.demo.repositories;
 
-import nmr.demo.utilities.DatabaseConnectionManager;
 import nmr.demo.models.Customer;
-
+import nmr.demo.models.Employee;
+import nmr.demo.utilities.DatabaseConnectionManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-public class CustomerRepository implements IRepository<Customer> {
+
+public class EmployeeRepository implements IRepository<Employee> {
 
     private Connection conn;
 
 
-    public CustomerRepository() throws SQLException { //ret til i database at den skal lave try catch
+    public EmployeeRepository() throws SQLException { //ret til i database at den skal lave try catch
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
 
 
     @Override
-    public boolean create(Customer model) {
+    public boolean create(Employee model) {
         return false;
     }
 
     @Override
-    public Customer read(int id) {
+    public Employee read(int id) {
         return null;
     }
 
     @Override
-    public List<Customer> readAll() {
+    public List<Employee> readAll() {
         return null;
     }
 
     @Override
-    public boolean update(Customer model) {
+    public boolean update(Employee model) {
         return false;
     }
 
     @Override
     public boolean delete(int id) {
-        if(Customer.getCustomerId() == id) {
-            String sql = "DELETE FROM Customer WHERE Customer_id = ?";
+        if(Employee.getEmployeeId() == id) {
+            String sql = "DELETE FROM Customer WHERE Employee_id = ?";
 
             try {
                 PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -60,6 +61,4 @@ public class CustomerRepository implements IRepository<Customer> {
         }
         return false;
     }
-
-
 }

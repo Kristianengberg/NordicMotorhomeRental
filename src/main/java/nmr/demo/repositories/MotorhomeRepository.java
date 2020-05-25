@@ -1,6 +1,7 @@
 package nmr.demo.repositories;
 
-// import nmr.demo.util.DataBaseConnectionManager;
+import nmr.demo.utilities.DatabaseConnectionManager;
+
 
 import nmr.demo.models.MotorHome;
 import nmr.demo.utilities.DatabaseConnectionManager;
@@ -13,10 +14,10 @@ import java.util.List;
 
 public class MotorhomeRepository implements IRepository<MotorHome> {
 
-     private Connection conn;
+    private Connection conn;
 
 
-    public MotorhomeRepository() {
+    public MotorhomeRepository() throws SQLException { // lav try catch
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
 
@@ -44,5 +45,27 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     @Override
     public boolean delete(int id) {
         return false;
+    }
+
+    public boolean delete(String id){
+        if(MotorHome.getLicensePlateNo() == id) {
+            String sql = "DELETE FROM Motorhome WHERE LicensPlateNo = ?";
+
+            try {
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+
+                pstmt.setString(1, id);
+
+                pstmt.executeUpdate();
+
+
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }else{
+            System.out.println("Fail");
+        }
+        return false;
+
     }
 }
