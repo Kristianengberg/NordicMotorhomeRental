@@ -1,28 +1,28 @@
 package nmr.demo.models;
 
 public class Employee {
-    private int employeeId;
-    private String firstName;
-    private String lastName;
+    private static int employeeId;
+    private String empName;
+    private String position;
     private String address;
     private int zipCode;
-    private int phoneNumber;
+    private int phone;
     private String email;
 
     public Employee() {
     }
 
-    public Employee(int employeeId, String firstName, String lastName, String address, int zipCode, int phoneNumber, String email) {
+    public Employee(int employeeId, String empName, String position, String address, int zipCode, int phone, String email) {
         this.employeeId = employeeId;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.empName = empName;
+        this.position = position;
         this.address = address;
         this.zipCode = zipCode;
-        this.phoneNumber = phoneNumber;
+        this.phone = phone;
         this.email = email;
     }
 
-    public int getEmployeeId() {
+    public static int getEmployeeId() {
         return employeeId;
     }
 
@@ -30,20 +30,20 @@ public class Employee {
         this.employeeId = employeeId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getEmpName() {
+        return empName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setEmpName(String empName) {
+        this.empName = empName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getPosition() {
+        return position;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public String getAddress() {
@@ -62,12 +62,12 @@ public class Employee {
         this.zipCode = zipCode;
     }
 
-    public int getPhoneNumber() {
-        return phoneNumber;
+    public int getPhone() {
+        return phone;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone(int phone) {
+        this.phone = phone;
     }
 
     public String getEmail() {

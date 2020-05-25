@@ -1,7 +1,7 @@
 package nmr.demo.models;
 
 public class Accessories {
-    int id;
+    private static int id;
     private double price;
     private String type;
 
@@ -14,7 +14,7 @@ public class Accessories {
         this.type = type;
     }
 
-    public int getId() {
+    public static int getId() {
         return id;
     }
 
@@ -30,7 +30,7 @@ public class Accessories {
         this.price = price;
     }
 
-    public String getType() {
+    public  String getType() {
         return type;
     }
 

@@ -1,7 +1,7 @@
 package nmr.demo.models;
 
 public class MotorHome {
-    private String licensePlateNo;
+    private static String licensePlateNo;
     private String model;
     private int beds;
     private double kilometers;
@@ -22,7 +22,7 @@ public class MotorHome {
         this.accessible = accessible;
     }
 
-    public String getLicensePlateNo() {
+    public static String getLicensePlateNo() {
         return licensePlateNo;
     }
 
