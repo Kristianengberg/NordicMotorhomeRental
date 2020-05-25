@@ -2,8 +2,7 @@ package nmr.demo.repositories;
 
 // import nmr.demo.util.DataBaseConnectionManager;
 
-import nmr.demo.Models.Invoice;
-import nmr.demo.Models.MotorHome;
+import nmr.demo.models.MotorHome;
 
 import java.util.List;
 

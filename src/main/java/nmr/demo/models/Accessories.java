@@ -1,4 +1,4 @@
-package nmr.demo.Models;
+package nmr.demo.models;
 
 public class Accessories {
     int id;

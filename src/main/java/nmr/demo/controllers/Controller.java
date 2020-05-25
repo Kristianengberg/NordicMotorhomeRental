@@ -1,8 +1,6 @@
 package nmr.demo.controllers;
 
 
-import nmr.demo.repositories.AutoCamperRepositoryImpl;
-import nmr.demo.repositories.IAutoCamperRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

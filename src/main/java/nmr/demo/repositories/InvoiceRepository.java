@@ -1,7 +1,7 @@
 package nmr.demo.repositories;
 
 // import nmr.demo.util.DataBaseConnectionManager;
-import nmr.demo.Models.Invoice;
+import nmr.demo.models.Invoice;
 
 import java.util.List;
 

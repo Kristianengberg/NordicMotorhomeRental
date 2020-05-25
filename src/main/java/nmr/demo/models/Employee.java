@@ -1,35 +1,33 @@
-package nmr.demo.Models;
+package nmr.demo.models;
 
-public class Customer {
-    private int id;
+public class Employee {
+    private int employeeId;
     private String firstName;
     private String lastName;
     private String address;
     private int zipCode;
     private int phoneNumber;
     private String email;
-    private boolean customerType;
 
-    public Customer() {
+    public Employee() {
     }
 
-    public Customer(int id, String firstName, String lastName, String address, int zipCode, int phoneNumber, String email, boolean customerType) {
-        this.id = id;
+    public Employee(int employeeId, String firstName, String lastName, String address, int zipCode, int phoneNumber, String email) {
+        this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.zipCode = zipCode;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.customerType = customerType;
     }
 
-    public int getId() {
-        return id;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getFirstName() {
@@ -78,13 +76,5 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public boolean isCustomerType() {
-        return customerType;
-    }
-
-    public void setCustomerType(boolean customerType) {
-        this.customerType = customerType;
     }
 }
