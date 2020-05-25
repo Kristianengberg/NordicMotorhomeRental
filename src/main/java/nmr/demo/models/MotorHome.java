@@ -7,12 +7,12 @@ public class MotorHome {
     private double kilometers;
     private double price;
     private int engineBlockNo;
-    private boolean accessible;
+    private String accessible;
 
     public MotorHome() {
     }
 
-    public MotorHome(String licensePlateNo, String model, int beds, double kilometers, double price, int engineBlockNo, boolean accessible) {
+    public MotorHome(String licensePlateNo, String model, int beds, double kilometers, double price, int engineBlockNo, String accessible) {
         this.licensePlateNo = licensePlateNo;
         this.model = model;
         this.beds = beds;
@@ -70,11 +70,11 @@ public class MotorHome {
         this.engineBlockNo = engineBlockNo;
     }
 
-    public boolean isAccessible() {
+    public String isAccessible() {
         return accessible;
     }
 
-    public void setAccessible(boolean accessible) {
+    public void setAccessible(String accessible) {
         this.accessible = accessible;
     }
 }
