@@ -14,7 +14,7 @@ public class Accessories {
         this.type = type;
     }
 
-    public int getId() {
+    public static int getId() {
         return id;
     }
 
@@ -30,7 +30,7 @@ public class Accessories {
         this.price = price;
     }
 
-    public String getType() {
+    public  String getType() {
         return type;
     }
 

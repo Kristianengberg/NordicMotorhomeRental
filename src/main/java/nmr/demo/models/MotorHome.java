@@ -22,7 +22,7 @@ public class MotorHome {
         this.accessible = accessible;
     }
 
-    public String getLicensePlateNo() {
+    public static String getLicensePlateNo() {
         return licensePlateNo;
     }
 
