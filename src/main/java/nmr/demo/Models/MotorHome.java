@@ -1,6 +1,6 @@
 package nmr.demo.Models;
 
-public class AutoCamper {
+public class MotorHome {
     private String licensePlate;
     private char model;
     private int bedSpace;
@@ -9,10 +9,10 @@ public class AutoCamper {
     private double kilometers;
     private int serialNumbers;
 
-    public AutoCamper() {
+    public MotorHome() {
     }
 
-    public AutoCamper(String licensePlate, char model, int bedSpace, double price, double fuel, double kilometers, int serialNumbers) {
+    public MotorHome(String licensePlate, char model, int bedSpace, double price, double fuel, double kilometers, int serialNumbers) {
         this.licensePlate = licensePlate;
         this.model = model;
         this.bedSpace = bedSpace;

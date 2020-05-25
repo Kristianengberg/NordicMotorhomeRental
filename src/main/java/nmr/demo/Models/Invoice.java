@@ -3,7 +3,7 @@ package nmr.demo.Models;
 public class Invoice {
     private int invoiceId;
     Customer customerId = new Customer();
-    AutoCamper licensePlate = new AutoCamper();
+    MotorHome licensePlate = new MotorHome();
     Accessories accessoriesId = new Accessories();
     Employee employeeId = new Employee();
     private String date;
@@ -14,7 +14,7 @@ public class Invoice {
     public Invoice() {
     }
 
-    public Invoice(int invoiceId, Customer customerId, AutoCamper licensePlate, Accessories accessoriesId, Employee employeeId, String date, double totalPrice, String pickUp, String dropOff) {
+    public Invoice(int invoiceId, Customer customerId, MotorHome licensePlate, Accessories accessoriesId, Employee employeeId, String date, double totalPrice, String pickUp, String dropOff) {
         this.invoiceId = invoiceId;
         this.customerId = customerId;
         this.licensePlate = licensePlate;
@@ -42,11 +42,11 @@ public class Invoice {
         this.customerId = customerId;
     }
 
-    public AutoCamper getLicensePlate() {
+    public MotorHome getLicensePlate() {
         return licensePlate;
     }
 
-    public void setLicensePlate(AutoCamper licensePlate) {
+    public void setLicensePlate(MotorHome licensePlate) {
         this.licensePlate = licensePlate;
     }
 
