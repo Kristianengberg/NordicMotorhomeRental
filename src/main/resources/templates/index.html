@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Autocamper</title>
+</head>
+<body>
+<div class="container">
+    <h1>Autocampere</h1>
+
+    <table>
+
+        <tr th:each="camper : ${autocamper}">
+            <td th:text="${camper.getId()}"></td>
+            <td th:text="${camper.getModel()}"></td>
+        </tr>
+
+
+
+    </table>
+</div>
+
+</body>
+</html>
