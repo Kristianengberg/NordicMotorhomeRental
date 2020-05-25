@@ -1,7 +1,7 @@
 package nmr.demo.models;
 
 public class Accessories {
-    int id;
+    private static int id;
     private double price;
     private String type;
 

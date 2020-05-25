@@ -1,7 +1,7 @@
 package nmr.demo.models;
 
 public class Employee {
-    private int employeeId;
+    private static int employeeId;
     private String empName;
     private String position;
     private String address;

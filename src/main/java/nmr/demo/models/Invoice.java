@@ -3,7 +3,7 @@ package nmr.demo.models;
 import java.util.Date;
 
 public class Invoice {
-    private int invoiceId;
+    private static int invoiceId;
     private Date dateStart;
     private Date dateEnd;
     private String pickUp;
