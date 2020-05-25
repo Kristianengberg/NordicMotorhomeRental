@@ -2,6 +2,7 @@ package nmr.demo.repositories;
 
 import nmr.demo.models.Customer;
 import nmr.demo.models.Employee;
+import nmr.demo.models.MotorHome;
 import nmr.demo.utilities.DatabaseConnectionManager;
 
 import java.sql.Connection;
@@ -22,6 +23,23 @@ public class EmployeeRepository implements IRepository<Employee> {
 
     @Override
     public boolean create(Employee model) {
+        try {
+            PreparedStatement CreateEmployee = conn.prepareStatement("INSERT INTO employee" + "(empName,position,address,zipCode,phone,email)VALUES" + "(?,?,?,?,?,?);");
+            CreateEmployee.setString(1, model.getEmpName());
+            CreateEmployee.setString(2,model.getPosition());
+            CreateEmployee.setString(3,model.getAddress());
+            CreateEmployee.setInt(4,model.getZipCode());
+            CreateEmployee.setInt(5,model.getPhone());
+            CreateEmployee.setString(6,model.getEmail());
+
+
+            CreateEmployee.executeUpdate();
+            return true;
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
         return false;
     }
 

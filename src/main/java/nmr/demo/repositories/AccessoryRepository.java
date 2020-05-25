@@ -23,8 +23,23 @@ public class AccessoryRepository implements IRepository<Accessories>{
 
 
 
+
     @Override
     public boolean create(Accessories model) {
+        try {
+            PreparedStatement CreateAccessory = conn.prepareStatement("INSERT INTO accessories" + "(type,price)VALUES" + "(?,?);");
+            CreateAccessory.setString(1,model.getType());
+            CreateAccessory.setDouble(2,model.getPrice());
+
+
+
+            CreateAccessory.executeUpdate();
+            return true;
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
         return false;
     }
 

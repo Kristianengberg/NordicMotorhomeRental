@@ -1,6 +1,7 @@
 package nmr.demo.repositories;
 
 import nmr.demo.models.Customer;
+import nmr.demo.models.MotorHome;
 import nmr.demo.utilities.DatabaseConnectionManager;
 import nmr.demo.models.Invoice;
 
@@ -21,6 +22,17 @@ public class InvoiceRepository implements IRepository<Invoice> {
 
     @Override
     public boolean create(Invoice model) {
+        try {
+            PreparedStatement CreateInvoice = conn.prepareStatement("INSERT INTO Invoice" + "(invoiceId)VALUES" + "(?);");
+            CreateInvoice.setInt(1, model.getInvoiceId());
+
+            CreateInvoice.executeUpdate();
+            return true;
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
         return false;
     }
 

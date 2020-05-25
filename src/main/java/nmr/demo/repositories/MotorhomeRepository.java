@@ -23,7 +23,7 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     public MotorhomeRepository() {
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
-
+    @Override
     public boolean create(MotorHome model) {
         try {
             PreparedStatement CreateMotorHome = conn.prepareStatement("INSERT INTO Motorhome" + "(LicensPlateNo,Model,Beds,Accessible,Km,Price,EngineBlockNo)VALUES" + "(?,?,?,?,?,?,?);");
