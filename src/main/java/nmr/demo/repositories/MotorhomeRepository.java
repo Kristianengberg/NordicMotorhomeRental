@@ -24,9 +24,24 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
 
-
-
     public boolean create(MotorHome model) {
+        try {
+            PreparedStatement CreateMotorHome = conn.prepareStatement("INSERT INTO Motorhome" + "(LicensPlateNo,Model,Beds,Accessible,Km,Price,EngineBlockNo)VALUES" + "(?,?,?,?,?,?,?);");
+            CreateMotorHome.setString(1, model.getLicensePlateNo());
+            CreateMotorHome.setString(2,model.getModel());
+            CreateMotorHome.setInt(3,model.getBeds());
+            CreateMotorHome.setString(4,model.getAccessible());
+            CreateMotorHome.setDouble(5,model.getKilometers());
+            CreateMotorHome.setDouble(6,model.getPrice());
+            CreateMotorHome.setInt(7,model.getEngineBlockNo());
+
+            CreateMotorHome.executeUpdate();
+            return true;
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
         return false;
     }
 
@@ -34,8 +49,8 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     public MotorHome read(int id) {
         MotorHome MotorHomeToReturn = new MotorHome();
         try {
-            PreparedStatement getSingleStudent = conn.prepareStatement("SELECT * FROM Motorhome WHERE id=" + id);
-            ResultSet rs = getSingleStudent.executeQuery();
+            PreparedStatement getSingleMotorHome = conn.prepareStatement("SELECT * FROM Motorhome WHERE id=" + id);
+            ResultSet rs = getSingleMotorHome.executeQuery();
             while(rs.next()){
                 MotorHomeToReturn.setLicensePlateNo(rs.getString(1));
                 MotorHomeToReturn.setModel(rs.getString(2));
