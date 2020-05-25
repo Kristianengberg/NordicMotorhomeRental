@@ -22,7 +22,7 @@ public class Employee {
         this.email = email;
     }
 
-    public int getEmployeeId() {
+    public static int getEmployeeId() {
         return employeeId;
     }
 

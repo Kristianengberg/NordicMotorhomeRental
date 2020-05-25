@@ -31,7 +31,7 @@ public class Invoice {
         this.licensePlateNo = licensePlateNo;
     }
 
-    public int getInvoiceId() {
+    public static int getInvoiceId() {
         return invoiceId;
     }
 

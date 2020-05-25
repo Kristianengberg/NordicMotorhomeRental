@@ -22,7 +22,7 @@ public class Customer {
         this.customerType = customerType;
     }
 
-    public int getCustomerId() {
+    public static int getCustomerId() {
         return CustomerId;
     }
 
