@@ -1,13 +1,13 @@
 package nmr.demo.repositories;
 
-import nmr.demo.models.Customer;
-import nmr.demo.models.MotorHome;
+import nmr.demo.models.*;
 import nmr.demo.utilities.DatabaseConnectionManager;
-import nmr.demo.models.Invoice;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class InvoiceRepository implements IRepository<Invoice> {
@@ -43,8 +43,36 @@ public class InvoiceRepository implements IRepository<Invoice> {
 
     @Override
     public List<Invoice> readAll() {
-        return null;
+        List<Invoice> allInvoices = new ArrayList<Invoice>();
+        try {
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Invoice");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Invoice tempInvoice = new Invoice();
+                Employee tempEmployee = new Employee();
+                Customer tempCustomer = new Customer();
+                Accessories tempAccessory = new Accessories();
+                MotorHome tempLicensePlateNo = new MotorHome();
+
+                tempInvoice.setInvoiceId(rs.getInt(1));
+                tempInvoice.setDateStart(rs.getDate(2));
+                tempInvoice.setDateEnd(rs.getDate(3));
+                tempInvoice.setPickUp(rs.getString(4));
+                tempInvoice.setDropOff(rs.getString(5));
+                tempInvoice.setTotalPrice(rs.getInt(6));
+                tempEmployee.setEmployeeId(rs.getInt(7));
+                tempCustomer.setCustomerId(rs.getInt(8));
+                tempAccessory.setAccessoriesId(rs.getInt(9));
+                tempLicensePlateNo.setLicensePlateNo(rs.getString(10));
+
+                allInvoices.add(tempInvoice);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return allInvoices;
     }
+
 
     @Override
     public boolean update(Invoice model) {

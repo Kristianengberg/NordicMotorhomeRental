@@ -17,7 +17,7 @@ public class AccessoryRepository implements IRepository<Accessories>{
     private Connection conn;
 
 
-    public AccessoryRepository() throws SQLException { // try catch
+    public AccessoryRepository()  { // try catch
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
 
@@ -70,8 +70,9 @@ public class AccessoryRepository implements IRepository<Accessories>{
             while(rs.next()){
                 Accessories tempAccessories = new Accessories();
                 tempAccessories.setAccessoriesId(rs.getInt(1));
-                tempAccessories.setPrice(rs.getDouble(2));
-                tempAccessories.setType(rs.getString(3));
+                tempAccessories.setType(rs.getString(2));
+                tempAccessories.setPrice(rs.getDouble(3));
+
 
                 allAccessories.add(tempAccessories);
             }
