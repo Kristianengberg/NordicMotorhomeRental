@@ -36,7 +36,19 @@ public class AccessoryRepository implements IRepository<Accessories>{
     }
 
     @Override
-    public boolean update(Accessories model) {
+    public boolean update(Accessories accessories) {
+        try {
+           PreparedStatement myStmt = conn.prepareStatement("UPDATE Accessories SET id = ?, price = ?, type = ? WHERE id =" + Accessories.getId());
+           myStmt.setInt(1, accessories.getId());
+           myStmt.setDouble(2, accessories.getPrice());
+           myStmt.setString(3,accessories.getType());
+
+            System.out.println(myStmt);
+            myStmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 

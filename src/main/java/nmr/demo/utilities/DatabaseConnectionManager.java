@@ -42,7 +42,7 @@ public class DatabaseConnectionManager {
 
     public static Connection getDBConnection() {
         try {
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/test?serverTimezone=UTC", "root", "12345678");
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/NMR_db?serverTimezone=UTC", "root", "jlb110674");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

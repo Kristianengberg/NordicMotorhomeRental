@@ -1,10 +1,10 @@
 package nmr.demo.repositories;
 
-import nmr.demo.models.Customer;
+import nmr.demo.models.*;
 import nmr.demo.utilities.DatabaseConnectionManager;
-import nmr.demo.models.Invoice;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
@@ -35,7 +35,31 @@ public class InvoiceRepository implements IRepository<Invoice> {
     }
 
     @Override
-    public boolean update(Invoice model) {
+    public boolean update(Invoice invoice) {
+        Employee employeeToReturn = new Employee();
+        Customer customerToReturn = new Customer();
+        Accessories accessoriesToReturn = new Accessories();
+        MotorHome motorHomeToReturn = new MotorHome();
+
+        try {
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Invoice SET invoiceId = ?, dateStart = ?, dateEnd = ?, pickUp = ?,  dropOff = ?, totalPrice = ?, employeeId = ?, customerId = ?, accessoriesId = ?, licensePlateNo = ? WHERE invoiceId =" + Invoice.getInvoiceId());
+            myStmt.setInt(1, invoice.getInvoiceId());
+            myStmt.setDate(2, (Date) invoice.getDateStart());
+            myStmt.setDate(3, (Date) invoice.getDateEnd());
+            myStmt.setString(4, invoice.getPickUp());
+            myStmt.setString(5, invoice.getDropOff());
+
+            myStmt.setInt(7, employeeToReturn.getEmployeeId());
+            myStmt.setInt(8, customerToReturn.getCustomerId());
+            myStmt.setInt(9, accessoriesToReturn.getId());
+            myStmt.setString(10, motorHomeToReturn.getLicensePlateNo());
+
+            System.out.println(myStmt);
+            myStmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 

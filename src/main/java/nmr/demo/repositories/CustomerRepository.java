@@ -1,5 +1,6 @@
 package nmr.demo.repositories;
 
+import nmr.demo.models.MotorHome;
 import nmr.demo.utilities.DatabaseConnectionManager;
 import nmr.demo.models.Customer;
 
@@ -35,7 +36,23 @@ public class CustomerRepository implements IRepository<Customer> {
     }
 
     @Override
-    public boolean update(Customer model) {
+    public boolean update(Customer customer) {
+        try {
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Customer SET CustomerId = ?, CustomerName = ?, address = ?, zipCode = ?, phone = ?, email = ?, customerType = ? WHERE CustomerId =" + Customer.getCustomerId());
+            myStmt.setInt(1, customer.getCustomerId());
+            myStmt.setString(2, customer.getCustomerName());
+            myStmt.setString(3, customer.getAddress());
+            myStmt.setInt(4, customer.getZipCode());
+            myStmt.setInt(5, customer.getPhone());
+            myStmt.setString(6, customer.getEmail());
+            myStmt.setBoolean(7, customer.isCustomerType());
+
+            System.out.println(myStmt);
+            myStmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 

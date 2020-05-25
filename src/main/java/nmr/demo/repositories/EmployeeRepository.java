@@ -2,6 +2,7 @@ package nmr.demo.repositories;
 
 import nmr.demo.models.Customer;
 import nmr.demo.models.Employee;
+import nmr.demo.models.MotorHome;
 import nmr.demo.utilities.DatabaseConnectionManager;
 
 import java.sql.Connection;
@@ -36,7 +37,23 @@ public class EmployeeRepository implements IRepository<Employee> {
     }
 
     @Override
-    public boolean update(Employee model) {
+    public boolean update(Employee employee) {
+        try {
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Employee SET employeeId = ?, empName = ?, position = ?, address = ?, zipCode = ?, phone = ?, email = ? WHERE employeeId =" + Employee.getEmployeeId());
+            myStmt.setInt(1, employee.getEmployeeId());
+            myStmt.setString(2, employee.getEmpName());
+            myStmt.setString(3, employee.getPosition());
+            myStmt.setString(4, employee.getAddress());
+            myStmt.setInt(5, employee.getZipCode());
+            myStmt.setInt(6, employee.getPhone());
+            myStmt.setString(7, employee.getEmail());
+
+            System.out.println(myStmt);
+            myStmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
