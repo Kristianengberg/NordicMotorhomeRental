@@ -2,7 +2,7 @@ package nmr.demo.repositories;
 
 import nmr.demo.utilities.DatabaseConnectionManager;
 import nmr.demo.models.Customer;
-import nmr.demo.utilities.DatabaseConnectionManager;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -42,14 +42,13 @@ public class CustomerRepository implements IRepository<Customer> {
     @Override
     public boolean delete(int id) {
         if(Customer.getCustomerId() == id) {
-            String sql = "DELETE FROM students WHERE id = ?";
+            String sql = "DELETE FROM Customer WHERE Customer_id = ?";
 
             try {
                 PreparedStatement pstmt = conn.prepareStatement(sql);
 
-                // set the corresponding param
                 pstmt.setInt(1, id);
-                // execute the delete statement
+
                 pstmt.executeUpdate();
 
 

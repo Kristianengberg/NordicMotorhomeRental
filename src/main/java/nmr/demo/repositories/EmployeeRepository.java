@@ -1,9 +1,8 @@
 package nmr.demo.repositories;
 
+import nmr.demo.models.Customer;
+import nmr.demo.models.Employee;
 import nmr.demo.utilities.DatabaseConnectionManager;
-
-
-import nmr.demo.models.MotorHome;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,51 +10,45 @@ import java.sql.SQLException;
 import java.util.List;
 
 
-
-
-public class MotorhomeRepository implements IRepository<MotorHome> {
+public class EmployeeRepository implements IRepository<Employee> {
 
     private Connection conn;
 
 
-    public MotorhomeRepository() throws SQLException { // lav try catch
+    public EmployeeRepository() throws SQLException { //ret til i database at den skal lave try catch
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
 
 
-
-    public boolean create(MotorHome model) {
+    @Override
+    public boolean create(Employee model) {
         return false;
     }
 
     @Override
-    public MotorHome read(int id) {
+    public Employee read(int id) {
         return null;
     }
 
     @Override
-    public List<MotorHome> readAll() {
+    public List<Employee> readAll() {
         return null;
     }
 
     @Override
-    public boolean update(MotorHome model) {
+    public boolean update(Employee model) {
         return false;
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
-    }
-
-    public boolean delete(String id){
-        if(MotorHome.getLicensePlateNo() == id) {
-            String sql = "DELETE FROM Motorhome WHERE LicensPlateNo = ?";
+        if(Employee.getEmployeeId() == id) {
+            String sql = "DELETE FROM Customer WHERE Employee_id = ?";
 
             try {
                 PreparedStatement pstmt = conn.prepareStatement(sql);
 
-                pstmt.setString(1, id);
+                pstmt.setInt(1, id);
 
                 pstmt.executeUpdate();
 
@@ -67,6 +60,5 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
             System.out.println("Fail");
         }
         return false;
-
     }
 }
