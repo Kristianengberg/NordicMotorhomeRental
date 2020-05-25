@@ -40,9 +40,15 @@ public class DatabaseConnectionManager {
         Connection Manager
          */
 
-    public static Connection getDBConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/test?serverTimezone=UTC", "root", "12345678");
+    public static Connection getDBConnection() {
+        try {
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/test?serverTimezone=UTC", "root", "12345678");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
+
 
 }
 

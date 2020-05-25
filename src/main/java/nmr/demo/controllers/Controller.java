@@ -1,6 +1,8 @@
 package nmr.demo.controllers;
 
 
+import nmr.demo.repositories.IRepository;
+import nmr.demo.repositories.MotorhomeRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,9 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 class AutocamperController {
 
-    private IAutoCamperRepository autocamperRepository;
+    private IRepository autocamperRepository;
     public AutocamperController(){
-        autocamperRepository = new AutoCamperRepositoryImpl();
+        autocamperRepository = new MotorhomeRepository();
     }
 
     @GetMapping("/")
