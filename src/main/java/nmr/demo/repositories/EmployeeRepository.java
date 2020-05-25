@@ -6,7 +6,9 @@ import nmr.demo.utilities.DatabaseConnectionManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,12 +29,48 @@ public class EmployeeRepository implements IRepository<Employee> {
 
     @Override
     public Employee read(int id) {
-        return null;
+        Employee employeeToReturn = new Employee();
+        try {
+            PreparedStatement getSingleEmployee = conn.prepareStatement("SELECT * FROM Employee WHERE id=" + id);
+            ResultSet rs = getSingleEmployee.executeQuery();
+            while(rs.next()){
+                employeeToReturn.setEmployeeId(rs.getInt(1));
+                employeeToReturn.setEmpName(rs.getString(2));
+                employeeToReturn.setPosition(rs.getString(3));
+                employeeToReturn.setAddress(rs.getString(4));
+                employeeToReturn.setZipCode(rs.getInt(5));
+                employeeToReturn.setPhone(rs.getInt(6));
+                employeeToReturn.setEmail(rs.getString(7));
+            }
+        }
+        catch(SQLException s){
+            s.printStackTrace();
+        }
+        return employeeToReturn;
     }
 
     @Override
     public List<Employee> readAll() {
-        return null;
+        List<Employee> allEmployees = new ArrayList<Employee>();
+        try {
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Employee");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Employee tempEmployee = new Employee();
+                tempEmployee.setEmployeeId(rs.getInt(1));
+                tempEmployee.setEmpName(rs.getString(2));
+                tempEmployee.setPosition(rs.getString(3));
+                tempEmployee.setAddress(rs.getString(4));
+                tempEmployee.setZipCode(rs.getInt(5));
+                tempEmployee.setPhone(rs.getInt(6));
+                tempEmployee.setEmail(rs.getString(7));
+
+                allEmployees.add(tempEmployee);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return allEmployees;
     }
 
     @Override

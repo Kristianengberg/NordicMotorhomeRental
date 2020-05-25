@@ -49,15 +49,6 @@ public class CustomerRepository implements IRepository<Customer> {
         return customerToReturn;
     }
 
-
-    private static int CustomerId;
-    private String CustomerName;
-    private String address;
-    private int zipCode;
-    private int phone;
-    private String email;
-    private boolean customerType;
-
     @Override
     public List<Customer> readAll() {
         List<Customer> allCustomer = new ArrayList<Customer>();
