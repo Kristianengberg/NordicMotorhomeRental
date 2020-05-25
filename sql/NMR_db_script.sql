@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `NMR_db`.`Motorhome` (
   `LicensPlateNo` VARCHAR(10) NOT NULL,
   `Model` VARCHAR(45) NULL,
   `Beds` INT NULL,
-  `Fuel` VARCHAR(45) NULL,
+  `Accessible` VARCHAR(45) NULL,
   `Km` DOUBLE NULL,
   `Price` DOUBLE NULL,
   `EngineBlockNo` INT NULL,
@@ -120,12 +120,12 @@ INSERT INTO employee (EmpName, Position, Address, Zipcode, Phone, Email)
         ("Gregers Jørn", "Cleaning", "Mågegade 12", "2740 Skovlunde", "23546764", "gj@nmr.dk");
         
 INSERT INTO Motorhome 
-	VALUES ("NK 34982", "A", 2, "Full", "56984.00", "1500.00", 13273),
-			("SL 84632", "A", 4, "Full", "13833.00", "2500.00", 75633),
-            ("BL 73410", "A", 6, "Full", "73538.00", "4500.00", 98254),
-            ("KP 65233", "B", 2, "Full", "64538.00", "2000.00", 83726),
-            ("BA 92527", "B", 4, "Full", "33984.00", "3500.00", 65667),
-            ("RT 27546", "B", 6, "Full", "23415.00", "5500.00", 99833);
+	VALUES ("NK 34982", "A", 2, "YES", "56984.00", "1500.00", 13273),
+			("SL 84632", "A", 4, "YES", "13833.00", "2500.00", 75633),
+            ("BL 73410", "A", 6, "YES", "73538.00", "4500.00", 98254),
+            ("KP 65233", "B", 2, "YES", "64538.00", "2000.00", 83726),
+            ("BA 92527", "B", 4, "YES", "33984.00", "3500.00", 65667),
+            ("RT 27546", "B", 6, "YES", "23415.00", "5500.00", 99833);
         
 INSERT INTO customer (CustomerName, Address, Zipcode, Phone, Email, CustomerType)
 			VALUES ("Lars Larsen","Nørrebrogade 165", "2200 KBH N", 34536725, "ll@mail.dk", "Privat"),
