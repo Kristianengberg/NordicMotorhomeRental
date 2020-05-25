@@ -1,7 +1,7 @@
 package nmr.demo.Models;
 
 public class MotorHome {
-    private String licensePlate;
+    private String licensePlateNo;
     private char model;
     private int bedSpace;
     private double price;
@@ -12,8 +12,8 @@ public class MotorHome {
     public MotorHome() {
     }
 
-    public MotorHome(String licensePlate, char model, int bedSpace, double price, double fuel, double kilometers, int serialNumbers) {
-        this.licensePlate = licensePlate;
+    public MotorHome(String licensePlateNo, char model, int bedSpace, double price, double fuel, double kilometers, int serialNumbers) {
+        this.licensePlateNo = licensePlateNo;
         this.model = model;
         this.bedSpace = bedSpace;
         this.price = price;
@@ -24,12 +24,12 @@ public class MotorHome {
 
 
 
-    public String getLicensePlate() {
-        return licensePlate;
+    public String getLicensePlateNo() {
+        return licensePlateNo;
     }
 
-    public void setLicensePlate(String licensePlate) {
-        this.licensePlate = licensePlate;
+    public void setLicensePlateNo(String licensePlateNo) {
+        this.licensePlateNo = licensePlateNo;
     }
 
     public char getModel() {
