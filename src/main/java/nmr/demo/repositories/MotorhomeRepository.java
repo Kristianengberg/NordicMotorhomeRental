@@ -57,7 +57,7 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     public List<MotorHome> readAll() {
         List<MotorHome> allMotorHome = new ArrayList<MotorHome>();
         try {
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Motorhome");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM autocamper");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 MotorHome tempMotorHome = new MotorHome();
