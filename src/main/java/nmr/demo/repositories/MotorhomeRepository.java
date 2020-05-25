@@ -4,9 +4,10 @@ import nmr.demo.utilities.DatabaseConnectionManager;
 
 
 import nmr.demo.models.MotorHome;
-import nmr.demo.utilities.DatabaseConnectionManager;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -17,7 +18,7 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     private Connection conn;
 
 
-    public MotorhomeRepository() throws SQLException { // lav try catch
+    public MotorhomeRepository() {
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
 
