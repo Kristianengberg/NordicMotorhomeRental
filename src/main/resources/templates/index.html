@@ -3,27 +3,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Autocamper</title>
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
+
 <body>
-<div class="container">
-    <h1>MotorHomes</h1>
 
-    <table>
+<table>
 
-        <tr th:each="motorhome : ${autocamper}">
-            <td th:text="${motorhome.getLicensePlateNo()}"></td>
-            <td th:text="${motorhome.getModel()}"></td>
-            <td th:text="${motorhome.getBeds()}"></td>
-            <td th:text="${motorhome.getPrice()}"></td>
+    <tr th:each="motorhome : ${autocamper}">
+        <td th:text="${motorhome.getLicensePlateNo()}"></td>
+        <td th:text="${motorhome.getModel()}"></td>
+        <td th:text="${motorhome.getBeds()}"></td>
+        <td th:text="${motorhome.getPrice()}"></td>
 
-        </tr>
+    </tr>
 
-
-
-
-    </table>
-</div>
+</table>
 
 </body>
 </html>
