@@ -26,15 +26,14 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     @Override
     public boolean create(MotorHome model) {
         try {
-            String sql = "INSERT INTO Motorhome (LicensPlateNo, Model, Beds,Accessible, Km,Price,EngineBlockNo) VALUES (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO Motorhome (LicensPlateNo, Model, Beds, Km,Price,EngineBlockNo) VALUES (?,?,?,?,?,?)";
             PreparedStatement CreateMotorHome = conn.prepareStatement(sql);
             CreateMotorHome.setString(1, model.getLicensePlateNo());
             CreateMotorHome.setString(2,model.getModel());
             CreateMotorHome.setInt(3,model.getBeds());
-            CreateMotorHome.setString(4,model.getAccessible());
-            CreateMotorHome.setDouble(5,model.getKilometers());
-            CreateMotorHome.setDouble(6,model.getPrice());
-            CreateMotorHome.setInt(7,model.getEngineBlockNo());
+            CreateMotorHome.setDouble(4,model.getKilometers());
+            CreateMotorHome.setDouble(5,model.getPrice());
+            CreateMotorHome.setInt(6,model.getEngineBlockNo());
             System.out.println(CreateMotorHome.getResultSet());
             CreateMotorHome.executeUpdate();
             return true;
