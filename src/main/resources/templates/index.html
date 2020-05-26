@@ -8,7 +8,40 @@
 </head>
 
 <body>
+<div th:insert="fragments/top_menu"></div>
 
+<div><h1>Nordic MotorHome Rental System V.03</h1></div>
+
+<div>
+    <button type="button">New customer</button>
+    <button type="button">Excising Customer</button>
+    <button type="button">Finish reservation</button>
+</div>
+<div>
+    <form action="/action_page.php">
+        <label for="cars">Choose a car:</label>
+        <select name="cars" id="cars">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="opel">Opel</option>
+            <option value="audi">Audi</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+</body>
+</html>
+
+<!--
+
+<div class="bg">
+    <h1>Nordic MotorHome Rental System V.03</h1>
+
+</div>
+
+<div>
 <table>
 
     <tr th:each="motorhome : ${autocamper}">
@@ -20,6 +53,5 @@
     </tr>
 
 </table>
-
-</body>
-</html>
+</div>
+-->
