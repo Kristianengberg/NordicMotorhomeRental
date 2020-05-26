@@ -1,6 +1,7 @@
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
+src/main/resources/application.properties
 !**/src/main/**
 !**/src/test/**
 
@@ -29,3 +30,5 @@ build/
 
 ### VS Code ###
 .vscode/
+src/main/resources/application.properties
+src/main/java/nmr/demo/.DS_Store

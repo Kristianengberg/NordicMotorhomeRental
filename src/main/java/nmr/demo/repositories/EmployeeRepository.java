@@ -7,7 +7,9 @@ import nmr.demo.utilities.DatabaseConnectionManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -16,13 +18,30 @@ public class EmployeeRepository implements IRepository<Employee> {
     private Connection conn;
 
 
-    public EmployeeRepository() throws SQLException { //ret til i database at den skal lave try catch
+    public EmployeeRepository() { //ret til i database at den skal lave try catch
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
 
 
     @Override
     public boolean create(Employee model) {
+        try {
+            PreparedStatement CreateEmployee = conn.prepareStatement("INSERT INTO employee" + "(empName,position,address,zipCode,phone,email)VALUES" + "(?,?,?,?,?,?);");
+            CreateEmployee.setString(1, model.getEmpName());
+            CreateEmployee.setString(2,model.getPosition());
+            CreateEmployee.setString(3,model.getAddress());
+            CreateEmployee.setInt(4,model.getZipCode());
+            CreateEmployee.setInt(5,model.getPhone());
+            CreateEmployee.setString(6,model.getEmail());
+
+
+            CreateEmployee.executeUpdate();
+            return true;
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
         return false;
     }
 
@@ -33,7 +52,26 @@ public class EmployeeRepository implements IRepository<Employee> {
 
     @Override
     public List<Employee> readAll() {
-        return null;
+        List<Employee> allEmployees = new ArrayList<Employee>();
+        try {
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Employee");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Employee tempEmployee = new Employee();
+                tempEmployee.setEmployeeId(rs.getInt(1));
+                tempEmployee.setEmpName(rs.getString(2));
+                tempEmployee.setPosition(rs.getString(3));
+                tempEmployee.setAddress(rs.getString(4));
+                tempEmployee.setZipCode(rs.getInt(5));
+                tempEmployee.setPhone(rs.getInt(6));
+                tempEmployee.setEmail(rs.getString(7));
+
+                allEmployees.add(tempEmployee);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return allEmployees;
     }
 
     @Override

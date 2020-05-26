@@ -9,40 +9,35 @@ import java.util.Properties;
 
 public class DatabaseConnectionManager {
 
-    private final String URL;
-    private final String USER;
-    private final String PASSWORD;
+    static String URL;
+    static String USER;
+    static String PASSWORD;
 
 
-    public DatabaseConnectionManager() {
+    public static Connection getDBConnection() {
 
         /*
         Connect to config.properties
          */
-        Properties prop = null;
+        Properties prop = new Properties();
         try {
-            prop = new Properties();
-            FileInputStream fis = new FileInputStream("src/main/resources/config.properties");
-            prop.load(fis);
-            fis.close();
+            FileInputStream propertyFile = new FileInputStream("src/main/resources/application.properties");
+            prop.load(propertyFile);
+            USER = prop.getProperty("username");
+            PASSWORD = prop.getProperty("password");
+            URL = prop.getProperty("url");
 
-        } catch (IOException e) {
+
+        }catch (IOException e) {
             e.printStackTrace();
         }
-
-        this.URL = prop.getProperty("URL");
-        this.USER = prop.getProperty("USER");
-        this.PASSWORD = prop.getProperty("PASSWORD");
-
-    }
 
     /*
         Connection Manager
          */
 
-    public static Connection getDBConnection() {
         try {
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/NMR_db?serverTimezone=UTC", "root", "jlb110674");
+            return DriverManager.getConnection(URL,USER,PASSWORD);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -52,52 +47,4 @@ public class DatabaseConnectionManager {
 
 }
 
-/*
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.Properties;
 
-public class DatabaseConnectionManager {
-
-    static String username;
-    static String password;
-    static String url;
-    static Connection conn;
-
-
-    public static Connection getConnection() {
-        Properties prop = new Properties();
-        try {
-            FileInputStream propertyFile = new FileInputStream("src/main/resources/application.properties");
-            prop.load(propertyFile);
-            username = prop.getProperty("username");
-            password = prop.getProperty("password");
-            url = prop.getProperty("url");
-
-
-        }
-        catch (FileNotFoundException e){
-            e.printStackTrace();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-
-        try{
-            conn = DriverManager.getConnection(username,password,url);
-
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
-        System.out.println("Successful connection");
-        return conn;
-
-    }
-
-}
-*/
