@@ -51,7 +51,7 @@ public class InvoiceRepository implements IRepository<Invoice> {
 
             myStmt.setInt(7, employeeToReturn.getEmployeeId());
             myStmt.setInt(8, customerToReturn.getCustomerId());
-            myStmt.setInt(9, accessoriesToReturn.getId());
+            myStmt.setInt(9, accessoriesToReturn.getAccessory_id());
             myStmt.setString(10, motorHomeToReturn.getLicensePlateNo());
 
             System.out.println(myStmt);
