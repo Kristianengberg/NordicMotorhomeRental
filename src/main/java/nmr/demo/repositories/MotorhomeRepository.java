@@ -90,9 +90,26 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     }
 
     @Override
-    public boolean update(MotorHome model) {
+    public boolean update(MotorHome motorHome) {
+        try {
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Motorhome SET licensePlateNo = ?, model = ?, beds = ?, accessible = ?, kilometers = ?, price = ?, engineBlockNo = ? WHERE LicensePlateNo =" + MotorHome.getLicensePlateNo());
+            myStmt.setString(1, motorHome.getLicensePlateNo());
+            myStmt.setString(2, motorHome.getModel());
+            myStmt.setInt(3, motorHome.getBeds());
+            myStmt.setString(4, motorHome.isAccessible());
+            myStmt.setDouble(5, motorHome.getKilometers());
+            myStmt.setDouble(6, motorHome.getPrice());
+            myStmt.setInt(7, motorHome.getEngineBlockNo());
+
+            System.out.println(myStmt);
+            myStmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
+
 
     @Override
     public boolean delete(int id) {
