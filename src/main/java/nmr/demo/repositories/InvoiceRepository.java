@@ -57,7 +57,7 @@ public class InvoiceRepository implements IRepository<Invoice> {
                 invoiceToReturn.setTotalPrice(rs.getDouble(6));
                 employeeToReturn.setEmployeeId(rs.getInt(7));
                 customerToReturn.setCustomerId(rs.getInt(8));
-                accessoriesToReturn.setAccessoriesId(rs.getInt(9));
+                accessoriesToReturn.setAccessory_id(rs.getInt(9));
                 licensePlateNoToReturn.setLicensePlateNo(rs.getString(10));
             }
         }
@@ -88,7 +88,7 @@ public class InvoiceRepository implements IRepository<Invoice> {
                 tempInvoice.setTotalPrice(rs.getInt(6));
                 tempEmployee.setEmployeeId(rs.getInt(7));
                 tempCustomer.setCustomerId(rs.getInt(8));
-                tempAccessory.setAccessoriesId(rs.getInt(9));
+                tempAccessory.setAccessory_id(rs.getInt(9));
                 tempLicensePlateNo.setLicensePlateNo(rs.getString(10));
 
                 allInvoices.add(tempInvoice);

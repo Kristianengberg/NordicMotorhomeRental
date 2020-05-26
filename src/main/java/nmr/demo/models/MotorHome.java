@@ -70,10 +70,11 @@ public class MotorHome {
         this.engineBlockNo = engineBlockNo;
     }
 
+    public String getAccessible() {
+        return accessible;
+    }
+
     public void setAccessible(String accessible) {
         this.accessible = accessible;
     }
-
-    public String getAccessible(){return accessible;}
-
 }

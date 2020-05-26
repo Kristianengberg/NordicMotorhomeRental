@@ -28,7 +28,7 @@ public class AccessoryRepository implements IRepository<Accessories>{
     public boolean create(Accessories model) {
         try {
             PreparedStatement CreateAccessory = conn.prepareStatement("INSERT INTO accessories" + "(type,price)VALUES" + "(?,?);");
-            CreateAccessory.setString(1,model.getType());
+            CreateAccessory.setString(1,model.getAccessoriesType());
             CreateAccessory.setDouble(2,model.getPrice());
 
 
@@ -50,7 +50,7 @@ public class AccessoryRepository implements IRepository<Accessories>{
             PreparedStatement getSingleAccessory = conn.prepareStatement("SELECT * FROM accessories WHERE id=" + id);
             ResultSet rs = getSingleAccessory.executeQuery();
             while(rs.next()){
-                AccessoriesToReturn.setAccessoriesId(rs.getInt(1));
+                AccessoriesToReturn.setAccessory_id(rs.getInt(1));
                 AccessoriesToReturn.setPrice(rs.getDouble(2));
                 AccessoriesToReturn.setType(rs.getString(3));
             }
@@ -69,7 +69,7 @@ public class AccessoryRepository implements IRepository<Accessories>{
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Accessories tempAccessories = new Accessories();
-                tempAccessories.setAccessoriesId(rs.getInt(1));
+                tempAccessories.setAccessory_id(rs.getInt(1));
                 tempAccessories.setType(rs.getString(2));
                 tempAccessories.setPrice(rs.getDouble(3));
 
