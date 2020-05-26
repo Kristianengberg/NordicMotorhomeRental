@@ -1,6 +1,6 @@
 package nmr.demo.repositories;
 
-import nmr.demo.models.Accessories;
+import nmr.demo.models.MotorHome;
 import nmr.demo.utilities.DatabaseConnectionManager;
 import nmr.demo.models.Customer;
 
@@ -17,36 +17,36 @@ public class CustomerRepository implements IRepository<Customer> {
     private Connection conn;
 
 
-    public CustomerRepository() throws SQLException { //ret til i database at den skal lave try catch
+    public CustomerRepository() { //ret til i database at den skal lave try catch
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
 
 
+
     @Override
     public boolean create(Customer model) {
+        try {
+            PreparedStatement CreateCustomer = conn.prepareStatement("INSERT INTO customer" + "(CustomerName,address,zipCode,phone,email,customerType)VALUES" + "(?,?,?,?,?,?);");
+            CreateCustomer.setString(1,model.getCustomerName());
+            CreateCustomer.setString(2,model.getAddress());
+            CreateCustomer.setString(3,model.getZipCode());
+            CreateCustomer.setInt(4,model.getPhone());
+            CreateCustomer.setString(5,model.getEmail());
+            CreateCustomer.setString(6,model.getCustomerType());
+
+            CreateCustomer.executeUpdate();
+            return true;
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
         return false;
     }
 
     @Override
     public Customer read(int id) {
-        Customer customerToReturn = new Customer();
-        try {
-            PreparedStatement getSingleCustomer = conn.prepareStatement("SELECT * FROM customer WHERE id=" + id);
-            ResultSet rs = getSingleCustomer.executeQuery();
-            while(rs.next()){
-                customerToReturn.setCustomerId(rs.getInt(1));
-                customerToReturn.setCustomerName(rs.getString(2));
-                customerToReturn.setAddress(rs.getString(3));
-                customerToReturn.setZipCode(rs.getInt(4));
-                customerToReturn.setPhone(rs.getInt(5));
-                customerToReturn.setEmail(rs.getString(6));
-                customerToReturn.setCustomerType(rs.getBoolean(7));
-            }
-        }
-        catch(SQLException s){
-            s.printStackTrace();
-        }
-        return customerToReturn;
+        return null;
     }
 
     @Override
@@ -60,10 +60,10 @@ public class CustomerRepository implements IRepository<Customer> {
                 tempCustomer.setCustomerId(rs.getInt(1));
                 tempCustomer.setCustomerName(rs.getString(2));
                 tempCustomer.setAddress(rs.getString(3));
-                tempCustomer.setZipCode(rs.getInt(4));
+                tempCustomer.setZipCode(rs.getString(4));
                 tempCustomer.setPhone(rs.getInt(5));
                 tempCustomer.setEmail(rs.getString(6));
-                tempCustomer.setCustomerType(rs.getBoolean(7));
+                tempCustomer.setCustomerType(rs.getString(7));
 
                 allCustomer.add(tempCustomer);
             }
@@ -74,13 +74,29 @@ public class CustomerRepository implements IRepository<Customer> {
     }
 
     @Override
-    public boolean update(Customer model) {
+    public boolean update(Customer customer) {
+        try {
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Customer SET CustomerId = ?, CustomerName = ?, address = ?, zipCode = ?, phone = ?, email = ?, customerType = ? WHERE CustomerId =" + Customer.getCustomerId());
+            myStmt.setInt(1, customer.getCustomerId());
+            myStmt.setString(2, customer.getCustomerName());
+            myStmt.setString(3, customer.getAddress());
+            myStmt.setInt(4, customer.getZipCode());
+            myStmt.setInt(5, customer.getPhone());
+            myStmt.setString(6, customer.getEmail());
+            myStmt.setBoolean(7, customer.isCustomerType());
+
+            System.out.println(myStmt);
+            myStmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
     @Override
     public boolean delete(int id) {
-        if(Customer.getCustomerId() == id) {
+
             String sql = "DELETE FROM Customer WHERE Customer_id = ?";
 
             try {
@@ -89,14 +105,15 @@ public class CustomerRepository implements IRepository<Customer> {
                 pstmt.setInt(1, id);
 
                 pstmt.executeUpdate();
+                return true;
 
 
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
-        }else{
+
             System.out.println("Fail");
-        }
+
         return false;
     }
 

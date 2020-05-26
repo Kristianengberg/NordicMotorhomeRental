@@ -9,10 +9,10 @@ public class Invoice {
     private String pickUp;
     private String dropOff;
     private double totalPrice;
-    Employee employeeId = new Employee();
-    Customer customerId = new Customer();
-    Accessories accessoriesId = new Accessories();
-    MotorHome licensePlateNo = new MotorHome();
+    Employee employeeId;
+    Customer customerId;
+    Accessories accessoriesId;
+    MotorHome licensePlateNo;
 
 
     public Invoice() {

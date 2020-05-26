@@ -4,15 +4,15 @@ public class Customer {
     private static int CustomerId;
     private String CustomerName;
     private String address;
-    private int zipCode;
+    private String zipCode;
     private int phone;
     private String email;
-    private boolean customerType;
+    private String customerType;
 
     public Customer() {
     }
 
-    public Customer(int customerId, String customerName, String address, int zipCode, int phone, String email, boolean customerType) {
+    public Customer(int customerId, String customerName, String address, String zipCode, int phone, String email, String customerType) {
         CustomerId = customerId;
         CustomerName = customerName;
         this.address = address;
@@ -22,7 +22,7 @@ public class Customer {
         this.customerType = customerType;
     }
 
-    public static int getCustomerId() {
+    public int getCustomerId() {
         return CustomerId;
     }
 
@@ -46,11 +46,11 @@ public class Customer {
         this.address = address;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 
@@ -70,11 +70,11 @@ public class Customer {
         this.email = email;
     }
 
-    public boolean isCustomerType() {
+    public String getCustomerType() {
         return customerType;
     }
 
-    public void setCustomerType(boolean customerType) {
+    public void setCustomerType(String customerType) {
         this.customerType = customerType;
     }
 }

@@ -17,14 +17,29 @@ public class AccessoryRepository implements IRepository<Accessories>{
     private Connection conn;
 
 
-    public AccessoryRepository() throws SQLException { // try catch
+    public AccessoryRepository()  { // try catch
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
 
 
 
+
     @Override
     public boolean create(Accessories model) {
+        try {
+            PreparedStatement CreateAccessory = conn.prepareStatement("INSERT INTO accessories" + "(type,price)VALUES" + "(?,?);");
+            CreateAccessory.setString(1,model.getType());
+            CreateAccessory.setDouble(2,model.getPrice());
+
+
+
+            CreateAccessory.executeUpdate();
+            return true;
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
         return false;
     }
 
@@ -55,8 +70,9 @@ public class AccessoryRepository implements IRepository<Accessories>{
             while(rs.next()){
                 Accessories tempAccessories = new Accessories();
                 tempAccessories.setAccessoriesId(rs.getInt(1));
-                tempAccessories.setPrice(rs.getDouble(2));
-                tempAccessories.setType(rs.getString(3));
+                tempAccessories.setType(rs.getString(2));
+                tempAccessories.setPrice(rs.getDouble(3));
+
 
                 allAccessories.add(tempAccessories);
             }
@@ -67,13 +83,25 @@ public class AccessoryRepository implements IRepository<Accessories>{
     }
 
     @Override
-    public boolean update(Accessories model) {
+    public boolean update(Accessories accessories) {
+        try {
+           PreparedStatement myStmt = conn.prepareStatement("UPDATE Accessories SET accessory_id = ?, price = ?, type = ? WHERE accessory_id =" + Accessories.getAccessory_id());
+           myStmt.setInt(1, accessories.getAccessory_id());
+           myStmt.setDouble(2, accessories.getPrice());
+           myStmt.setString(3,accessories.getAccessoriesType());
+
+            System.out.println(myStmt);
+            myStmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
     @Override
     public boolean delete(int id) {
-        if(Accessories.getAccessoriesId() == id) {
+        if(Accessories.getAccessory_id() == id) {
             String sql = "DELETE FROM Invoice WHERE Accessory_id = ?";
 
             try {
