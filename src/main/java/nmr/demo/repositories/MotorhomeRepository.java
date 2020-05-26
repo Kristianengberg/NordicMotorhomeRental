@@ -20,10 +20,26 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     public MotorhomeRepository() {
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
-
-
-
+    @Override
     public boolean create(MotorHome model) {
+        try {
+            String sql = "INSERT INTO Motorhome (LicensPlateNo, Model, Beds,Accessible, Km,Price,EngineBlockNo) VALUES (?,?,?,?,?,?,?)";
+            PreparedStatement CreateMotorHome = conn.prepareStatement(sql);
+            CreateMotorHome.setString(1, model.getLicensePlateNo());
+            CreateMotorHome.setString(2,model.getModel());
+            CreateMotorHome.setInt(3,model.getBeds());
+            CreateMotorHome.setString(4,model.getAccessible());
+            CreateMotorHome.setDouble(5,model.getKilometers());
+            CreateMotorHome.setDouble(6,model.getPrice());
+            CreateMotorHome.setInt(7,model.getEngineBlockNo());
+            System.out.println(CreateMotorHome.getResultSet());
+            CreateMotorHome.executeUpdate();
+            return true;
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
         return false;
     }
 
@@ -31,16 +47,17 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     public MotorHome read(int id) {
         MotorHome MotorHomeToReturn = new MotorHome();
         try {
-            PreparedStatement getSingleStudent = conn.prepareStatement("SELECT * FROM Motorhome WHERE id=" + id);
-            ResultSet rs = getSingleStudent.executeQuery();
+            PreparedStatement getSingleMotorHome = conn.prepareStatement("SELECT * FROM Motorhome WHERE id=" + id);
+            ResultSet rs = getSingleMotorHome.executeQuery();
             while(rs.next()){
                 MotorHomeToReturn.setLicensePlateNo(rs.getString(1));
                 MotorHomeToReturn.setModel(rs.getString(2));
                 MotorHomeToReturn.setBeds(rs.getInt(3));
-                MotorHomeToReturn.setKilometers(rs.getDouble(4));
-                MotorHomeToReturn.setPrice(rs.getDouble(5));
-                MotorHomeToReturn.setEngineBlockNo(rs.getInt(6));
-                MotorHomeToReturn.setAccessible(rs.getString(7));
+                MotorHomeToReturn.setAccessible(rs.getString(4));
+                MotorHomeToReturn.setKilometers(rs.getDouble(5));
+                MotorHomeToReturn.setPrice(rs.getDouble(6));
+                MotorHomeToReturn.setEngineBlockNo(rs.getInt(7));
+
 
             }
         }
@@ -61,10 +78,10 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
                 tempMotorHome.setLicensePlateNo(rs.getString(1));
                 tempMotorHome.setModel(rs.getString(2));
                 tempMotorHome.setBeds(rs.getInt(3));
-                tempMotorHome.setKilometers(rs.getDouble(4));
-                tempMotorHome.setPrice(rs.getDouble(5));
-                tempMotorHome.setEngineBlockNo(rs.getInt(6));
-                tempMotorHome.setAccessible(rs.getString(7));
+                tempMotorHome.setAccessible(rs.getString(4));
+                tempMotorHome.setKilometers(rs.getDouble(5));
+                tempMotorHome.setPrice(rs.getDouble(6));
+                tempMotorHome.setEngineBlockNo(rs.getInt(7));
                 allMotorHome.add(tempMotorHome);
             }
         } catch (SQLException e) {
@@ -74,9 +91,26 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     }
 
     @Override
-    public boolean update(MotorHome model) {
+    public boolean update(MotorHome motorHome) {
+        try {
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Motorhome SET licensePlateNo = ?, model = ?, beds = ?, accessible = ?, kilometers = ?, price = ?, engineBlockNo = ? WHERE LicensePlateNo =" + MotorHome.getLicensePlateNo());
+            myStmt.setString(1, motorHome.getLicensePlateNo());
+            myStmt.setString(2, motorHome.getModel());
+            myStmt.setInt(3, motorHome.getBeds());
+            myStmt.setString(4, motorHome.isAccessible());
+            myStmt.setDouble(5, motorHome.getKilometers());
+            myStmt.setDouble(6, motorHome.getPrice());
+            myStmt.setInt(7, motorHome.getEngineBlockNo());
+
+            System.out.println(myStmt);
+            myStmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
+
 
     @Override
     public boolean delete(int id) {
@@ -84,7 +118,6 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     }
 
     public boolean delete(String id){
-        if(MotorHome.getLicensePlateNo() == id) {
             String sql = "DELETE FROM Motorhome WHERE LicensPlateNo = ?";
 
             try {
@@ -93,16 +126,14 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
                 pstmt.setString(1, id);
 
                 pstmt.executeUpdate();
+                return true;
 
 
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
-        }else{
-            System.out.println("Fail");
-        }
+
         return false;
 
     }
 }
-

@@ -1,12 +1,14 @@
 package nmr.demo.repositories;
 
-import nmr.demo.models.Customer;
+import nmr.demo.models.*;
 import nmr.demo.utilities.DatabaseConnectionManager;
-import nmr.demo.models.Invoice;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class InvoiceRepository implements IRepository<Invoice> {
@@ -14,13 +16,24 @@ public class InvoiceRepository implements IRepository<Invoice> {
     private Connection conn;
 
 
-    public InvoiceRepository() throws SQLException { //ret til i database at den skal lave try catch
+    public InvoiceRepository()  { //ret til i database at den skal lave try catch
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
 
 
     @Override
     public boolean create(Invoice model) {
+        try {
+            PreparedStatement CreateInvoice = conn.prepareStatement("INSERT INTO Invoice" + "(invoiceId)VALUES" + "(?);");
+            CreateInvoice.setInt(1, model.getInvoiceId());
+
+            CreateInvoice.executeUpdate();
+            return true;
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
         return false;
     }
 
@@ -31,11 +44,63 @@ public class InvoiceRepository implements IRepository<Invoice> {
 
     @Override
     public List<Invoice> readAll() {
-        return null;
+        List<Invoice> allInvoices = new ArrayList<Invoice>();
+        try {
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Invoice");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Invoice tempInvoice = new Invoice();
+                Employee tempEmployee = new Employee();
+                Customer tempCustomer = new Customer();
+                Accessories tempAccessory = new Accessories();
+                MotorHome tempLicensePlateNo = new MotorHome();
+
+                tempInvoice.setInvoiceId(rs.getInt(1));
+                tempInvoice.setDateStart(rs.getDate(2));
+                tempInvoice.setDateEnd(rs.getDate(3));
+                tempInvoice.setPickUp(rs.getString(4));
+                tempInvoice.setDropOff(rs.getString(5));
+                tempInvoice.setTotalPrice(rs.getInt(6));
+                tempEmployee.setEmployeeId(rs.getInt(7));
+                tempCustomer.setCustomerId(rs.getInt(8));
+                tempAccessory.setAccessoriesId(rs.getInt(9));
+                tempLicensePlateNo.setLicensePlateNo(rs.getString(10));
+
+                allInvoices.add(tempInvoice);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return allInvoices;
     }
 
+
     @Override
-    public boolean update(Invoice model) {
+    public boolean update(Invoice invoice) {
+        Employee employeeToReturn = new Employee();
+        Customer customerToReturn = new Customer();
+        Accessories accessoriesToReturn = new Accessories();
+        MotorHome motorHomeToReturn = new MotorHome();
+
+        try {
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Invoice SET invoiceId = ?, dateStart = ?, dateEnd = ?, pickUp = ?,  dropOff = ?, totalPrice = ?, employeeId = ?, customerId = ?, accessoriesId = ?, licensePlateNo = ? WHERE invoiceId =" + Invoice.getInvoiceId());
+            myStmt.setInt(1, invoice.getInvoiceId());
+            myStmt.setDate(2, (Date) invoice.getDateStart());
+            myStmt.setDate(3, (Date) invoice.getDateEnd());
+            myStmt.setString(4, invoice.getPickUp());
+            myStmt.setString(5, invoice.getDropOff());
+
+            myStmt.setInt(7, employeeToReturn.getEmployeeId());
+            myStmt.setInt(8, customerToReturn.getCustomerId());
+            myStmt.setInt(9, accessoriesToReturn.getAccessory_id());
+            myStmt.setString(10, motorHomeToReturn.getLicensePlateNo());
+
+            System.out.println(myStmt);
+            myStmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 

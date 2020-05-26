@@ -32,3 +32,5 @@ build/
 .vscode/
 src/main/resources/application.properties
 src/main/java/nmr/demo/.DS_Store
+src/main/resources/application.properties
+src/main/resources/.DS_Store
