@@ -1,7 +1,6 @@
 package nmr.demo.controllers;
 
 import nmr.demo.models.MotorHome;
-import nmr.demo.repositories.EmployeeRepository;
 import nmr.demo.repositories.IRepository;
 import nmr.demo.repositories.MotorhomeRepository;
 import org.springframework.stereotype.Controller;
@@ -33,7 +32,7 @@ class MotorHomeController {
     @GetMapping("/createMotorhome")
     public String createMotorHome(Model model){
         model.addAttribute("motorhome",new MotorHome());
-        return "create";
+        return "createmotorhome";
     }
     @PostMapping("/save")
     public String saveMotorHome(@ModelAttribute MotorHome motorHome){

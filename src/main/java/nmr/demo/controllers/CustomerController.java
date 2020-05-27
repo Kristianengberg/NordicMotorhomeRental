@@ -16,14 +16,14 @@ public class CustomerController {
 
     }
 
-    @GetMapping("/customer")
+    @GetMapping("/viewcustomers")
     public String index(Model model) {
         model.addAttribute("viewCustomers", customerRpository.readAll());
-        return "createCustomer";
+        return "viewcustomers";
     }
-    @GetMapping("/createCustomer")
+    @GetMapping("/createcustomer")
     public String createCustomer(Model model) {
         model.addAttribute("createCustomer", new Customer());
-        return "createCustomer";
+        return "/customer/createcustomer";
     }
 }
