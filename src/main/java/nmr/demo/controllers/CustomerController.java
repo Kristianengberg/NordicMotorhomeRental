@@ -1,6 +1,6 @@
 package nmr.demo.controllers;
 
-import nmr.demo.repositories.AccessoryRepository;
+import nmr.demo.models.Customer;
 import nmr.demo.repositories.CustomerRepository;
 import nmr.demo.repositories.IRepository;
 import org.springframework.stereotype.Controller;
@@ -19,6 +19,11 @@ public class CustomerController {
     @GetMapping("/customer")
     public String index(Model model) {
         model.addAttribute("viewCustomers", customerRpository.readAll());
-        return "customer";
+        return "createCustomer";
+    }
+    @GetMapping("/createCustomer")
+    public String createCustomer(Model model) {
+        model.addAttribute("createCustomer", new Customer());
+        return "createCustomer";
     }
 }
