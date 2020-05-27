@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>updatecustomer</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+
+<body>
+<div th:insert="fragments/top_menu"></div>
+<form th:action="@{/updatecustomer}" th:object="${customer}" method="post">
+    <input type="hidden" name="id" th:value="${customer.getCustomerId()}"/>
+    <table>
+        <tr>
+            <th>First Name</th>
+            <td><input type="text" name="firstName" th:value="*{customerName}"/></td>
+        </tr>
+        <tr>
+            <th>Last Name</th>
+            <td><input type="text" name="address" th:value="*{address}"/></td>
+        </tr>
+        <tr>
+            <th>Zipcode</th>
+            <td><input type="text" name="zipcode" th:value="*{zipCode}"/></td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td><input type="text" name="cpr" th:value="*{phone}"/></td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td><input type="text" name="cpr" th:value="*{email}"/></td>
+        </tr>
+        <tr>
+            <th>Customer Type</th>
+            <td><input type="text" name="cpr" th:value="*{customerType}"/></td>
+        </tr>
+        <p th:text="${customer.customerId}"></p>
+
+        <br>
+    </table>
+    <input type="submit" value="Update" class="btn btn-create">
+</Form>
+
+</body>
+</html>

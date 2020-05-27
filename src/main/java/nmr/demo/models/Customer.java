@@ -1,7 +1,7 @@
 package nmr.demo.models;
 
 public class Customer {
-    private static int CustomerId;
+    private int CustomerId;
     private String CustomerName;
     private String address;
     private String zipCode;

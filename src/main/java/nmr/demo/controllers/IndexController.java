@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-class MotorHomeController {
+class IndexController {
 
     private IRepository motorHomeRepository;
 
-    public MotorHomeController() {
+    public IndexController() {
         motorHomeRepository = new MotorhomeRepository();
 
     }
@@ -24,19 +24,5 @@ class MotorHomeController {
         model.addAttribute("autocamper", motorHomeRepository.readAll());
         return "index";
     }
-    @GetMapping("/motorhome")
-    public String motorhome(Model model) {
-        model.addAttribute("autocamper", motorHomeRepository.readAll());
-        return "index";
-    }
-    @GetMapping("/createMotorhome")
-    public String createMotorHome(Model model){
-        model.addAttribute("motorhome",new MotorHome());
-        return "createmotorhome";
-    }
-    @PostMapping("/save")
-    public String saveMotorHome(@ModelAttribute MotorHome motorHome){
-        motorHomeRepository.create(motorHome);
-        return "/index";
-    }
+
 }

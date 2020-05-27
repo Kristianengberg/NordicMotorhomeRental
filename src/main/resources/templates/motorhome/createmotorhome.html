@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>create motorhome</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body>
-<form class="forms" action="#" th:action="@{/save}" th:object="${motorhome}"
+<div th:insert="fragments/top_menu"></div>
+<form class="forms" action="#" style="position: absolute" th:action="@{/savemotorhome}" th:object="${motorhome}"
       method="post">
     <label for="fname">licensePlateNo</label>
     <input type="text" th:field="*{licensePlateNo}" name="fname" id="fname" /><br><br>
@@ -22,6 +24,5 @@
     <input type="text" th:field="*{engineBlockNo}" name="fname" id="fname3" /><br><br>
     <input type="submit" class="btn-create-form" value="Create">
 </form>
-
 </body>
 </html>
