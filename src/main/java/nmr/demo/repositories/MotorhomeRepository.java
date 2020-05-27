@@ -93,11 +93,11 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     @Override
     public boolean update(MotorHome motorHome) {
         try {
-            PreparedStatement myStmt = conn.prepareStatement("UPDATE Motorhome SET licensePlateNo = ?, model = ?, beds = ?, accessible = ?, kilometers = ?, price = ?, engineBlockNo = ? WHERE LicensePlateNo =" + MotorHome.getLicensePlateNo());
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Motorhome SET licensePlateNo = ?, model = ?, beds = ?, accessible = ?, kilometers = ?, price = ?, engineBlockNo = ? WHERE LicensePlateNo =" + motorHome.getLicensePlateNo());
             myStmt.setString(1, motorHome.getLicensePlateNo());
             myStmt.setString(2, motorHome.getModel());
             myStmt.setInt(3, motorHome.getBeds());
-            myStmt.setString(4, motorHome.isAccessible());
+            myStmt.setString(4, motorHome.getAccessible());
             myStmt.setDouble(5, motorHome.getKilometers());
             myStmt.setDouble(6, motorHome.getPrice());
             myStmt.setInt(7, motorHome.getEngineBlockNo());

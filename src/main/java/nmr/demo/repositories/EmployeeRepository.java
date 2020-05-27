@@ -47,7 +47,24 @@ public class EmployeeRepository implements IRepository<Employee> {
 
     @Override
     public Employee read(int id) {
-        return null;
+        Employee employeeToReturn = new Employee();
+        try {
+            PreparedStatement getSingleEmployee = conn.prepareStatement("SELECT * FROM Employee WHERE id=" + id);
+            ResultSet rs = getSingleEmployee.executeQuery();
+            while(rs.next()){
+                employeeToReturn.setEmployeeId(rs.getInt(1));
+                employeeToReturn.setEmpName(rs.getString(2));
+                employeeToReturn.setPosition(rs.getString(3));
+                employeeToReturn.setAddress(rs.getString(4));
+                employeeToReturn.setZipCode(rs.getInt(5));
+                employeeToReturn.setPhone(rs.getInt(6));
+                employeeToReturn.setEmail(rs.getString(7));
+            }
+        }
+        catch(SQLException s){
+            s.printStackTrace();
+        }
+        return employeeToReturn;
     }
 
     @Override

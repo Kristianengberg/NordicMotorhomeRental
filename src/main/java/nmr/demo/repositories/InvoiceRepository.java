@@ -39,7 +39,32 @@ public class InvoiceRepository implements IRepository<Invoice> {
 
     @Override
     public Invoice read(int id) {
-        return null;
+        Invoice invoiceToReturn = new Invoice();
+        Employee employeeToReturn = new Employee();
+        Customer customerToReturn = new Customer();
+        Accessories accessoriesToReturn = new Accessories();
+        MotorHome licensePlateNoToReturn = new MotorHome();
+        
+        try {
+            PreparedStatement getSingleInvoice = conn.prepareStatement("SELECT * FROM Invoice WHERE id=" + id);
+            ResultSet rs = getSingleInvoice.executeQuery();
+            while(rs.next()){
+                invoiceToReturn.setInvoiceId(rs.getInt(1));
+                invoiceToReturn.setDateStart(rs.getDate(2));
+                invoiceToReturn.setDateEnd(rs.getDate(3));
+                invoiceToReturn.setPickUp(rs.getString(4));
+                invoiceToReturn.setDropOff(rs.getString(5));
+                invoiceToReturn.setTotalPrice(rs.getDouble(6));
+                employeeToReturn.setEmployeeId(rs.getInt(7));
+                customerToReturn.setCustomerId(rs.getInt(8));
+                accessoriesToReturn.setAccessory_id(rs.getInt(9));
+                licensePlateNoToReturn.setLicensePlateNo(rs.getString(10));
+            }
+        }
+        catch(SQLException s){
+            s.printStackTrace();
+        }
+        return invoiceToReturn;
     }
 
     @Override
@@ -63,7 +88,7 @@ public class InvoiceRepository implements IRepository<Invoice> {
                 tempInvoice.setTotalPrice(rs.getInt(6));
                 tempEmployee.setEmployeeId(rs.getInt(7));
                 tempCustomer.setCustomerId(rs.getInt(8));
-                tempAccessory.setAccessoriesId(rs.getInt(9));
+                tempAccessory.setAccessory_id(rs.getInt(9));
                 tempLicensePlateNo.setLicensePlateNo(rs.getString(10));
 
                 allInvoices.add(tempInvoice);

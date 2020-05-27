@@ -76,14 +76,14 @@ public class CustomerRepository implements IRepository<Customer> {
     @Override
     public boolean update(Customer customer) {
         try {
-            PreparedStatement myStmt = conn.prepareStatement("UPDATE Customer SET CustomerId = ?, CustomerName = ?, address = ?, zipCode = ?, phone = ?, email = ?, customerType = ? WHERE CustomerId =" + Customer.getCustomerId());
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Customer SET CustomerId = ?, CustomerName = ?, address = ?, zipCode = ?, phone = ?, email = ?, customerType = ? WHERE CustomerId =" + customer.getCustomerId());
             myStmt.setInt(1, customer.getCustomerId());
             myStmt.setString(2, customer.getCustomerName());
             myStmt.setString(3, customer.getAddress());
-            myStmt.setInt(4, customer.getZipCode());
+            myStmt.setString(4, customer.getZipCode());
             myStmt.setInt(5, customer.getPhone());
             myStmt.setString(6, customer.getEmail());
-            myStmt.setBoolean(7, customer.isCustomerType());
+            myStmt.setString(7, customer.getCustomerType());
 
             System.out.println(myStmt);
             myStmt.executeUpdate();
@@ -116,6 +116,4 @@ public class CustomerRepository implements IRepository<Customer> {
 
         return false;
     }
-
-
 }
