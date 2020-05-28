@@ -22,6 +22,11 @@ public class Customer {
         this.customerType = customerType;
     }
 
+    @Override
+    public String toString() {
+        return CustomerId + " " + CustomerName + " " + address + " " + zipCode + " " + phone + " " + email + " " + customerType;
+    }
+
     public int getCustomerId() {
         return CustomerId;
     }

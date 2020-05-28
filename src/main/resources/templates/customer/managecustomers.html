@@ -20,9 +20,9 @@
         <td th:text="${customer.phone}"></td>
         <td th:text="${customer.email}"></td>
         <td th:text="${customer.customerType}"></td>
-        <td><a th:href="@{/customer/findesinglecustomer(id=${customer.CustomerId})}"><button class="btn-create">Details</button></a>
-            <a th:href="@{/customer/updatecustomer(id=${customer.CustomerId})}"><button class="btn-ed">Update</button></a>
-            <a th:href="@{/customer/deletecustomer(id=${customer.CustomerId})}"><button class="btn-del">Delete</button></a>
+        <td><a th:href="@{/findsinglecustomer(id=${customer.CustomerId})}"><button class="btn-create">Details</button></a>
+            <a th:href="@{/updatecustomer(id=${customer.CustomerId})}"><button class="btn-ed">Update</button></a>
+            <a th:href="@{/deletecustomer(id=${customer.CustomerId})}"><button class="btn-del">Delete</button></a>
         </td>
     </tr>
     </table>

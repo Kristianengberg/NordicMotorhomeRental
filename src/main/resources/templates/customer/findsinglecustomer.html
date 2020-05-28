@@ -3,20 +3,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>createreservation</title>
+    <title>findesinglecustomer</title>
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 
 <body>
 <div th:insert="fragments/top_menu"></div>
-<Form th:action="@{deletecustomer}" method="post">
+<Form th:action="@{/}" method="request">
     <input type="hidden" name="id" th:value="${customer.customerId}"/>
     <p th:text="${customer.customerId}"></p>
     <p th:text="${customer.customerName}"></p>
     <p th:text="${customer.address}"></p>
     <p th:text="${customer.phone}"></p>
     <p th:text="${customer.email}"></p>
-    <input type="submit"value="Delete customer"/>
+    <input type="submit"value="Done"/>
 
 </Form>
 
