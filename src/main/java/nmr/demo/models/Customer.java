@@ -1,7 +1,7 @@
 package nmr.demo.models;
 
 public class Customer {
-    private static int CustomerId;
+    private int CustomerId;
     private String CustomerName;
     private String address;
     private String zipCode;
@@ -20,6 +20,11 @@ public class Customer {
         this.phone = phone;
         this.email = email;
         this.customerType = customerType;
+    }
+
+    @Override
+    public String toString() {
+        return CustomerId + " " + CustomerName + " " + address + " " + zipCode + " " + phone + " " + email + " " + customerType;
     }
 
     public int getCustomerId() {

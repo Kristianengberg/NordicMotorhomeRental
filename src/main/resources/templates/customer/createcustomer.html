@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Accessories</title>
+</head>
+<body>
+<form class="forms" action="#" th:action="@{/createcustomer}" th:object="${createCustomer}"
+      method="post">
+
+
+    <label for="customerName">customerName</label>
+    <input type="text" th:field="*{customerName}" name="customerName" id="customerName" /><br><br>
+    <label for="enroll">address</label>
+    <input type="date" th:field="*{address}" name="address" id="enroll" /><br><br>
+    <label for="zipCode">zipCode</label>
+    <input type="text" th:field="*{zipCode}" name="zipCode" id="zipCode" /><br><br>
+    <label for="phone">phone</label>
+    <input type="text" th:field="*{phone}" name="phone" id="phone" /><br><br>
+    <label for="email">email</label>
+    <input type="text" th:field="*{email}" name="email" id="email" /><br><br>
+    <label for="customerType">customerType</label>
+    <input type="text" th:field="*{customerType}" name="customerType" id="customerType" /><br><br>
+    <input type="submit" class="btn-ed" value="Update">
+</form>
+</body>

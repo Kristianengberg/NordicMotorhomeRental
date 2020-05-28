@@ -43,10 +43,27 @@ public class CustomerRepository implements IRepository<Customer> {
         }
         return false;
     }
-
     @Override
     public Customer read(int id) {
-        return null;
+        Customer customerToReturn = new Customer();
+        try {
+            PreparedStatement getSingleCustomer = conn.prepareStatement("SELECT * FROM Customer WHERE Customer_id=" + id);
+            ResultSet rs = getSingleCustomer.executeQuery();
+            while(rs.next()){
+                customerToReturn.setCustomerId(rs.getInt(1));
+                customerToReturn.setCustomerName(rs.getString(2));
+                customerToReturn.setAddress(rs.getString(3));
+                customerToReturn.setZipCode(rs.getString(4));
+                customerToReturn.setPhone(rs.getInt(5));
+                customerToReturn.setEmail(rs.getString(6));
+                customerToReturn.setCustomerType(rs.getString(7));
+            }
+        }
+        catch(SQLException s){
+            s.printStackTrace();
+        }
+
+        return customerToReturn;
     }
 
     @Override
@@ -76,16 +93,15 @@ public class CustomerRepository implements IRepository<Customer> {
     @Override
     public boolean update(Customer customer) {
         try {
-            PreparedStatement myStmt = conn.prepareStatement("UPDATE Customer SET CustomerId = ?, CustomerName = ?, address = ?, zipCode = ?, phone = ?, email = ?, customerType = ? WHERE CustomerId =" + customer.getCustomerId());
-            myStmt.setInt(1, customer.getCustomerId());
-            myStmt.setString(2, customer.getCustomerName());
-            myStmt.setString(3, customer.getAddress());
-            myStmt.setString(4, customer.getZipCode());
-            myStmt.setInt(5, customer.getPhone());
-            myStmt.setString(6, customer.getEmail());
-            myStmt.setString(7, customer.getCustomerType());
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Customer SET CustomerName = ?, address = ?, zipCode = ?, phone = ?, email = ?, customerType = ? WHERE Phone = " + customer.getPhone());
+            //myStmt.setInt(1, customer.getCustomerId());
+            myStmt.setString(1, customer.getCustomerName());
+            myStmt.setString(2, customer.getAddress());
+            myStmt.setString(3, customer.getZipCode());
+            myStmt.setInt(4, customer.getPhone());
+            myStmt.setString(5, customer.getEmail());
+            myStmt.setString(6, customer.getCustomerType());
 
-            System.out.println(myStmt);
             myStmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -105,6 +121,7 @@ public class CustomerRepository implements IRepository<Customer> {
                 pstmt.setInt(1, id);
 
                 pstmt.executeUpdate();
+                System.out.println("Deleted");
                 return true;
 
 

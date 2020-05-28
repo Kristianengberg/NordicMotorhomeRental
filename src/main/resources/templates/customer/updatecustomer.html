@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>updatecustomer</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+
+<body>
+<div th:insert="fragments/top_menu"></div>
+
+<form class="forms" action="#" th:action="@{/updatecustomer}" th:object="${customer}"
+      method="post">
+
+
+    <label for="lname">Last name:</label>
+    <input type="text" th:field="*{customerName}" name="lname" id="lname" /><br><br>
+    <label for="enroll">Enrollment Date:</label>
+    <input type="date" th:field="*{address}" name="enroll" id="enroll" /><br><br>
+    <label for="fname">CPR:</label>
+    <input type="text" th:field="*{zipCode}" name="CPR" id="CPR" /><br><br>
+    <label for="fname">CPR:</label>
+    <input type="text" th:field="*{phone}" name="CPR" id="CPR" /><br><br>
+    <label for="fname">CPR:</label>
+    <input type="text" th:field="*{email}" name="CPR" id="CPR" /><br><br>
+    <label for="fname">CPR:</label>
+    <input type="text" th:field="*{customerType}" name="CPR" id="CPR" /><br><br>
+    <input type="submit" class="btn-ed" value="Update">
+</form>
+
+</body>
+</html>
