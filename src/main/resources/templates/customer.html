@@ -1,35 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Accessories</title>
+    <title>Ny Kunde</title>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<!--
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/Style2.css">
+
+    <!-- <link rel="stylesheet" type="text/css" href="/css/style.css">-->
 
 </head>
 <body>
 <div class="container">
     <div th:insert="fragments/top_menu">
     </div>
-    <h1>Customer</h1>
+    <h1>Opret Kunde</h1>
+    <form class="forms" action="#" th:action="@{/saveCustomer}" th:object="${newCustomer}"
+          method="post">
 
-    <table>
+        <label for="customerName">Navn:</label>
+        <input type="text" th:field="*{customerName}" name="customerName" id="customerName" /><br><br>
+        <label for="address">Adresse:</label>
+        <input type="text" th:field="*{address}" name="address" id="address" /><br><br>
+        <label for="zipcode">Postnummer og by:</label>
+        <input type="text" th:field="*{zipCode}" name="zipcode" id="zipcode" /><br><br>
+        <label for="phone">Telefon:</label>
+        <input type="text" th:field="*{phone}" name="phone" id="phone" /><br><br>
+        <label for="email">E-mail:</label>
+        <input type="text" th:field="*{email}" name="email" id="email" /><br><br>
+        <label for="erhverv">Erhverv</label>
+        <input type="checkbox" name="customerType" id="erhverv">
+        <br>
+        <br>
+        <input type="submit" class="btn-create-form" value="Opret">
+        <input type="reset" class="btn-create-form" value="Fortryd">
 
-        <tr th:each="customers : ${viewCustomers}">
-            <td th:text="${customers.getCustomerName()}"></td>
-            <td th:text="${customers.getCustomerName()}"></td>
-            <td th:text="${customers.getCustomerName()}"></td>
-            <td th:text="${customers.getCustomerName()}"></td>
+    </form>
+        <br>
 
-        </tr>
+    <a href="/"><button class="btn-no">Hjem</button></a>
 
 
 
-    </table>
 </div>
 </body>
+</html>
