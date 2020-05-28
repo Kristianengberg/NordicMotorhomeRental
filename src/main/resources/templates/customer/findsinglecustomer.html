@@ -9,7 +9,12 @@
 
 <body>
 <div th:insert="fragments/top_menu"></div>
+
+<div class="bg">
+
 <Form th:action="@{/}" method="request">
+    <br>
+    <br>
     <input type="hidden" name="id" th:value="${customer.customerId}"/>
     <p th:text="${customer.customerId}"></p>
     <p th:text="${customer.customerName}"></p>
@@ -19,6 +24,6 @@
     <input type="submit"value="Done"/>
 
 </Form>
-
+</div>
 </body>
 </html>

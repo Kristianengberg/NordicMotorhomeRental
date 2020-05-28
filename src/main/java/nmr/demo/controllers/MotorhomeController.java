@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MotorhomeController {
@@ -23,15 +24,16 @@ public class MotorhomeController {
         return "/motorhome/createmotorhome";
     }
 
-    @GetMapping("/seeallmotorhomes")
+    @GetMapping("/managemotorhomes")
     public String seeAllMotorhomes(Model model) {
         model.addAttribute("autocamper", motorHomeRepository.readAll());
-        return "managemotorhomes";
+        return "/motorhome/managemotorhomes";
     }
 
     @GetMapping("/findesinglemotorhome")
-    public String findSingleMotorhome(Model model){
-        model.addAttribute("motorhome",new MotorHome());
+    public String findSingleMotorhome(Model model, @RequestParam int id){
+        MotorHome motorHome = (MotorHome) motorHomeRepository.read(id);
+        model.addAttribute("motorhome", motorHome);
         return "/motorhome/findesinglemotorhome";
     }
 

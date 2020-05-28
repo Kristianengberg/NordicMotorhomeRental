@@ -8,6 +8,12 @@
 </head>
 <body>
 <div th:insert="fragments/top_menu"></div>
+
+<div class="bg">
+
+    <br>
+    <br>
+
 <form class="forms" action="#" style="position: absolute" th:action="@{/savemotorhome}" th:object="${motorhome}"
       method="post">
     <label for="fname">licensePlateNo</label>
@@ -24,5 +30,6 @@
     <input type="text" th:field="*{engineBlockNo}" name="fname" id="fname3" /><br><br>
     <input type="submit" class="btn-create-form" value="Create">
 </form>
+</div>
 </body>
 </html>

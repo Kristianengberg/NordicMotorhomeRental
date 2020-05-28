@@ -46,7 +46,7 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     public MotorHome read(int id) {
         MotorHome MotorHomeToReturn = new MotorHome();
         try {
-            PreparedStatement getSingleMotorHome = conn.prepareStatement("SELECT * FROM Motorhome WHERE id=" + id);
+            PreparedStatement getSingleMotorHome = conn.prepareStatement("SELECT * FROM Motorhome WHERE engineBlockNo=" + id);
             ResultSet rs = getSingleMotorHome.executeQuery();
             while(rs.next()){
                 MotorHomeToReturn.setLicensePlateNo(rs.getString(1));
