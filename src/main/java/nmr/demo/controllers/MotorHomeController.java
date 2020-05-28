@@ -25,6 +25,7 @@ class MotorHomeController {
         model.addAttribute("autocamper", motorHomeRepository.readAll());
         return "index";
     }
+<<<<<<< Updated upstream:src/main/java/nmr/demo/controllers/MotorHomeController.java
     @GetMapping("/motorhome")
     public String motorhome(Model model) {
         model.addAttribute("autocamper", motorHomeRepository.readAll());
@@ -40,4 +41,8 @@ class MotorHomeController {
         motorHomeRepository.create(motorHome);
         return "/index";
     }
+=======
+
+
+>>>>>>> Stashed changes:src/main/java/nmr/demo/controllers/IndexController.java
 }

@@ -46,7 +46,8 @@ public class InvoiceRepository implements IRepository<Invoice> {
         MotorHome licensePlateNoToReturn = new MotorHome();
         
         try {
-            PreparedStatement getSingleInvoice = conn.prepareStatement("SELECT * FROM Invoice WHERE id=" + id);
+            System.out.print(id);
+            PreparedStatement getSingleInvoice = conn.prepareStatement("SELECT * FROM Invoice WHERE Invoice_id=" + id);
             ResultSet rs = getSingleInvoice.executeQuery();
             while(rs.next()){
                 invoiceToReturn.setInvoiceId(rs.getInt(1));
