@@ -32,7 +32,7 @@ public class CustomerController {
     @PostMapping("/createcustomer")
     public String createCustomerDB(@ModelAttribute Customer customer) {
         customerRpository.create(customer);
-        return "/customer/managecustomers";
+        return "redirect:/managecustomers";
     }
     @GetMapping("/deletecustomer")
     public String deleteCustomer(Model model, @RequestParam int id){
@@ -44,7 +44,7 @@ public class CustomerController {
     public String deleteCustomerDB(int id){
         System.out.println(id + "test");
         customerRpository.delete(id);
-        return "redirect:/";
+        return "redirect:/managecustomers";
     }
 
     @RequestMapping("/updatecustomer")
@@ -58,7 +58,7 @@ public class CustomerController {
     public String updateStudentDB(@ModelAttribute("customer") Customer customer) {
         customerRpository.update(customer);
         System.out.println("updated student");
-        return "redirect:/";
+        return "redirect:/managecustomers";
     }
 
     @GetMapping("/findsinglecustomer")
