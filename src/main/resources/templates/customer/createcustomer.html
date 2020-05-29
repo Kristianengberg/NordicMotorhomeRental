@@ -14,18 +14,29 @@
                   method="post">
                  <br>
                  <br>
-                 <label for="customerName">Navn</label>
-                 <input type="text" th:field="*{customerName}" name="customerName" id="customerName" /><br><br>
+                 <label for="customerName">Fulde navn</label>
+                 <input type="text" th:field="*{customerName}" name="customerName" id="customerName"
+                 pattern="[A-Za-z]{1,15}( )[A-Za-z]{1,15}"/><br><br>
+
                  <label for="address">Addresse</label>
-                 <input type="text" th:field="*{address}" name="address" id="address" /><br><br>
-                 <label for="zipCode">Postnummer</label>
-                 <input type="text" th:field="*{zipCode}" name="zipCode" id="zipCode" /><br><br>
+                 <input type="text" th:field="*{address}" name="address" id="address"
+                 pattern="(?!)[A-Za-z\d\.]*{0,51}"/><br><br>
+
+                 <label for="zipCode">Postnummer & By</label>
+                 <input type="text" th:field="*{zipCode}" name="zipCode" id="zipCode" pattern="[A-Za-z\d\.]*{8,51}"
+                        title="Postnummer skal udfyldes med postnummer & by: eks. 2500 Valby(.)"
+                        /><br><br>
+
                  <label for="phone">Telefon</label>
-                 <input type="text" th:field="*{phone}" name="phone" id="phone" /><br><br>
+                 <input type="text" th:field="*{phone}" name="phone" id="phone"
+                        pattern="[0-9]{0,8}" title="Feltet skal udfyldes med et 8 cifret nummer med tallende fra 0-9(.)"
+                 /><br><br>
                  <label for="email">E-mail</label>
-                 <input type="text" th:field="*{email}" name="email" id="email" /><br><br>
+                 <input type="text" th:field="*{email}" name="email" id="email"/><br><br>
+
                  <label for="customerType">Erhverv</label>
                  <input type="checkbox" name="customerType" id="customerType" /><br><br>
+
                  <input type="submit" class="btn-ed" value="Opret">
                  <input type="reset" class="btn-ed" value="Fortryd">
               </form>

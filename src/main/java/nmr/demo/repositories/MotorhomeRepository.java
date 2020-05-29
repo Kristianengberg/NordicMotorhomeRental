@@ -20,21 +20,22 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     public MotorhomeRepository() {
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
+
     @Override
     public boolean create(MotorHome model) {
         try {
-            String sql = "INSERT INTO Motorhome (LicensPlateNo, Model, Beds, Km,Price,EngineBlockNo) VALUES (?,?,?,?,?,?)";
-            PreparedStatement CreateMotorHome = conn.prepareStatement(sql);
-            CreateMotorHome.setString(1, model.getLicensePlateNo());
-            CreateMotorHome.setString(2,model.getModel());
-            CreateMotorHome.setInt(3,model.getBeds());
-            CreateMotorHome.setDouble(4,model.getKilometers());
-            CreateMotorHome.setDouble(5,model.getPrice());
-            CreateMotorHome.setInt(6,model.getEngineBlockNo());
-            System.out.println(CreateMotorHome.getResultSet());
-            CreateMotorHome.executeUpdate();
+            String sql = "INSERT INTO Motorhome (LicensPlateNo, Model, Beds, isAccessible, Km, Price,EngineBlockNo) VALUES (?,?,?,?,?,?,?)";
+            PreparedStatement createMotorHome = conn.prepareStatement(sql);
+            createMotorHome.setString(1, model.getLicensePlateNo());
+            createMotorHome.setString(2,model.getModel());
+            createMotorHome.setInt(3,model.getBeds());
+            createMotorHome.setString(4, model.getAccessible());
+            createMotorHome.setDouble(5,model.getKilometers());
+            createMotorHome.setDouble(6,model.getPrice());
+            createMotorHome.setInt(7,model.getEngineBlockNo());
+            System.out.println(createMotorHome.getResultSet());
+            createMotorHome.executeUpdate();
             return true;
-
         }
         catch (SQLException e){
             e.printStackTrace();
@@ -92,7 +93,7 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     @Override
     public boolean update(MotorHome motorHome) {
         try {
-            PreparedStatement myStmt = conn.prepareStatement("UPDATE Motorhome SET licensePlateNo = ?, model = ?, beds = ?, accessible = ?, kilometers = ?, price = ?, engineBlockNo = ? WHERE engineBlockNo=" + motorHome.getEngineBlockNo());
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Motorhome SET licensePlateNo = ?, model = ?, beds = ?, isaccessible = ?, kilometers = ?, price = ?, engineBlockNo = ? WHERE engineBlockNo=" + motorHome.getEngineBlockNo());
             myStmt.setString(1, motorHome.getLicensePlateNo());
             myStmt.setString(2, motorHome.getModel());
             myStmt.setInt(3, motorHome.getBeds());
