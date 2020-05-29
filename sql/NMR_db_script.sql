@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `NMR_db`.`Motorhome` (
   `LicensPlateNo` VARCHAR(10) NOT NULL,
   `Model` VARCHAR(45) NULL,
   `Beds` INT NULL,
-  `Accessible` VARCHAR(45) NULL,
+  `isAccessible` VARCHAR(45) NULL,
   `Km` DOUBLE NULL,
   `Price` DOUBLE NULL,
   `EngineBlockNo` INT NULL,

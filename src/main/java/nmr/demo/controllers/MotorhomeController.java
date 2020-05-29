@@ -51,10 +51,8 @@ public class MotorhomeController {
     @RequestMapping(value = "/updatemotorhome", method = RequestMethod.POST)
     public String updateMotorhomeDB(@ModelAttribute("autocamper") MotorHome motorhome) {
         motorHomeRepository.update(motorhome);
-        System.out.println("updated motorhome");
         return "redirect:/managemotorhomes";
     }
-
 
 
 
@@ -66,15 +64,9 @@ public class MotorhomeController {
     }
     @PostMapping("/deletemotorhome")
     public String deleteMotorhomeDB(int id){
-        System.out.println(id + "test");
         motorHomeRepository.delete(id);
         return "redirect:/managemotorhomes";
     }
 
-/*
-    @PostMapping("/managemotorhomes")
-    public String saveMotorHome(@ModelAttribute MotorHome motorhome){
-        motorHomeRepository.create(motorhome);
-        return "/motorhome/managemotorhomes";
-    }*/
+
 }

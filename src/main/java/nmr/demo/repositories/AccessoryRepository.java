@@ -72,8 +72,6 @@ public class AccessoryRepository implements IRepository<Accessories>{
                 tempAccessories.setAccessory_id(rs.getInt(1));
                 tempAccessories.setType(rs.getString(2));
                 tempAccessories.setPrice(rs.getDouble(3));
-
-
                 allAccessories.add(tempAccessories);
             }
         } catch (SQLException e) {

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AccessoriesController {
@@ -18,6 +19,12 @@ public class AccessoriesController {
     public AccessoriesController() {
         accessoriesRepository = new AccessoryRepository();
 
+    }
+
+    @GetMapping("/manageaccessories")
+    public String manageAccessories(Model model){
+        model.addAttribute("viewAccessories",accessoriesRepository.readAll());
+        return "/accessories/manageaccessories";
     }
 
     @GetMapping("/createaccessory")
@@ -30,6 +37,13 @@ public class AccessoriesController {
     public String createAccessoryDB(@ModelAttribute Accessories accessories) {
         accessoriesRepository.create(accessories);
         return "redirect:/manageaccessories";
+    }
+
+    @GetMapping("/findsingleaccessory")
+    public String findSingleAccessory(Model model, @RequestParam int id){
+        Accessories accessories = (Accessories) accessoriesRepository.read(id);
+        model.addAttribute("accessory", accessories);
+        return "customer/findsingleaccesory";
     }
 /*
     @GetMapping("/accessories")
