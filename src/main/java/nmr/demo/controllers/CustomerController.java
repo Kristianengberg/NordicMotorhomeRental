@@ -43,7 +43,6 @@ public class CustomerController {
     }
     @PostMapping("/deletecustomer")
     public String deleteCustomerDB(int id){
-        System.out.println(id + "test");
         customerRpository.delete(id);
         return "redirect:/managecustomers";
     }
@@ -56,7 +55,7 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/updatecustomer", method = RequestMethod.POST)
-    public String updateStudentDB(@ModelAttribute("customer") Customer customer) {
+    public String updateCustomerDB(@ModelAttribute("customer") Customer customer) {
         customerRpository.update(customer);
         return "redirect:/managecustomers";
     }

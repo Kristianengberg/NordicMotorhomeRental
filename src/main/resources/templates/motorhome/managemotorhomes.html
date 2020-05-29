@@ -17,6 +17,7 @@
                   <br>
                    <br>
                   <tr th:each="motorhome : ${autocamper}">
+                      <td th:text="${motorhome.licensePlateNo}"></td>
                     <td th:text="${motorhome.Model}"></td>
                     <td th:text="${motorhome.Beds}"></td>
                     <td th:text="${motorhome.Kilometers}"></td>

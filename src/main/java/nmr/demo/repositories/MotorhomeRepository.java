@@ -20,22 +20,21 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     public MotorhomeRepository() {
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
-
     @Override
     public boolean create(MotorHome model) {
         try {
-            String sql = "INSERT INTO Motorhome (LicensPlateNo, Model, Beds, isAccessible, Km, Price,EngineBlockNo) VALUES (?,?,?,?,?,?,?)";
-            PreparedStatement createMotorHome = conn.prepareStatement(sql);
-            createMotorHome.setString(1, model.getLicensePlateNo());
-            createMotorHome.setString(2,model.getModel());
-            createMotorHome.setInt(3,model.getBeds());
-            createMotorHome.setString(4, model.getAccessible());
-            createMotorHome.setDouble(5,model.getKilometers());
-            createMotorHome.setDouble(6,model.getPrice());
-            createMotorHome.setInt(7,model.getEngineBlockNo());
-            System.out.println(createMotorHome.getResultSet());
-            createMotorHome.executeUpdate();
+            String sql = "INSERT INTO Motorhome (licensPlateNo, Model, Beds, isAccessible, Km,Price,EngineBlockNo) VALUES (?,?,?,?,?,?,?)";
+            PreparedStatement CreateMotorHome = conn.prepareStatement(sql);
+            CreateMotorHome.setString(1, model.getLicensePlateNo());
+            CreateMotorHome.setString(2,model.getModel());
+            CreateMotorHome.setInt(3,model.getBeds());
+            CreateMotorHome.setString(4,model.getAccessible());
+            CreateMotorHome.setDouble(5,model.getKilometers());
+            CreateMotorHome.setDouble(6,model.getPrice());
+            CreateMotorHome.setInt(7,model.getEngineBlockNo());
+            CreateMotorHome.executeUpdate();
             return true;
+
         }
         catch (SQLException e){
             e.printStackTrace();
@@ -93,7 +92,7 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     @Override
     public boolean update(MotorHome motorHome) {
         try {
-            PreparedStatement myStmt = conn.prepareStatement("UPDATE Motorhome SET licensePlateNo = ?, model = ?, beds = ?, isaccessible = ?, kilometers = ?, price = ?, engineBlockNo = ? WHERE engineBlockNo=" + motorHome.getEngineBlockNo());
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Motorhome SET LicensPlateNo = ?, Model = ?, Beds = ?, isAccessible = ?, Km = ?, Price = ?, EngineBlockNo = ? WHERE engineBlockNo=" + motorHome.getEngineBlockNo());
             myStmt.setString(1, motorHome.getLicensePlateNo());
             myStmt.setString(2, motorHome.getModel());
             myStmt.setInt(3, motorHome.getBeds());
@@ -101,10 +100,7 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
             myStmt.setDouble(5, motorHome.getKilometers());
             myStmt.setDouble(6, motorHome.getPrice());
             myStmt.setInt(7, motorHome.getEngineBlockNo());
-
-            System.out.println(myStmt);
             myStmt.executeUpdate();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -113,17 +109,17 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
 
 
     @Override
-    public boolean delete(int id) {
+    /*public boolean delete(int id) {
         return false;
     }
-
-    public boolean delete(String id){
+*/
+    public boolean delete(int id){
             String sql = "DELETE FROM Motorhome WHERE engineBlockNo = ?";
 
             try {
                 PreparedStatement pstmt = conn.prepareStatement(sql);
 
-                pstmt.setString(1, id);
+                pstmt.setInt(1, id);
 
                 pstmt.executeUpdate();
                 return true;

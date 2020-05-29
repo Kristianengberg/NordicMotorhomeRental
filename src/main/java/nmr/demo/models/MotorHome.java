@@ -9,6 +9,8 @@ public class MotorHome {
     private double price;
     private int engineBlockNo;
 
+
+
     public MotorHome() {
     }
 
@@ -76,5 +78,11 @@ public class MotorHome {
 
     public void setAccessible(String accessible) {
         this.accessible = accessible;
+    }
+
+
+    @Override
+    public String toString() {
+        return model +" " + accessible;
     }
 }

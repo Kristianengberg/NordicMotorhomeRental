@@ -16,6 +16,8 @@
 
         <br>
         <br>
+        <label for="licensePlateNo">Nummerplade</label>
+        <input type="text" th:field="*{licensePlateNo}" name="licensePlateNo" id="licensePlateNo" /><br><br>
         <label for="model">Model</label>
         <input type="text" th:field="*{model}" name="model" id="model" /><br><br>
         <label for="beds">Antal senge</label>
@@ -28,6 +30,7 @@
         <input type="text" th:field="*{price}" name="price" id="price" /><br><br>
         <label for="engineBlockNo">Motorblok nr</label>
         <input type="text" th:field="*{engineBlockNo}" name="engineBlockNo" id="engineBlockNo" /><br><br>
+
         <input type="submit" class="btn-ed" value="Update">
     </form>
 </div>
