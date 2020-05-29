@@ -92,7 +92,7 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     @Override
     public boolean update(MotorHome motorHome) {
         try {
-            PreparedStatement myStmt = conn.prepareStatement("UPDATE Motorhome SET licensePlateNo = ?, model = ?, beds = ?, accessible = ?, kilometers = ?, price = ?, engineBlockNo = ? WHERE LicensePlateNo =" + motorHome.getLicensePlateNo());
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Motorhome SET licensePlateNo = ?, model = ?, beds = ?, accessible = ?, kilometers = ?, price = ?, engineBlockNo = ? WHERE engineBlockNo=" + motorHome.getEngineBlockNo());
             myStmt.setString(1, motorHome.getLicensePlateNo());
             myStmt.setString(2, motorHome.getModel());
             myStmt.setInt(3, motorHome.getBeds());
@@ -117,7 +117,7 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     }
 
     public boolean delete(String id){
-            String sql = "DELETE FROM Motorhome WHERE LicensPlateNo = ?";
+            String sql = "DELETE FROM Motorhome WHERE engineBlockNo = ?";
 
             try {
                 PreparedStatement pstmt = conn.prepareStatement(sql);
