@@ -10,9 +10,13 @@
 <body>
 <div th:insert="fragments/top_menu"></div>
 
+<div class="bg">
+
 <div>
     <table>
 
+        <br>
+        <br>
     <tr th:each="customer : ${viewCustomers}">
         <td th:text="${customer.CustomerName}"></td>
         <td th:text="${customer.address}"></td>
@@ -29,6 +33,6 @@
 </div>
 
 
-
+</div>
 </body>
 </html>

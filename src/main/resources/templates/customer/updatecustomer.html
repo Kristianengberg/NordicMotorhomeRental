@@ -10,24 +10,27 @@
 <body>
 <div th:insert="fragments/top_menu"></div>
 
+<div class="bg">
+
 <form class="forms" action="#" th:action="@{/updatecustomer}" th:object="${customer}"
       method="post">
 
-
-    <label for="lname">Last name:</label>
-    <input type="text" th:field="*{customerName}" name="lname" id="lname" /><br><br>
-    <label for="enroll">Enrollment Date:</label>
-    <input type="date" th:field="*{address}" name="enroll" id="enroll" /><br><br>
-    <label for="fname">CPR:</label>
-    <input type="text" th:field="*{zipCode}" name="CPR" id="CPR" /><br><br>
-    <label for="fname">CPR:</label>
-    <input type="text" th:field="*{phone}" name="CPR" id="CPR" /><br><br>
-    <label for="fname">CPR:</label>
-    <input type="text" th:field="*{email}" name="CPR" id="CPR" /><br><br>
-    <label for="fname">CPR:</label>
-    <input type="text" th:field="*{customerType}" name="CPR" id="CPR" /><br><br>
+    <br>
+    <br>
+    <label for="name">Navn</label>
+    <input type="text" th:field="*{customerName}" name="name" id="name" /><br><br>
+    <label for="address">Adresse</label>
+    <input type="text" th:field="*{address}" name="address" id="address" /><br><br>
+    <label for="zipcode">Postnummer</label>
+    <input type="text" th:field="*{zipCode}" name="zipcode" id="zipcode" /><br><br>
+    <label for="phone">Telefon:</label>
+    <input type="text" th:field="*{phone}" name="phone" id="phone" /><br><br>
+    <label for="email">E-mail</label>
+    <input type="text" th:field="*{email}" name="email" id="email" /><br><br>
+    <label for="customerType">Kundetype</label>
+    <input type="text" th:field="*{customerType}" name="customerType" id="customerType" /><br><br>
     <input type="submit" class="btn-ed" value="Update">
 </form>
-
+</div>
 </body>
 </html>
