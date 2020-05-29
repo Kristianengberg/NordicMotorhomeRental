@@ -51,15 +51,31 @@ public class InvoiceRepository implements IRepository<Invoice> {
             ResultSet rs = getSingleInvoice.executeQuery();
             while(rs.next()){
                 invoiceToReturn.setInvoiceId(rs.getInt(1));
+
                 invoiceToReturn.setDateStart(rs.getDate(2));
+
+
                 invoiceToReturn.setDateEnd(rs.getDate(3));
+
+
                 invoiceToReturn.setPickUp(rs.getString(4));
+
+
                 invoiceToReturn.setDropOff(rs.getString(5));
+
+
                 invoiceToReturn.setTotalPrice(rs.getDouble(6));
-                employeeToReturn.setEmployeeId(rs.getInt(7));
-                customerToReturn.setCustomerId(rs.getInt(8));
-                accessoriesToReturn.setAccessory_id(rs.getInt(9));
-                licensePlateNoToReturn.setLicensePlateNo(rs.getString(10));
+
+
+                invoiceToReturn.setEmployeeId(rs.getInt(7));
+
+
+                invoiceToReturn.setCustomerId(rs.getInt(8));
+
+                invoiceToReturn.setAccessoriesId(rs.getInt(9));
+
+                invoiceToReturn.setLicensePlateNo(rs.getString(10));
+
             }
         }
         catch(SQLException s){
