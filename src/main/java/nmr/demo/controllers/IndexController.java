@@ -25,4 +25,17 @@ class IndexController {
         return "index";
     }
 
-}
+    @GetMapping("/test")
+    public String test(){
+
+        return "/security/test";
+    }
+    @GetMapping("/test2")
+    public String test2(){
+
+        return "/security/test";
+    }
+
+    }
+
+

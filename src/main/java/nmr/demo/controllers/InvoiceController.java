@@ -1,5 +1,6 @@
 package nmr.demo.controllers;
 
+import nmr.demo.models.Customer;
 import nmr.demo.models.Invoice;
 import nmr.demo.models.MotorHome;
 import nmr.demo.repositories.IRepository;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class InvoiceController {
@@ -31,10 +33,11 @@ public class InvoiceController {
         return "/invoice/manageinvoices";
     }
 
-    @GetMapping("/findesingleinvoice")
-    public String findSingleMotorhome(Model model){
-        model.addAttribute("invoice",new Invoice());
-        return "/invoice/findsingeinvoice";
+    @GetMapping("/findsingleinvoice")
+    public String findSingleCustomer(Model model, @RequestParam int id){
+        Invoice invoice = (Invoice) invoiceRepository.read(id);
+        model.addAttribute("invoice",invoice);
+        return "invoice/findsingleinvoice";
     }
 
     @GetMapping("/updateinvoice")
