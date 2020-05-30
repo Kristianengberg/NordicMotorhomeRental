@@ -49,11 +49,13 @@ public class InvoiceController {
     public String findSingleMotorhome(Model model, @RequestParam int id){
         System.out.println("find single motorhome");
 
-        service.setInvoice(id);
+        service.setCustomerByPhone(id);
+
+        service.setInvoiceByCustomerID(service.getCustomer().getCustomerId());
 
         service.setAccessories(service.getInvoice().getAccessoriesId());
-        service.setCustomer(id);
-        service.setEmployee(id);
+        service.setCustomer(service.getInvoice().getCustomerId());
+        service.setEmployee(service.getInvoice().getEmployeeId());
 
 
 

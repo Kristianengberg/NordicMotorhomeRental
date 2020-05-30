@@ -31,28 +31,13 @@
 
             <table id="customerDetails">
                 <tr>
+                    <td>This is Invoice ID</td>
+                    <td th:text="*{invoiceId}">Invoice:</td>
+                    <td>This is Customer ID</td>
+                    <td th:text="*{customerId}">Customer ID</td>
+                </tr>
 
-                    <td>
-                        <td th:text="*{invoiceId}">Invoice:</td>
-                    </td>
-                    <td th:text="*{customerId}">Customer ID</td>
-                </tr>
-                <tr>
-                    <td th:text="*{customerId}">Customer ID</td>
-                    <td>Sjælør Boulevard 91</td>
-                </tr>
-                <tr>
-                    <td>Postnummer:</td>
-                    <td>2500</td>
-                </tr>
-                <tr>
-                    <td>Telefon:</td>
-                    <td>31272948</td>
-                </tr>
-                <tr>
-                    <td>e-mail:</td>
-                    <td>kris79i0@stud.kea.dk</td>
-                </tr>
+
             </table>
 
             <label for="start">Start</label>

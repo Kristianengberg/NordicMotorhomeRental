@@ -11,9 +11,9 @@ import java.util.Map;
 
 public class ReservationService {
     private IRepository accessoryRepository;
-    private IRepository customerRepository;
+    private CustomerRepository customerRepository;
     private IRepository employeeRepository;
-    private IRepository invoiceRepository;
+    private InvoiceRepository invoiceRepository;
     private IRepository motorhomeRepository;
 
     private Accessories accessories;
@@ -49,7 +49,11 @@ public class ReservationService {
     }
 
     public void setCustomer(int id) {
-        this.customer = (Customer) customerRepository.read(id);
+        this.customer =  customerRepository.readPhone(id);
+    }
+
+    public void setCustomerByPhone(int id){
+        this.customer = customerRepository.readPhone(id);
     }
 
     public Employee getEmployee() {
@@ -60,6 +64,8 @@ public class ReservationService {
         this.employee = (Employee) employeeRepository.read(id);
     }
 
+
+
     public Invoice getInvoice() {
         return invoice;
     }
@@ -67,6 +73,8 @@ public class ReservationService {
     public void setInvoice(int id) {
         this.invoice = (Invoice) invoiceRepository.read(id);
     }
+
+    public void setInvoiceByCustomerID(int id){ this.invoice = invoiceRepository.readByCustomerID(id); }
 
     public MotorHome getMotorhome() {
         return motorhome;
@@ -77,37 +85,6 @@ public class ReservationService {
     }
 
 
-    public Map<Invoice, Object> mappedInvoice(int id){
-        Map<Invoice, Object> map = new HashMap<Invoice, Object>();
-        Invoice invoice = (Invoice) invoiceRepository.read(id);
-        Accessories accessories = (Accessories) accessoryRepository.read(invoice.getAccessoriesId());
-        Customer customer = (Customer) customerRepository.read(invoice.getCustomerId());
-        Employee employee = (Employee) employeeRepository.read(invoice.getCustomerId());
-       // MotorHome motorhome = (MotorHome) motorhomeRepository.read(invoice.getLicensePlateNo());
-
-        map.put(invoice, accessories);
-        map.put(invoice, customer);
-        map.put(invoice, employee);
-
-        return map;
-    }
-
-    public List<Object> listedInvoice(int id){
-        List<Object> list = new ArrayList<Object>();
-
-        Invoice invoice = (Invoice) invoiceRepository.read(id);
-        Accessories accessories = (Accessories) accessoryRepository.read(invoice.getAccessoriesId());
-        Customer customer = (Customer) customerRepository.read(invoice.getCustomerId());
-        Employee employee = (Employee) employeeRepository.read(invoice.getCustomerId());
-
-        list.add(invoice);
-        list.add(accessories);
-        list.add(customer);
-        list.add(employee);
-
-
-        return list;
-    }
 
 
 }
