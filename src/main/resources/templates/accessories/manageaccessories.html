@@ -15,7 +15,8 @@
         <br>
         <br>
         <tr th:each="accessories : ${viewAccessories}">
-            <td th:text="${accessories.accessoryType}"></td>
+            <td th:text="${accessories.accessory_id}"></td>
+            <td th:text="${accessories.accessoriesType}"></td>
             <td th:text="${accessories.price}"></td>
 
             <td><a th:href="@{/findsingleaccessory(id=${accessories.accessory_id})}"><button class="btn-create">Details</button></a>
