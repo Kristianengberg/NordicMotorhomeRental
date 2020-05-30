@@ -17,7 +17,7 @@
 <form class="forms" action="#" style="position: absolute" th:action="@{/createmotorhome}" th:object="${autocamper}"
       method="post">
     <label for="fname">licensePlateNo</label>
-    <input type="text" th:field="*{licensePlateNo}" name="fname" id="fname" pattern="[A-Z]{0,2}( )[0-9]{0,5}" title="Opret nummerpladen på det enkelte køretøj. EKS: AA 12345(.)"
+    <input type="text" th:field="*{licensePlateNo}" name="fname" id="fname" pattern="[A-Z]{0,2}( )[0-9]{5,5}" title="Opret nummerpladen på det enkelte køretøj. EKS: AA 12345(.)"
            required/><br><br>
     <label for="lname">model</label>
     <input type="text" th:field="*{model}" name="lname" id="lname" pattern="[A-Ha-h]{1}" title="Indsæt modellen for det valgte køretøj A-H(.)"
