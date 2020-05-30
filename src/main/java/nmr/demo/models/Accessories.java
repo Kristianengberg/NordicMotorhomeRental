@@ -8,10 +8,15 @@ public class Accessories {
     public Accessories() {
     }
 
-    public Accessories(int accessory_id, double price, String accessoryType) {
+    public Accessories(int accessory_id, String accessoryType, double price) {
         this.accessory_id = accessory_id;
         this.price = price;
         this.accessoryType = accessoryType;
+    }
+
+    @Override
+    public String toString(){
+        return accessory_id + accessoryType + price;
     }
 
     public static int getAccessory_id() {
@@ -30,11 +35,11 @@ public class Accessories {
         this.price = price;
     }
 
-    public  String getAccessoriesType() {
+    public String getAccessoryType() {
         return accessoryType;
     }
 
-    public void setType(String accessoriesType) {
-        this.accessoryType = accessoriesType;
+    public void setAccessoryType(String accessoryType) {
+        this.accessoryType = accessoryType;
     }
 }
