@@ -8,11 +8,7 @@ import nmr.demo.repositories.MotorhomeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -50,6 +46,31 @@ public class AccessoriesController {
         model.addAttribute("accessory", accessories);
         return "accessories/findsingleaccessory";
     }
+    @GetMapping("/deleteaccessory")
+    public String deleteAccessory(Model model, @RequestParam int id){
+        Accessories accessories = (Accessories) accessoriesRepository.read(id);
+        model.addAttribute("accessories",accessories);
+        return "accessories/deleteaccessory";
+    }
+    @PostMapping("/deleteaccessory")
+    public String deleteAccessoryDB(int id){
+        accessoriesRepository.delete(id);
+        return "redirect:/manageaccessories";
+    }
+
+    @RequestMapping("/updateaccessery")
+    public String updateAccessory(Model model,@RequestParam int id){
+        Accessories accessories = (Accessories) accessoriesRepository.read(id);
+        model.addAttribute("accessories",accessories);
+        return "accessories/updateaccessery";
+    }
+
+    @RequestMapping(value = "/updateaccessery", method = RequestMethod.POST)
+    public String updateAccessoryDB(@ModelAttribute("accessories") Accessories accessories) {
+        accessoriesRepository.update(accessories);
+        return "redirect:/manageaccessories";
+    }
+
 /*
     @GetMapping("/accessories")
     public String index(Model model) {

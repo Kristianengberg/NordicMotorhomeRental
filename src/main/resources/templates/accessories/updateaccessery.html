@@ -9,10 +9,22 @@
 
 <body>
 <div th:insert="fragments/top_menu"></div>
-<div class="container">
-    <img src="/css/images/background.jpg" alt="bg" style="width:100%;height:100%;background-size: cover">
-</div>
-<div class="top"><h1>Nordic MotorHome Rental System V.03</h1></div>
 
+<div class="bg">
+
+    <form class="forms" action="#" th:action="@{/updateaccessery}" th:object="${accessories}"
+          method="post">
+
+        <br>
+        <br>
+        <label for="accessoryType">Type</label>
+        <input type="text" th:field="*{accessoryType}" name="accessoryType" id="accessoryType" pattern="[A-Za-z]{1,25}"
+               title="Indsæt navnet på genstanden der skal oprettes(.)" required/><br><br>
+        <label for="price">Pris pr uge</label>
+        <input type="text" th:field="*{price}" name="price" id="price" pattern="[0-9]{1,5000}" title="Indsæt en pris for tilbehøret(.)"
+               required /><br><br>
+        <input type="submit" class="btn-ed" value="Update">
+    </form>
+</div>
 </body>
 </html>
