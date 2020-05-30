@@ -28,7 +28,7 @@ public class AccessoryRepository implements IRepository<Accessories>{
     public boolean create(Accessories model) {
         try {
             PreparedStatement CreateAccessory = conn.prepareStatement("INSERT INTO accessories" + "(accessoryType,price)VALUES" + "(?,?);");
-            CreateAccessory.setString(1,model.getAccessoriesType());
+            CreateAccessory.setString(1,model.getAccessoryType());
             CreateAccessory.setDouble(2,model.getPrice());
 
 
@@ -51,7 +51,7 @@ public class AccessoryRepository implements IRepository<Accessories>{
             ResultSet rs = getSingleAccessory.executeQuery();
             while(rs.next()){
                 AccessoriesToReturn.setAccessory_id(rs.getInt(1));
-                AccessoriesToReturn.setType(rs.getString(2));
+                AccessoriesToReturn.setAccessoryType(rs.getString(2));
                 AccessoriesToReturn.setPrice(rs.getDouble(3));
             }
         }
@@ -70,7 +70,7 @@ public class AccessoryRepository implements IRepository<Accessories>{
             while(rs.next()){
                 Accessories tempAccessories = new Accessories();
                 tempAccessories.setAccessory_id(rs.getInt(1));
-                tempAccessories.setType(rs.getString(2));
+                tempAccessories.setAccessoryType(rs.getString(2));
                 tempAccessories.setPrice(rs.getDouble(3));
                 allAccessories.add(tempAccessories);
             }
@@ -86,7 +86,7 @@ public class AccessoryRepository implements IRepository<Accessories>{
            PreparedStatement myStmt = conn.prepareStatement("UPDATE Accessories SET accessory_id = ?, price = ?, type = ? WHERE accessory_id =" + Accessories.getAccessory_id());
            myStmt.setInt(1, accessories.getAccessory_id());
            myStmt.setDouble(2, accessories.getPrice());
-           myStmt.setString(3,accessories.getAccessoriesType());
+           myStmt.setString(3,accessories.getAccessoryType());
 
             System.out.println(myStmt);
             myStmt.executeUpdate();
