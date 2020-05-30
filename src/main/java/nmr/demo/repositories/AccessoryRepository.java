@@ -83,7 +83,7 @@ public class AccessoryRepository implements IRepository<Accessories>{
     @Override
     public boolean update(Accessories accessories) {
         try {
-           PreparedStatement myStmt = conn.prepareStatement("UPDATE Accessories SET AccessoryType, price = ? WHERE accessory_id =" + accessories.getAccessory_id());
+           PreparedStatement myStmt = conn.prepareStatement("UPDATE Accessories SET AccessoryType = ?, price = ? WHERE accessory_id =" + Accessories.getAccessory_id());
            //myStmt.setInt(1, accessories.getAccessory_id());
            myStmt.setString(1,accessories.getAccessoryType());
            myStmt.setDouble(2, accessories.getPrice());
@@ -120,6 +120,8 @@ public class AccessoryRepository implements IRepository<Accessories>{
         return false;
 
     }
+
+
 
 
 
