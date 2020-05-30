@@ -133,12 +133,14 @@ button {
 
 .imgcontainer {
     text-align: center;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 
 }
 
-.avatar {
-    width: 30%;
-    height: 100%;
+img.avatar {
+    width: 25%;
     border-radius: 70%;
 }
 

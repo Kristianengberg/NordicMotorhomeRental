@@ -4,11 +4,8 @@
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
-<body>
+<body style="height: 100%;">
 
-<div th:if="${param.error}">
-    Invalid username and password.
-</div>
 <div th:if="${param.logout}">
     You have been logged out.
 </div>
@@ -17,9 +14,12 @@
         <img src="css/images/alien.jpg" alt="avatar" class="avatar">
         <h1>Nordic MotorHome Rental System V.03</h1>
         <h3>Please log in</h3>
+        <h3 style="color: #f44336"; th:if="${param.error}">
+            Invalid username and password!</h3>
+
     </div>
 
-    <div>
+    <div style="padding: 10px;">
         <label><b>Username</b></label>
         <input type="username" placeholder="Enter Username" name="username" required>
 
