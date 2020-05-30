@@ -4,10 +4,10 @@ public class MotorHome {
     private String licensePlateNo;
     private String model;
     private int beds;
+    private String accessible;
     private double kilometers;
     private double price;
     private int engineBlockNo;
-    private String accessible;
 
 
 
@@ -18,10 +18,10 @@ public class MotorHome {
         this.licensePlateNo = licensePlateNo;
         this.model = model;
         this.beds = beds;
+        this.accessible = accessible;
         this.kilometers = kilometers;
         this.price = price;
         this.engineBlockNo = engineBlockNo;
-        this.accessible = accessible;
     }
 
     public String getLicensePlateNo() {
