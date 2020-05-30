@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>createinvoice</title>
@@ -8,11 +9,140 @@
 </head>
 
 <body>
-<div th:insert="fragments/top_menu"></div>
-<div class="container">
-    <img src="/css/images/background.jpg" alt="bg" style="width:100%;height:100%;background-size: cover">
-</div>
-<div class="top"><h1>Nordic MotorHome Rental System V.03</h1></div>
+    <div th:insert="fragments/top_menu"></div>
+
+
+    <div>
+        <form class="forms" action="#" th:action="@{/invoice/createinvoice}" th:object="${invoice}" method="get">
+
+            <!-- <th th:text="#{seedstarter.datePlanted}">Date Planted</th>
+                this.invoiceId = invoiceId;
+            this.dateStart = dateStart;
+            this.dateEnd = dateEnd;
+            this.pickUp = pickUp;
+            this.dropOff = dropOff;
+            this.totalPrice = totalPrice;
+            this.employeeId = employeeId;
+            this.customerId = customerId;
+            this.accessoriesId = accessoriesId;
+            this.licensePlateNo = licensePlateNo;
+
+        -->
+
+            <table id="customerDetails">
+                <tr>
+                    <td>This is Invoice ID</td>
+                    <td th:text="*{invoiceId}">Invoice:</td>
+                    <td>This is Customer ID</td>
+                    <td th:text="*{customerId}">Customer ID</td>
+                </tr>
+
+
+            </table>
+
+            <label for="start">Start</label>
+            <input type="date" name="start" /><br>
+            <label for="finish">Slut</label>
+            <input type="date" name="finish" />
+
+            <p>Sengepladser</p>
+            <select name="beds">
+            <option value="2">2</option>
+            <option value="4">4</option>
+            <option value="6">6</option>
+        </select>
+
+            <table>
+                <tr>
+                    <td>A</td>
+                    <td>
+                        <select name="accesories">
+                        <option value="acces1">Cykelstativ</option>
+                        <option value="acces2">Sengetøj</option>
+                        <option value="acces3">Etc</option>
+                    </select>
+                    </td>
+                    <td>
+                        <Button>Option B</Button>
+                    </td>
+                    <td>
+                        <Button>Tilføj</Button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>B</td>
+                    <td>
+                        <Button>Option A</Button>
+                    </td>
+                    <td>
+                        <Button>Option B</Button>
+                    </td>
+                    <td>
+                        <Button>Option C</Button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>C</td>
+                    <td>
+                        <Button>Option A</Button>
+                    </td>
+                    <td>
+                        <Button>Option B</Button>
+                    </td>
+                    <td>
+                        <Button>Option C</Button>
+                    </td>
+                </tr>
+            </table>
+
+
+        </form>
+
+    </div>
+
+    <div id="divInvoiceDetails">
+
+
+        <table id="invoiceDetails">
+            <tr>
+                <td>Autocamper A</td>
+            </tr>
+            <tr>
+                <td>Cykelstativ</td>
+            </tr>
+            <tr>
+                <td>Etc</td>
+            </tr>
+            <tr>
+                <td>Etc</td>
+            </tr>
+        </table>
+        <form>
+            <table id="totalPrice">
+                <tr>
+                    <td>Pris:</td>
+                    <td>20000</td>
+                    <td>
+                        Procent Rabat
+                        <input type="number" name="percentDiscount">
+                    </td>
+                    <td>
+                        Rabat Kroner
+                        <input type="number" name="numberDiscount">
+                    </td>
+                    <td>
+                        Total Pris:
+                    </td>
+                    <td>
+                        56454
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+
+    </div>
 
 </body>
+
 </html>

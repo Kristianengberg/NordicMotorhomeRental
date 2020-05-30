@@ -9,16 +9,16 @@ public class Invoice {
     private String pickUp;
     private String dropOff;
     private double totalPrice;
-    Employee employeeId;
-    Customer customerId;
-    Accessories accessoriesId;
-    MotorHome licensePlateNo;
+    private int employeeId;
+    private int customerId;
+    private int accessoriesId;
+    private String licensePlateNo;
 
 
     public Invoice() {
     }
 
-    public Invoice(int invoiceId, Date dateStart, Date dateEnd, String pickUp, String dropOff, double totalPrice, Employee employeeId, Customer customerId, Accessories accessoriesId, MotorHome licensePlateNo) {
+    public Invoice(int invoiceId, Date dateStart, Date dateEnd, String pickUp, String dropOff, double totalPrice, int employeeId, int customerId, int accessoriesId, String licensePlateNo) {
         this.invoiceId = invoiceId;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
@@ -79,35 +79,35 @@ public class Invoice {
         this.totalPrice = totalPrice;
     }
 
-    public Employee getEmployeeId() {
+    public int getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(Employee employeeId) {
+    public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
     }
 
-    public Customer getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Customer customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
-    public Accessories getAccessoriesId() {
+    public int getAccessoriesId() {
         return accessoriesId;
     }
 
-    public void setAccessoriesId(Accessories accessoriesId) {
+    public void setAccessoriesId(int accessoriesId) {
         this.accessoriesId = accessoriesId;
     }
 
-    public MotorHome getLicensePlateNo() {
+    public String getLicensePlateNo() {
         return licensePlateNo;
     }
 
-    public void setLicensePlateNo(MotorHome licensePlateNo) {
+    public void setLicensePlateNo(String licensePlateNo) {
         this.licensePlateNo = licensePlateNo;
     }
 }

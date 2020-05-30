@@ -10,17 +10,25 @@
 <body>
 <div th:insert="fragments/top_menu"></div>
 
-<Form th:action="@{/}" method="request">
-    <input type="hidden" name="id" th:value="${invoiceId}"/>
-    <p th:text="${invoice.invoiceId}"></p>
-    <p th:text="${invoice.dateStart}"></p>
-    <p th:text="${invoice.dateEnd}"></p>
-    <p th:text="${invoice.pickUp}"></p>
-    <p th:text="${invoice.pickUp}"></p>
-    <p th:text="${invoice.totalPrice}"></p>
-    <input type="submit"value="Done"/>
 
-</Form>
+    <form th:action="@{/}" method="request">
+
+    <table id="customerDetails">
+        <tr>
+
+            <td> this is Customer ID</td>
+            <td th:text="${invoice.getCustomerId()}">Invoice:</td>
+            <td>This is employee phone</td>
+            <td th:text="${employee.getPhone()}">Customer ID</td>
+            <td>this is accessories type</td>
+            <td th:text="${accessories.getAccessoriesType()}">Customer ID</td>
+        </tr>
+
+    </table>
+
+</form>
+
+
 
 </body>
 </html>

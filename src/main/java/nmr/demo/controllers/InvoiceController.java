@@ -1,24 +1,36 @@
 package nmr.demo.controllers;
 
+
+import nmr.demo.businessLogic.ReservationService;
 import nmr.demo.models.Customer;
 import nmr.demo.models.Invoice;
-import nmr.demo.models.MotorHome;
 import nmr.demo.repositories.IRepository;
 import nmr.demo.repositories.InvoiceRepository;
-import nmr.demo.repositories.MotorhomeRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class InvoiceController {
 
     private IRepository invoiceRepository;
+    private ReservationService service;
+
     public InvoiceController(){
         this.invoiceRepository = new InvoiceRepository();
+        this.service = new ReservationService();
+    }
+
+
+
+    @GetMapping("/createreservation")
+    public String createreservation(){
+        System.out.println("Hello createreservation");
+        return "invoice/createreservation";
     }
 
     @GetMapping("/createinvoice")
@@ -33,12 +45,29 @@ public class InvoiceController {
         return "/invoice/manageinvoices";
     }
 
-    @GetMapping("/findsingleinvoice")
-    public String findSingleCustomer(Model model, @RequestParam int id){
-        Invoice invoice = (Invoice) invoiceRepository.read(id);
-        model.addAttribute("invoice",invoice);
+    @GetMapping("/findsingleinvoice/")
+    public String findSingleMotorhome(Model model, @RequestParam int id){
+        System.out.println("find single motorhome");
+
+        service.setCustomerByPhone(id);
+
+        service.setInvoiceByCustomerID(service.getCustomer().getCustomerId());
+
+        service.setAccessories(service.getInvoice().getAccessoriesId());
+        service.setCustomer(service.getInvoice().getCustomerId());
+        service.setEmployee(service.getInvoice().getEmployeeId());
+
+
+
+
+        model.addAttribute("invoice", service.getInvoice());
+        model.addAttribute("customer", service.getCustomer());
+        model.addAttribute("employee", service.getEmployee());
+        model.addAttribute("accessories", service.getAccessories());
+
         return "invoice/findsingleinvoice";
     }
+
 
     @GetMapping("/updateinvoice")
     public String updateMotorhome(Model model) {
@@ -60,4 +89,8 @@ public class InvoiceController {
         invoiceRepository.create(invoice);
         return "/index";
     }
+
 }
+
+
+

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>createinvoice</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+
+<body>
+<div th:insert="fragments/top_menu"></div>
+
+
+<div>
+
+<form action="/findsingleinvoice/">
+        <label for="id">id</label>
+        <input type="text" id="id" name="id"/><br>
+        <input type="submit" value="Submit">Næste</input>
+       <!-- <a th:href="@{'/invoice/createreservation/' + ${id}}"><button>Delete</button></a> -->
+</form>
+
+</div>
+
+
+
+</body>
+</html>

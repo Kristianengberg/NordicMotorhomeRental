@@ -44,22 +44,81 @@ public class InvoiceRepository implements IRepository<Invoice> {
         Customer customerToReturn = new Customer();
         Accessories accessoriesToReturn = new Accessories();
         MotorHome licensePlateNoToReturn = new MotorHome();
-        
+
         try {
-            System.out.println(id);
+            System.out.print(id);
             PreparedStatement getSingleInvoice = conn.prepareStatement("SELECT * FROM Invoice WHERE Invoice_id=" + id);
             ResultSet rs = getSingleInvoice.executeQuery();
             while(rs.next()){
                 invoiceToReturn.setInvoiceId(rs.getInt(1));
+
                 invoiceToReturn.setDateStart(rs.getDate(2));
+
+
                 invoiceToReturn.setDateEnd(rs.getDate(3));
+
+
                 invoiceToReturn.setPickUp(rs.getString(4));
+
+
                 invoiceToReturn.setDropOff(rs.getString(5));
+
+
                 invoiceToReturn.setTotalPrice(rs.getDouble(6));
-                employeeToReturn.setEmployeeId(rs.getInt(7));
-                customerToReturn.setCustomerId(rs.getInt(8));
-                accessoriesToReturn.setAccessory_id(rs.getInt(9));
-                licensePlateNoToReturn.setLicensePlateNo(rs.getString(10));
+
+
+                invoiceToReturn.setEmployeeId(rs.getInt(7));
+
+
+                invoiceToReturn.setCustomerId(rs.getInt(8));
+
+                invoiceToReturn.setAccessoriesId(rs.getInt(9));
+
+                invoiceToReturn.setLicensePlateNo(rs.getString(10));
+
+            }
+        }
+        catch(SQLException s){
+            s.printStackTrace();
+        }
+        return invoiceToReturn;
+    }
+
+    public Invoice readByCustomerID(int id) {
+        Invoice invoiceToReturn = new Invoice();
+
+
+        try {
+            System.out.print(id);
+            PreparedStatement getSingleInvoice = conn.prepareStatement("SELECT * FROM Invoice WHERE Customer_id_fk=" + id);
+            ResultSet rs = getSingleInvoice.executeQuery();
+            while(rs.next()){
+                invoiceToReturn.setInvoiceId(rs.getInt(1));
+
+                invoiceToReturn.setDateStart(rs.getDate(2));
+
+
+                invoiceToReturn.setDateEnd(rs.getDate(3));
+
+
+                invoiceToReturn.setPickUp(rs.getString(4));
+
+
+                invoiceToReturn.setDropOff(rs.getString(5));
+
+
+                invoiceToReturn.setTotalPrice(rs.getDouble(6));
+
+
+                invoiceToReturn.setEmployeeId(rs.getInt(7));
+
+
+                invoiceToReturn.setCustomerId(rs.getInt(8));
+
+                invoiceToReturn.setAccessoriesId(rs.getInt(9));
+
+                invoiceToReturn.setLicensePlateNo(rs.getString(10));
+
             }
         }
         catch(SQLException s){
@@ -115,7 +174,6 @@ public class InvoiceRepository implements IRepository<Invoice> {
             myStmt.setDate(3, (Date) invoice.getDateEnd());
             myStmt.setString(4, invoice.getPickUp());
             myStmt.setString(5, invoice.getDropOff());
-
             myStmt.setInt(7, employeeToReturn.getEmployeeId());
             myStmt.setInt(8, customerToReturn.getCustomerId());
             myStmt.setInt(9, accessoriesToReturn.getAccessory_id());

@@ -47,12 +47,12 @@ public class AccessoryRepository implements IRepository<Accessories>{
     public Accessories read(int id) {
         Accessories AccessoriesToReturn = new Accessories();
         try {
-            PreparedStatement getSingleAccessory = conn.prepareStatement("SELECT * FROM accessories WHERE id=" + id);
+            PreparedStatement getSingleAccessory = conn.prepareStatement("SELECT * FROM accessories WHERE Accessory_id=" + id);
             ResultSet rs = getSingleAccessory.executeQuery();
             while(rs.next()){
                 AccessoriesToReturn.setAccessory_id(rs.getInt(1));
-                AccessoriesToReturn.setPrice(rs.getDouble(2));
-                AccessoriesToReturn.setType(rs.getString(3));
+                AccessoriesToReturn.setType(rs.getString(2));
+                AccessoriesToReturn.setPrice(rs.getDouble(3));
             }
         }
         catch(SQLException s){
