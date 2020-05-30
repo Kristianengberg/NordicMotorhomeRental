@@ -9,13 +9,17 @@
 
 <body>
 <div th:insert="fragments/top_menu"></div>
-<div>
-    <table>
 
-        <br>
-        <br>
-        <tr th:each="accessories : ${viewAccessories}">
-            <td th:text="${accessories.accessory_id}"></td>
+
+
+    <div class="bg">
+     <div>
+         <table>
+
+              <br>
+             <br>
+            <tr th:each="accessories : ${viewAccessories}">
+
             <td th:text="${accessories.accessoriesType}"></td>
             <td th:text="${accessories.price}"></td>
 
@@ -23,9 +27,9 @@
                 <a th:href="@{/updateaccessery(id=${accessories.accessory_id})}"><button class="btn-ed">Update</button></a>
                 <a th:href="@{/deleteaccessory(id=${accessories.accessory_id})}"><button class="btn-del">Delete</button></a>
             </td>
-        </tr>
-    </table>
-</div>
-
+          </tr>
+          </table>
+        </div>
+    </div>
 </body>
 </html>
