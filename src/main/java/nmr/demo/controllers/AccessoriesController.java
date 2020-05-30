@@ -48,7 +48,7 @@ public class AccessoriesController {
     public String findSingleAccessory(Model model, @RequestParam int id){
         Accessories accessories = (Accessories) accessoriesRepository.read(id);
         model.addAttribute("accessory", accessories);
-        return "customer/findsingleaccesory";
+        return "accessories/findsingleaccessory";
     }
 /*
     @GetMapping("/accessories")

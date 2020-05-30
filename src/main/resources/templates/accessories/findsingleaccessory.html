@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>findesingleaccessory</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
-<body>
 
+<body>
+<div th:insert="fragments/top_menu"></div>
+
+<div class="bg">
+
+    <Form th:action="@{/manageaccessories}" method="request">
+        <br>
+        <br>
+        <input type="hidden" name="id" th:value="${accessory.accessory_id}"/>
+        <p th:text="${accessory.accessory_id}"></p>
+        <p th:text="${accessory.accessoriesType}"></p>
+        <p th:text="${accessory.price}"></p>
+
+        <input type="submit"value="Done"/>
+
+    </Form>
+</div>
 </body>
 </html>
