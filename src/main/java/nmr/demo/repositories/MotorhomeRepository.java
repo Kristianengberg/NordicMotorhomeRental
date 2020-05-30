@@ -23,15 +23,15 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     @Override
     public boolean create(MotorHome model) {
         try {
-            String sql = "INSERT INTO Motorhome (LicensPlateNo, Model, Beds, Km,Price,EngineBlockNo) VALUES (?,?,?,?,?,?)";
+            String sql = "INSERT INTO Motorhome (licensPlateNo, Model, Beds, isAccessible, Km,Price,EngineBlockNo) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement CreateMotorHome = conn.prepareStatement(sql);
             CreateMotorHome.setString(1, model.getLicensePlateNo());
             CreateMotorHome.setString(2,model.getModel());
             CreateMotorHome.setInt(3,model.getBeds());
-            CreateMotorHome.setDouble(4,model.getKilometers());
-            CreateMotorHome.setDouble(5,model.getPrice());
-            CreateMotorHome.setInt(6,model.getEngineBlockNo());
-            System.out.println(CreateMotorHome.getResultSet());
+            CreateMotorHome.setString(4,model.getAccessible());
+            CreateMotorHome.setDouble(5,model.getKilometers());
+            CreateMotorHome.setDouble(6,model.getPrice());
+            CreateMotorHome.setInt(7,model.getEngineBlockNo());
             CreateMotorHome.executeUpdate();
             return true;
 
@@ -46,7 +46,7 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     public MotorHome read(int id) {
         MotorHome MotorHomeToReturn = new MotorHome();
         try {
-            PreparedStatement getSingleMotorHome = conn.prepareStatement("SELECT * FROM Motorhome WHERE id=" + id);
+            PreparedStatement getSingleMotorHome = conn.prepareStatement("SELECT * FROM Motorhome WHERE engineBlockNo=" + id);
             ResultSet rs = getSingleMotorHome.executeQuery();
             while(rs.next()){
                 MotorHomeToReturn.setLicensePlateNo(rs.getString(1));
@@ -92,7 +92,7 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
     @Override
     public boolean update(MotorHome motorHome) {
         try {
-            PreparedStatement myStmt = conn.prepareStatement("UPDATE Motorhome SET licensePlateNo = ?, model = ?, beds = ?, accessible = ?, kilometers = ?, price = ?, engineBlockNo = ? WHERE LicensePlateNo =" + motorHome.getLicensePlateNo());
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Motorhome SET LicensPlateNo = ?, Model = ?, Beds = ?, isAccessible = ?, Km = ?, Price = ?, EngineBlockNo = ? WHERE engineBlockNo=" + motorHome.getEngineBlockNo());
             myStmt.setString(1, motorHome.getLicensePlateNo());
             myStmt.setString(2, motorHome.getModel());
             myStmt.setInt(3, motorHome.getBeds());
@@ -100,10 +100,7 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
             myStmt.setDouble(5, motorHome.getKilometers());
             myStmt.setDouble(6, motorHome.getPrice());
             myStmt.setInt(7, motorHome.getEngineBlockNo());
-
-            System.out.println(myStmt);
             myStmt.executeUpdate();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -112,17 +109,17 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
 
 
     @Override
-    public boolean delete(int id) {
+    /*public boolean delete(int id) {
         return false;
     }
-
-    public boolean delete(String id){
-            String sql = "DELETE FROM Motorhome WHERE LicensPlateNo = ?";
+*/
+    public boolean delete(int id){
+            String sql = "DELETE FROM Motorhome WHERE engineBlockNo = ?";
 
             try {
                 PreparedStatement pstmt = conn.prepareStatement(sql);
 
-                pstmt.setString(1, id);
+                pstmt.setInt(1, id);
 
                 pstmt.executeUpdate();
                 return true;

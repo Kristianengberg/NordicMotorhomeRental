@@ -8,21 +8,31 @@
 </head>
 <body>
 <div th:insert="fragments/top_menu"></div>
-<form class="forms" action="#" style="position: absolute" th:action="@{/savemotorhome}" th:object="${motorhome}"
+
+<div class="bg">
+
+    <br>
+    <br>
+
+<form class="forms" action="#" style="position: absolute" th:action="@{/createmotorhome}" th:object="${autocamper}"
       method="post">
     <label for="fname">licensePlateNo</label>
     <input type="text" th:field="*{licensePlateNo}" name="fname" id="fname" /><br><br>
     <label for="lname">model</label>
     <input type="text" th:field="*{model}" name="lname" id="lname" /><br><br>
     <label for="enroll">beds</label>
-    <input type="text" th:field="*{beds}" name="enroll" id="enroll" placeholder='yyyy-mm-dd'/><br><br>
+    <input type="text" th:field="*{beds}" name="enroll" id="enroll" /><br><br>
+    <label for="accessible">Tilgængelig</label>
+    <input type="text" th:field="*{accessible}" name="accessible" id="accessible" /><br><br>
     <label for="fname">kilometers</label>
     <input type="text" th:field="*{kilometers}" name="fname" id="fname1" /><br><br>
     <label for="fname">price</label>
     <input type="text" th:field="*{price}" name="fname" id="fname2" /><br><br>
     <label for="fname">engineBlockNo</label>
     <input type="text" th:field="*{engineBlockNo}" name="fname" id="fname3" /><br><br>
-    <input type="submit" class="btn-create-form" value="Create">
+    <input type="submit" class="btn-create-form" value="Opret autocamper">
+    <input type="reset" class="btn-ed" value="Fortryd">
 </form>
+</div>
 </body>
 </html>

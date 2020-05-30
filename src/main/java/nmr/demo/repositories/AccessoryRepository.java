@@ -27,7 +27,7 @@ public class AccessoryRepository implements IRepository<Accessories>{
     @Override
     public boolean create(Accessories model) {
         try {
-            PreparedStatement CreateAccessory = conn.prepareStatement("INSERT INTO accessories" + "(type,price)VALUES" + "(?,?);");
+            PreparedStatement CreateAccessory = conn.prepareStatement("INSERT INTO accessories" + "(accessoryType,price)VALUES" + "(?,?);");
             CreateAccessory.setString(1,model.getAccessoriesType());
             CreateAccessory.setDouble(2,model.getPrice());
 
@@ -72,8 +72,6 @@ public class AccessoryRepository implements IRepository<Accessories>{
                 tempAccessories.setAccessory_id(rs.getInt(1));
                 tempAccessories.setType(rs.getString(2));
                 tempAccessories.setPrice(rs.getDouble(3));
-
-
                 allAccessories.add(tempAccessories);
             }
         } catch (SQLException e) {

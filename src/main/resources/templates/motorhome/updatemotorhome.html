@@ -9,10 +9,30 @@
 
 <body>
 <div th:insert="fragments/top_menu"></div>
-<div class="container">
-    <img src="/css/images/background.jpg" alt="bg" style="width:100%;height:100%;background-size: cover">
-</div>
-<div class="top"><h1>Nordic MotorHome Rental System V.03</h1></div>
+<div class="bg">
 
+    <form class="forms" action="#" th:action="@{/updatemotorhome}" th:object="${autocamper}"
+          method="post">
+
+        <br>
+        <br>
+        <label for="licensePlateNo">Nummerplade</label>
+        <input type="text" th:field="*{licensePlateNo}" name="licensePlateNo" id="licensePlateNo" /><br><br>
+        <label for="model">Model</label>
+        <input type="text" th:field="*{model}" name="model" id="model" /><br><br>
+        <label for="beds">Antal senge</label>
+        <input type="text" th:field="*{beds}" name="beds" id="beds" /><br><br>
+        <label for="accessible">Tilgængelig</label>
+        <input type="text" th:field="*{accessible}" name="accessible" id="accessible" /><br><br>
+        <label for="kilometers">Km</label>
+        <input type="text" th:field="*{kilometers}" name="kilometers" id="kilometers" /><br><br>
+        <label for="price">Pris pr uge</label>
+        <input type="text" th:field="*{price}" name="price" id="price" /><br><br>
+        <label for="engineBlockNo">Motorblok nr</label>
+        <input type="text" th:field="*{engineBlockNo}" name="engineBlockNo" id="engineBlockNo" /><br><br>
+
+        <input type="submit" class="btn-ed" value="Update">
+    </form>
+</div>
 </body>
 </html>
