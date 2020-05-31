@@ -3,13 +3,18 @@ package nmr.demo.businessLogic;
 import nmr.demo.models.Employee;
 import nmr.demo.repositories.*;
 import nmr.demo.models.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+@Service
 public class ReservationService {
+
     private IRepository accessoryRepository;
     private CustomerRepository customerRepository;
     private IRepository employeeRepository;
@@ -74,7 +79,9 @@ public class ReservationService {
         this.invoice = (Invoice) invoiceRepository.read(id);
     }
 
-    public void setInvoiceByCustomerID(int id){ this.invoice = invoiceRepository.readByCustomerID(id); }
+    public void setInvoiceByCustomerID(int id){
+        System.out.println("this is setinvoicebycustomer ID " + id);
+        this.invoice = invoiceRepository.readByCustomerID(id); }
 
     public MotorHome getMotorhome() {
         return motorhome;
@@ -85,6 +92,37 @@ public class ReservationService {
     }
 
 
+    public IRepository getAccessoryRepository() {
+        return accessoryRepository;
+    }
 
+    public CustomerRepository getCustomerRepository() {
+        return customerRepository;
+    }
 
+    public IRepository getEmployeeRepository() {
+        return employeeRepository;
+    }
+
+    public InvoiceRepository getInvoiceRepository() {
+        return invoiceRepository;
+    }
+
+    public IRepository getMotorhomeRepository() {
+        return motorhomeRepository;
+    }
+
+    public List<MotorHome> getMotorhomeByDateAndBeds(int beds){
+        List<MotorHome> tempList = new ArrayList<MotorHome>();
+        List<MotorHome> returnList = new ArrayList<MotorHome>();
+        tempList = motorhomeRepository.readAll();
+
+        for (MotorHome motorhome : tempList) {
+            if(motorhome.getBeds() == beds){
+                returnList.add(motorhome);
+            }
+        }
+
+        return returnList;
+    }
 }

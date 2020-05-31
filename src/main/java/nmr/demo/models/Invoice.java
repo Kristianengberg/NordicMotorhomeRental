@@ -3,7 +3,7 @@ package nmr.demo.models;
 import java.util.Date;
 
 public class Invoice {
-    private static int invoiceId;
+    private int invoiceId;
     private Date dateStart;
     private Date dateEnd;
     private String pickUp;
@@ -31,7 +31,7 @@ public class Invoice {
         this.licensePlateNo = licensePlateNo;
     }
 
-    public static int getInvoiceId() {
+    public int getInvoiceId() {
         return invoiceId;
     }
 
@@ -109,5 +109,21 @@ public class Invoice {
 
     public void setLicensePlateNo(String licensePlateNo) {
         this.licensePlateNo = licensePlateNo;
+    }
+
+    @Override
+    public String toString() {
+        return "Invoice{" +
+                "invoiceId=" + invoiceId +
+                ", dateStart=" + dateStart +
+                ", dateEnd=" + dateEnd +
+                ", pickUp='" + pickUp + '\'' +
+                ", dropOff='" + dropOff + '\'' +
+                ", totalPrice=" + totalPrice +
+                ", employeeId=" + employeeId +
+                ", customerId=" + customerId +
+                ", accessoriesId=" + accessoriesId +
+                ", licensePlateNo='" + licensePlateNo + '\'' +
+                '}';
     }
 }

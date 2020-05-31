@@ -87,36 +87,20 @@ public class InvoiceRepository implements IRepository<Invoice> {
     public Invoice readByCustomerID(int id) {
         Invoice invoiceToReturn = new Invoice();
 
-
         try {
-            System.out.print(id);
+
             PreparedStatement getSingleInvoice = conn.prepareStatement("SELECT * FROM Invoice WHERE Customer_id_fk=" + id);
             ResultSet rs = getSingleInvoice.executeQuery();
             while(rs.next()){
                 invoiceToReturn.setInvoiceId(rs.getInt(1));
-
                 invoiceToReturn.setDateStart(rs.getDate(2));
-
-
                 invoiceToReturn.setDateEnd(rs.getDate(3));
-
-
                 invoiceToReturn.setPickUp(rs.getString(4));
-
-
                 invoiceToReturn.setDropOff(rs.getString(5));
-
-
                 invoiceToReturn.setTotalPrice(rs.getDouble(6));
-
-
                 invoiceToReturn.setEmployeeId(rs.getInt(7));
-
-
                 invoiceToReturn.setCustomerId(rs.getInt(8));
-
                 invoiceToReturn.setAccessoriesId(rs.getInt(9));
-
                 invoiceToReturn.setLicensePlateNo(rs.getString(10));
 
             }
@@ -168,7 +152,7 @@ public class InvoiceRepository implements IRepository<Invoice> {
         MotorHome motorHomeToReturn = new MotorHome();
 
         try {
-            PreparedStatement myStmt = conn.prepareStatement("UPDATE Invoice SET invoiceId = ?, dateStart = ?, dateEnd = ?, pickUp = ?,  dropOff = ?, totalPrice = ?, employeeId = ?, customerId = ?, accessoriesId = ?, licensePlateNo = ? WHERE invoiceId =" + Invoice.getInvoiceId());
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Invoice SET invoiceId = ?, dateStart = ?, dateEnd = ?, pickUp = ?,  dropOff = ?, totalPrice = ?, employeeId = ?, customerId = ?, accessoriesId = ?, licensePlateNo = ? WHERE invoiceId =" + invoice.getInvoiceId());
             myStmt.setInt(1, invoice.getInvoiceId());
             myStmt.setDate(2, (Date) invoice.getDateStart());
             myStmt.setDate(3, (Date) invoice.getDateEnd());
@@ -190,7 +174,7 @@ public class InvoiceRepository implements IRepository<Invoice> {
 
     @Override
     public boolean delete(int id) {
-        if(Invoice.getInvoiceId() == id) {
+
             String sql = "DELETE FROM Invoice WHERE Invoice_id = ?";
 
             try {
@@ -200,13 +184,14 @@ public class InvoiceRepository implements IRepository<Invoice> {
 
                 pstmt.executeUpdate();
 
+                return true;
+
 
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
-        }else{
             System.out.println("Fail");
-        }
+
         return false;
 
 

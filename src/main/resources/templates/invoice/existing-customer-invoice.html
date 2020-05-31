@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>findesingleinvoice</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+
+<body>
+<div th:insert="fragments/top_menu"></div>
+
+<table id="customerDetails">
+    <tr>
+        <td>Telefonnummer:</td>
+        <td th:text="${customer.phone}"></td>
+    <tr>
+        <td>Kundenavn</td>
+        <td th:text="${customer.customerName}"></td>
+    </tr>
+    <tr>
+        <td>Adresse</td>
+        <td th:text="${customer.address}"></td>
+    </tr>
+    <tr>
+        <td>Postnummer - By</td>
+        <td th:text="${customer.zipCode}"></td>
+    </tr>
+    <tr>
+        <td>E-mail</td>
+        <td th:text="${customer.email}"></td>
+    </tr>
+    <tr>
+        <td>Kundetype</td>
+        <td th:text="${customer.customerType}"></td>
+    </tr>
+
+</table>
+
+
+<div>
+    <form action="/mapped-costumer">
+        <table>
+
+            <label for="start">Start</label>
+            <input type="date" name="start" id="start"/><br>
+            <label for="finish">Slut</label>
+            <input type="date" name="finish" id="finish"/>
+
+            <p>Sengepladser</p>
+            <select name="beds">
+                <option value="2">2</option>
+                <option value="4">4</option>
+                <option value="6">6</option>
+            </select>
+
+            <input type="submit" name="submit">Næste</input>
+
+
+        </table>
+
+    </form>
+
+    <div id="højreKolonne" class="kolonne">
+        <ul>
+            <li th:each="motorhome : ${motorhomes}">
+                <span th:text="${motorhome.price}"></span>
+                <span th:text="${motorhome.model}"></span>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<div>
+
+
+</div>
+
+
+</body>
+</html>

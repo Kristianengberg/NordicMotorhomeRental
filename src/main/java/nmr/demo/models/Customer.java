@@ -1,8 +1,8 @@
 package nmr.demo.models;
 
 public class Customer {
-    private int CustomerId;
-    private String CustomerName;
+    private int customerId;
+    private String customerName;
     private String address;
     private String zipCode;
     private int phone;
@@ -13,8 +13,8 @@ public class Customer {
     }
 
     public Customer(int customerId, String customerName, String address, String zipCode, int phone, String email, String customerType) {
-        CustomerId = customerId;
-        CustomerName = customerName;
+        this.customerId = customerId;
+        this.customerName = customerName;
         this.address = address;
         this.zipCode = zipCode;
         this.phone = phone;
@@ -24,23 +24,23 @@ public class Customer {
 
     @Override
     public String toString() {
-        return CustomerId + " " + CustomerName + " " + address + " " + zipCode + " " + phone + " " + email + " " + customerType;
+        return customerId + " " + customerName + " " + address + " " + zipCode + " " + phone + " " + email + " " + customerType;
     }
 
     public int getCustomerId() {
-        return CustomerId;
+        return customerId;
     }
 
     public void setCustomerId(int customerId) {
-        CustomerId = customerId;
+        this.customerId = customerId;
     }
 
     public String getCustomerName() {
-        return CustomerName;
+        return customerName;
     }
 
     public void setCustomerName(String customerName) {
-        CustomerName = customerName;
+        this.customerName = customerName;
     }
 
     public String getAddress() {

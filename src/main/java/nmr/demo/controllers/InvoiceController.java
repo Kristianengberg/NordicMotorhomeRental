@@ -2,17 +2,18 @@ package nmr.demo.controllers;
 
 
 import nmr.demo.businessLogic.ReservationService;
-import nmr.demo.models.Customer;
 import nmr.demo.models.Invoice;
 import nmr.demo.repositories.IRepository;
 import nmr.demo.repositories.InvoiceRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-import java.util.Map;
+import java.util.Date;
 
 @Controller
 public class InvoiceController {
@@ -27,68 +28,40 @@ public class InvoiceController {
 
 
 
+
+
     @GetMapping("/createreservation")
-    public String createreservation(){
-        System.out.println("Hello createreservation");
-        return "invoice/createreservation";
+    public String inputCostumerPhone(){
+        System.out.println("create reservation");
+        return "invoice/check-for-customer";
     }
 
-    @GetMapping("/createinvoice")
-    public String createInvoice(Model model){
-        model.addAttribute("motorhome",new Invoice());
-        return "/invoice/createinvoice";
-    }
 
-    @GetMapping("/manageinvoices")
-    public String seeAllInvoices(Model model) {
-        model.addAttribute("invoice", invoiceRepository.readAll());
-        return "/invoice/manageinvoices";
-    }
 
-    @GetMapping("/findsingleinvoice/")
-    public String findSingleMotorhome(Model model, @RequestParam int id){
-        System.out.println("find single motorhome");
+    @GetMapping("/send-costumer-phone/")
+    public ModelAndView findExistingCustomer(Model model, @RequestParam("id") int id){
+        ModelAndView mav = new ModelAndView("invoice/existing-customer-invoice");
 
         service.setCustomerByPhone(id);
 
-        service.setInvoiceByCustomerID(service.getCustomer().getCustomerId());
+        mav.addObject("customer", service.getCustomer());
 
-        service.setAccessories(service.getInvoice().getAccessoriesId());
-        service.setCustomer(service.getInvoice().getCustomerId());
-        service.setEmployee(service.getInvoice().getEmployeeId());
+        return mav;
+    }
 
+    @GetMapping("/mapped-costumer")
+    public String displayDateAndBeds(Model model, @RequestParam("beds") int beds, @RequestParam("start") Date start, @RequestParam("finsih") Date finish){
 
-
-
-        model.addAttribute("invoice", service.getInvoice());
         model.addAttribute("customer", service.getCustomer());
-        model.addAttribute("employee", service.getEmployee());
-        model.addAttribute("accessories", service.getAccessories());
-
-        return "invoice/findsingleinvoice";
-    }
+        model.addAttribute("motorhomes", service.getMotorhomeByDateAndBeds(beds));
 
 
-    @GetMapping("/updateinvoice")
-    public String updateMotorhome(Model model) {
-        model.addAttribute("invoice", invoiceRepository.readAll());
-        return "/invoice/updateinvoice";
-    }
 
-    @GetMapping("/deleteinvoice")
-    public String deleteMotorhome(Model model) {
-        model.addAttribute("invoice", invoiceRepository.readAll());
-        return "/invoice/deleteinvoice";
+        return "invoice/existing-customer-invoice";
     }
 
 
 
-
-    @PostMapping("/saveinvoice")
-    public String saveMotorHome(@ModelAttribute Invoice invoice){
-        invoiceRepository.create(invoice);
-        return "/index";
-    }
 
 }
 
