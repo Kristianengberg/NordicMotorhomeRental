@@ -1,6 +1,6 @@
 package nmr.demo.models;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class MotorHome {
     private String licensePlateNo;

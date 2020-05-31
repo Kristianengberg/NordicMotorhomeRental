@@ -6,10 +6,8 @@ import nmr.demo.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.sql.Date;
 
 
 @Service
@@ -27,15 +25,12 @@ public class ReservationService {
     private Invoice invoice;
     private MotorHome motorhome;
 
-    public ReservationService(){
+    public ReservationService() {
         this.accessoryRepository = new AccessoryRepository();
         this.customerRepository = new CustomerRepository();
         this.employeeRepository = new EmployeeRepository();
         this.invoiceRepository = new InvoiceRepository();
         this.motorhomeRepository = new MotorhomeRepository();
-
-
-
 
 
     }
@@ -54,10 +49,10 @@ public class ReservationService {
     }
 
     public void setCustomer(int id) {
-        this.customer =  customerRepository.readPhone(id);
+        this.customer = customerRepository.readPhone(id);
     }
 
-    public void setCustomerByPhone(int id){
+    public void setCustomerByPhone(int id) {
         this.customer = customerRepository.readPhone(id);
     }
 
@@ -70,7 +65,6 @@ public class ReservationService {
     }
 
 
-
     public Invoice getInvoice() {
         return invoice;
     }
@@ -79,9 +73,10 @@ public class ReservationService {
         this.invoice = (Invoice) invoiceRepository.read(id);
     }
 
-    public void setInvoiceByCustomerID(int id){
+    public void setInvoiceByCustomerID(int id) {
         System.out.println("this is setinvoicebycustomer ID " + id);
-        this.invoice = invoiceRepository.readByCustomerID(id); }
+        this.invoice = invoiceRepository.readByCustomerID(id);
+    }
 
     public MotorHome getMotorhome() {
         return motorhome;
@@ -112,17 +107,28 @@ public class ReservationService {
         return motorhomeRepository;
     }
 
-    public List<MotorHome> getMotorhomeByDateAndBeds(int beds){
+    public List<MotorHome> getMotorhomeByDateAndBeds(int beds, Date start, Date finish) {
         List<MotorHome> tempList = new ArrayList<MotorHome>();
         List<MotorHome> returnList = new ArrayList<MotorHome>();
         tempList = motorhomeRepository.readAll();
 
         for (MotorHome motorhome : tempList) {
-            if(motorhome.getBeds() == beds){
-                returnList.add(motorhome);
+            if (motorhome.getBeds() == beds) {
+                if (motorhome.getStart() != null && motorhome.getFinish() != null) {
+                    if (!start.after(motorhome.getStart()) && !start.before(motorhome.getFinish())
+                            || !finish.after(motorhome.getStart()) && !finish.before(motorhome.getFinish())) {
+                        System.out.println(start + " + " + finish);
+                        returnList.add(motorhome);
+
+
+                    }
+
+                }
             }
         }
 
         return returnList;
     }
 }
+
+

@@ -101,8 +101,8 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
             myStmt.setDouble(5, motorHome.getKilometers());
             myStmt.setDouble(6, motorHome.getPrice());
             myStmt.setInt(7, motorHome.getEngineBlockNo());
-            myStmt.setDate(8, (Date) motorHome.getStart());
-            myStmt.setDate(9, (Date) motorHome.getFinish());
+            myStmt.setDate(8, motorHome.getStart());
+            myStmt.setDate(9, motorHome.getFinish());
             myStmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

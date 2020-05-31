@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.sql.Date;
 
 @Controller
 public class InvoiceController {
@@ -50,11 +52,10 @@ public class InvoiceController {
     }
 
     @GetMapping("/mapped-costumer")
-    public String displayDateAndBeds(Model model, @RequestParam("beds") int beds, @RequestParam("start") Date start, @RequestParam("finsih") Date finish){
+    public String displayDateAndBeds(Model model, @RequestParam("beds") int beds, @RequestParam("start") Date start, @RequestParam("finish") Date finish) throws ParseException {
 
         model.addAttribute("customer", service.getCustomer());
-        model.addAttribute("motorhomes", service.getMotorhomeByDateAndBeds(beds));
-
+        model.addAttribute("motorhomes", service.getMotorhomeByDateAndBeds(beds, start, finish));
 
 
         return "invoice/existing-customer-invoice";
