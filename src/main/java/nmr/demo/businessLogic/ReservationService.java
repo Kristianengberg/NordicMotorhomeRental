@@ -116,13 +116,15 @@ public class ReservationService {
             if (motorhome.getBeds() == beds) {
                 if (motorhome.getStart() != null && motorhome.getFinish() != null) {
                     if (!start.after(motorhome.getStart()) && !start.before(motorhome.getFinish())
-                            || !finish.after(motorhome.getStart()) && !finish.before(motorhome.getFinish())) {
+                            && !finish.after(motorhome.getStart()) && !finish.before(motorhome.getFinish())) {
                         System.out.println(start + " + " + finish);
                         returnList.add(motorhome);
 
 
                     }
-
+                }
+                else{
+                    returnList.add(motorhome);
                 }
             }
         }
