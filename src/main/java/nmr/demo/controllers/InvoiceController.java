@@ -39,16 +39,25 @@ public class InvoiceController {
 
 
     @GetMapping("/send-costumer-phone/")
-    public ModelAndView findExistingCustomer(Model model, @RequestParam("id") int id){
-        ModelAndView mav = new ModelAndView("invoice/existing-customer-invoice");
+    public ModelAndView findExistingCustomer(Model model, @RequestParam("id") int id) {
+        System.out.println(service.getCustomerRepository().readPhone(id));
+        if (service.getCustomerRepository().readPhone(id).getPhone() != id){
+            System.out.println("phone is null");
+            ModelAndView mav = new ModelAndView("customer/createcustomer");
 
-        service.setCustomerByPhone(id);
-        invoice.setCustomerId(service.getCustomer().getCustomerId());
-        //service.getInvoice().setCustomerId(service.getCustomer().getCustomerId());
+            return mav;
+        } else {
+            ModelAndView mav = new ModelAndView("invoice/existing-customer-invoice");
 
-        mav.addObject("customer", service.getCustomer());
 
-        return mav;
+            service.setCustomerByPhone(id);
+            invoice.setCustomerId(service.getCustomer().getCustomerId());
+            //service.getInvoice().setCustomerId(service.getCustomer().getCustomerId());
+
+            mav.addObject("customer", service.getCustomer());
+
+            return mav;
+        }
     }
 
     @GetMapping("/mapped-costumer")
