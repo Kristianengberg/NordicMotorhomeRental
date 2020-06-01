@@ -54,26 +54,96 @@
                 <option value="6">6</option>
             </select>
 
-            <input type="submit" name="submit">Næste</input>
+            <input type="submit">Næste</input>
 
 
         </table>
 
     </form>
 
-    <div id="højreKolonne" class="kolonne">
-        <ul>
-            <li th:each="motorhome : ${motorhomes}">
-                <span th:text="${motorhome.price}"></span>
-                <span th:text="${motorhome.model}"></span>
-            </li>
-        </ul>
+    <div id="chooseVehicle">
+        <table>
+            <tr th:each="motorhome : ${motorhomes}">
+                <td th:text="${motorhome.model}"></td>
+                <td th:text="${motorhome.licensePlateNo}"></td>
+                <td th:text="${motorhome.beds}"></td>
+                <td th:text="${motorhome.price}"></td>
+                <td> <a th:href="@{'/invoice/existing-customer-invoice/' + ${motorhome.engineBlockNo} + '/' +${motorhome.licensePlateNo}}"><button>Vælg</button></a></td>
+                </td>
+            </tr>
+        </table>
+
+
+        <table >
+
+
+            <tr th:each="accessory : ${accessories}">
+                <td th:text="${accessory.getAccessoriesType()}"></td>
+                <td th:text="${accessory.price}"></td>
+                <td> <a th:href="@{'/invoice/existing-customer-invoice/' + ${accessory.getAccessory_id()}}"><button>Vælg</button></a></td>
+                </td>
+            </tr>
+
+
+        </table>
+
     </div>
 
 </div>
 
 <div>
 
+
+    <table id="invoiceDetails" th:if="${chosenMotorhome != null}">
+        <tr>
+            <td>Model: </td>
+            <td th:text="${chosenMotorhome.model}"></td>
+        <tr>
+            <td>Nummerplade: </td>
+            <td th:text="${chosenMotorhome.licensePlateNo}"></td>
+        </tr>
+        <tr>
+            <td>Senge: </td>
+            <td th:text="${chosenMotorhome.beds}"></td>
+        </tr>
+        <tr>
+            <td>Pris/dag: </td>
+            <td th:text="${chosenMotorhome.price}"></td>
+        </tr>
+        <tr>
+            <td>Fra: </td>
+            <td th:text="${invoice.dateStart}"></td>
+        </tr>
+        <tr>
+            <td>Til: </td>
+            <td th:text="${invoice.dateEnd}"></td>
+        </tr>
+
+        <tr th:if="${accessory != null}">
+        <td>Valgt Tilbehør: </td>
+        <td th:text="${accessory.getAccessoriesType()}"></td>
+        </tr>
+        <tr th:if="${accessory != null}">
+            <td>Tilbehørs Pris: </td>
+            <td th:text="${accessory.price}"></td>
+        </tr>
+        <tr>
+            <td>Total Pris: </td>
+            <td th:text="${invoice.totalPrice}"></td>
+        </tr>
+
+        <form action="/submit-invoice">
+            <button>CLICK ME</button>
+
+        </form>
+
+    </table>
+
+
+<table>
+
+
+</table>
 
 </div>
 

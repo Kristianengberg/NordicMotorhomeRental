@@ -1,13 +1,14 @@
 package nmr.demo.businessLogic;
 
-import nmr.demo.models.Employee;
-import nmr.demo.repositories.*;
 import nmr.demo.models.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import nmr.demo.repositories.*;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
 import java.sql.Date;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -17,7 +18,7 @@ public class ReservationService {
     private CustomerRepository customerRepository;
     private IRepository employeeRepository;
     private InvoiceRepository invoiceRepository;
-    private IRepository motorhomeRepository;
+    private MotorhomeRepository motorhomeRepository;
 
     private Accessories accessories;
     private Customer customer;
@@ -82,8 +83,8 @@ public class ReservationService {
         return motorhome;
     }
 
-    public void setMotorhome(int licensePlate) {
-        this.motorhome = (MotorHome) motorhomeRepository.read(licensePlate);
+    public void setMotorhome(int id) {
+        this.motorhome = (MotorHome) motorhomeRepository.read(id);
     }
 
 
@@ -130,6 +131,25 @@ public class ReservationService {
         }
 
         return returnList;
+    }
+
+    public int getDays(Date start, Date finish){
+
+        return 0;
+
+    }
+
+    public double calculatePrice(Invoice invoice){
+        double price = 0;
+        double diff = invoice.getDateStart().getTime() - invoice.getDateEnd().getTime();
+        double days = (diff / (1000*60*60*24))*-1+1;
+        price = motorhomeRepository.readByLicense(invoice.getLicensePlateNo()).getPrice();
+
+        price = price * days;
+        if(accessories != null) {
+            price += accessories.getPrice();
+        }
+        return price;
     }
 }
 

@@ -13,6 +13,7 @@ public class Invoice {
     private int customerId;
     private int accessoriesId;
     private String licensePlateNo;
+    private Boolean invoiceDone;
 
 
     public Invoice() {
@@ -111,6 +112,14 @@ public class Invoice {
         this.licensePlateNo = licensePlateNo;
     }
 
+    public Boolean getInvoiceDone() {
+        return invoiceDone;
+    }
+
+    public void setInvoiceDone(Boolean invoiceDone) {
+        this.invoiceDone = invoiceDone;
+    }
+
     @Override
     public String toString() {
         return "Invoice{" +
@@ -124,6 +133,7 @@ public class Invoice {
                 ", customerId=" + customerId +
                 ", accessoriesId=" + accessoriesId +
                 ", licensePlateNo='" + licensePlateNo + '\'' +
+                ", invoiceDone=" + invoiceDone +
                 '}';
     }
 }

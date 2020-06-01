@@ -24,8 +24,17 @@ public class InvoiceRepository implements IRepository<Invoice> {
     @Override
     public boolean create(Invoice model) {
         try {
-            PreparedStatement CreateInvoice = conn.prepareStatement("INSERT INTO Invoice" + "(invoiceId)VALUES" + "(?);");
-            CreateInvoice.setInt(1, model.getInvoiceId());
+            PreparedStatement CreateInvoice = conn.prepareStatement("INSERT INTO Invoice" + "(invoiceId)VALUES" + "(default, ?, ?, ?,?, ?, ?,?, ?, ?, ?);");
+            CreateInvoice.setDate(1, (Date) model.getDateStart());
+            CreateInvoice.setDate(2, (Date) model.getDateEnd());
+            CreateInvoice.setString(3, model.getPickUp());
+            CreateInvoice.setString(4, model.getDropOff());
+            CreateInvoice.setDouble(5, model.getTotalPrice());
+            CreateInvoice.setInt(6, model.getEmployeeId());
+            CreateInvoice.setInt(7, model.getCustomerId());
+            CreateInvoice.setInt(8, model.getAccessoriesId());
+            CreateInvoice.setString(9, model.getLicensePlateNo());
+            CreateInvoice.setBoolean(10, model.getInvoiceDone());
 
             CreateInvoice.executeUpdate();
             return true;
@@ -102,6 +111,7 @@ public class InvoiceRepository implements IRepository<Invoice> {
                 invoiceToReturn.setCustomerId(rs.getInt(8));
                 invoiceToReturn.setAccessoriesId(rs.getInt(9));
                 invoiceToReturn.setLicensePlateNo(rs.getString(10));
+                invoiceToReturn.setInvoiceDone(rs.getBoolean(11));
 
             }
         }
@@ -134,6 +144,7 @@ public class InvoiceRepository implements IRepository<Invoice> {
                 tempCustomer.setCustomerId(rs.getInt(8));
                 tempAccessory.setAccessory_id(rs.getInt(9));
                 tempLicensePlateNo.setLicensePlateNo(rs.getString(10));
+
 
                 allInvoices.add(tempInvoice);
             }

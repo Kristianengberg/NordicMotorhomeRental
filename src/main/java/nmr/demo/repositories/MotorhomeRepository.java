@@ -90,6 +90,32 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
         return allMotorHome;
     }
 
+    public MotorHome readByLicense(String licensePlateNo) {
+        MotorHome MotorHomeToReturn = new MotorHome();
+        try {
+            PreparedStatement getSingleMotorHome = conn.prepareStatement("SELECT * FROM Motorhome WHERE LicensPlateNo=?");
+            getSingleMotorHome.setString(1, licensePlateNo);
+            ResultSet rs = getSingleMotorHome.executeQuery();
+            while(rs.next()){
+                MotorHomeToReturn.setLicensePlateNo(rs.getString(1));
+                MotorHomeToReturn.setModel(rs.getString(2));
+                MotorHomeToReturn.setBeds(rs.getInt(3));
+                MotorHomeToReturn.setAccessible(rs.getString(4));
+                MotorHomeToReturn.setKilometers(rs.getDouble(5));
+                MotorHomeToReturn.setPrice(rs.getDouble(6));
+                MotorHomeToReturn.setEngineBlockNo(rs.getInt(7));
+                MotorHomeToReturn.setStart(rs.getDate(8));
+                MotorHomeToReturn.setFinish(rs.getDate(9));
+
+
+            }
+        }
+        catch(SQLException s){
+            s.printStackTrace();
+        }
+        return MotorHomeToReturn;
+    }
+
     @Override
     public boolean update(MotorHome motorHome) {
         try {

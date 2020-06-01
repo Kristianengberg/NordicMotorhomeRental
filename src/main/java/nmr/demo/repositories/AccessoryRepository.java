@@ -83,7 +83,7 @@ public class AccessoryRepository implements IRepository<Accessories>{
     @Override
     public boolean update(Accessories accessories) {
         try {
-           PreparedStatement myStmt = conn.prepareStatement("UPDATE Accessories SET accessory_id = ?, price = ?, type = ? WHERE accessory_id =" + Accessories.getAccessory_id());
+           PreparedStatement myStmt = conn.prepareStatement("UPDATE Accessories SET accessory_id = ?, price = ?, type = ? WHERE accessory_id =" + accessories.getAccessory_id());
            myStmt.setInt(1, accessories.getAccessory_id());
            myStmt.setDouble(2, accessories.getPrice());
            myStmt.setString(3,accessories.getAccessoriesType());
@@ -99,7 +99,8 @@ public class AccessoryRepository implements IRepository<Accessories>{
 
     @Override
     public boolean delete(int id) {
-        if(Accessories.getAccessory_id() == id) {
+
+
             String sql = "DELETE FROM Invoice WHERE Accessory_id = ?";
 
             try {
@@ -113,9 +114,9 @@ public class AccessoryRepository implements IRepository<Accessories>{
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
-        }else{
+
             System.out.println("Fail");
-        }
+
         return false;
 
     }
