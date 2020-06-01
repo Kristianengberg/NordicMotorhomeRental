@@ -9,7 +9,7 @@ public class Invoice {
     private String pickUp;
     private String dropOff;
     private double totalPrice;
-    private int employeeId;
+    private int employeeId = 1;
     private int customerId;
     private int accessoriesId;
     private String licensePlateNo;

@@ -43,7 +43,7 @@ public class InvoiceController {
         ModelAndView mav = new ModelAndView("invoice/existing-customer-invoice");
 
         service.setCustomerByPhone(id);
-        invoice.setCustomerId(id);
+        invoice.setCustomerId(service.getCustomer().getCustomerId());
         //service.getInvoice().setCustomerId(service.getCustomer().getCustomerId());
 
         mav.addObject("customer", service.getCustomer());

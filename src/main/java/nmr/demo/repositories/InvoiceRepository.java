@@ -24,7 +24,8 @@ public class InvoiceRepository implements IRepository<Invoice> {
     @Override
     public boolean create(Invoice model) {
         try {
-            PreparedStatement CreateInvoice = conn.prepareStatement("INSERT INTO Invoice" + "(invoiceId)VALUES" + "(default, ?, ?, ?,?, ?, ?,?, ?, ?, ?);");
+            PreparedStatement CreateInvoice = conn.prepareStatement("INSERT INTO Invoice" + "(DateStart,DateEnd,PickUp,DropOff,TotalPrice,Employee_id_fk,Customer_id_fk,Accessory_id_fk,Motorhome_LicensPlateNo,InvoiceDone)VALUES" + "( ?, ?, ?,?, ?, ?,?, ?, ?, ?);");
+            //CreateInvoice.setInt(1, model.getInvoiceId());
             CreateInvoice.setDate(1, (Date) model.getDateStart());
             CreateInvoice.setDate(2, (Date) model.getDateEnd());
             CreateInvoice.setString(3, model.getPickUp());
