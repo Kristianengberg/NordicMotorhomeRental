@@ -157,19 +157,20 @@ public class InvoiceController {
         return "invoice/manageinvoices";
     }
 
-    @GetMapping("findsingleinvoice")
+    @GetMapping("/findsingleinvoice")
     public String findSingleInvoice(Model model, @RequestParam("id") int id){
 
 
 
         service.setInvoice(id);
+
         service.setCustomer(service.getInvoice().getCustomerId());
 
-        service.setAccessories(service);
+        service.setAccessories(service.getInvoice().getAccessoriesId());
 
-        service.getMotorhome().
+        service.setMotorhome(service.returnEngineBlockNo(service.getInvoice().getLicensePlateNo()));
 
-        model.addAttribute("invoice", invoice);
+        model.addAttribute("invoice", service.getInvoice());
         model.addAttribute("customer", service.getCustomer());
         model.addAttribute("motorhome", service.getMotorhome());
         model.addAttribute("accessory", service.getAccessories());
