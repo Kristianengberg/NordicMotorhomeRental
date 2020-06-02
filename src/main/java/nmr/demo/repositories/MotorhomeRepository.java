@@ -118,8 +118,9 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
 
     @Override
     public boolean update(MotorHome motorHome) {
+        System.out.println(motorHome.getEngineBlockNo());
         try {
-            PreparedStatement myStmt = conn.prepareStatement("UPDATE Motorhome SET LicensPlateNo = ?, Model = ?, Beds = ?, isAccessible = ?, Km = ?, Price = ?, EngineBlockNo = ? WHERE engineBlockNo=" + motorHome.getEngineBlockNo());
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Motorhome SET LicensPlateNo = ?, Model = ?, Beds = ?, IsAccessible = ?, Km = ?, Price = ?, EngineBlockNo = ?, DateStart = ?, DateFinish = ? WHERE engineBlockNo=" + motorHome.getEngineBlockNo());
             myStmt.setString(1, motorHome.getLicensePlateNo());
             myStmt.setString(2, motorHome.getModel());
             myStmt.setInt(3, motorHome.getBeds());
@@ -129,6 +130,7 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
             myStmt.setInt(7, motorHome.getEngineBlockNo());
             myStmt.setDate(8, motorHome.getStart());
             myStmt.setDate(9, motorHome.getFinish());
+            System.out.println(myStmt);
             myStmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
