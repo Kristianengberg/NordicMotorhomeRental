@@ -23,7 +23,7 @@
 
                  <label for="address">Addresse</label>
                  <input type="text" th:field="*{address}" name="address" id="address"
-                        pattern="[A-Za-z]{1,50}( )[0-9]{0,1000}"
+                        pattern="[A-Za-z]{1,50}( )[0-9]{0,1000}||[A-Za-z]{1,50}( )[A-Za-z]{1,50}( )[0-9]{0,1000}"
                         placeholder="eks. Sommervej 1"
                         title="Indsæt gyldig adresse i tekstfeltet. eks. Sommervej 1. æ,ø,å er ikke brugbart i denne version(.)"
                         required /><br><br>
