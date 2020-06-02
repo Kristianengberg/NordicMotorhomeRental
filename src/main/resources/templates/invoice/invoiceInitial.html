@@ -1,11 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Reservation</title>
 </head>
 <body>
 <div>
+
+    <!-- <th th:text="#{seedstarter.datePlanted}">Date Planted</th>
+            this.invoiceId = invoiceId;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.pickUp = pickUp;
+        this.dropOff = dropOff;
+        this.totalPrice = totalPrice;
+        this.employeeId = employeeId;
+        this.customerId = customerId;
+        this.accessoriesId = accessoriesId;
+        this.licensePlateNo = licensePlateNo;
+
+    -->
+
+    <table id="customerDetails">
+        <tr>
+            <td>
+                <th th:text="#{invoice.getInvoiceId}">Invoice:</th>
+            </td>
+            <td>Kristia Engberg</td>
+        </tr>
+        <tr>
+            <td>Adresse:</td>
+            <td>Sjælør Boulevard 91</td>
+        </tr>
+        <tr>
+            <td>Postnummer:</td>
+            <td>2500</td>
+        </tr>
+        <tr>
+            <td>Telefon:</td>
+            <td>31272948</td>
+        </tr>
+        <tr>
+            <td>e-mail:</td>
+            <td>kris79i0@stud.kea.dk</td>
+        </tr>
+    </table>
+
+
     <form>
         <label for="start">Start</label>
         <input type="date" name="start"/><br>
@@ -69,28 +111,7 @@
 
 <div id="divInvoiceDetails">
 
-    <table id="customerDetails">
-        <tr>
-            <td>Navn:</td>
-            <td>Kristia Engberg</td>
-        </tr>
-        <tr>
-            <td>Adresse:</td>
-            <td>Sjælør Boulevard 91</td>
-        </tr>
-        <tr>
-            <td>Postnummer:</td>
-            <td>2500</td>
-        </tr>
-        <tr>
-            <td>Telefon:</td>
-            <td>31272948</td>
-        </tr>
-        <tr>
-            <td>e-mail:</td>
-            <td>kris79i0@stud.kea.dk</td>
-        </tr>
-    </table>
+
 
     <table id="invoiceDetails">
         <tr>

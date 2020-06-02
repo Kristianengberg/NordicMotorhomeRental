@@ -17,11 +17,10 @@
               <br>
              <br>
             <tr th:each="accessories : ${viewAccessories}">
+                <td th:text="${accessories.accessoryType}"></td>
+                <td th:text="${accessories.price}"></td>
 
-            <td th:text="${accessories.accessoriesType}"></td>
-            <td th:text="${accessories.price}"></td>
-
-            <td><a th:href="@{/findsingleaccessory(id=${accessories.accessory_id})}"><button class="btn-create">Details</button></a>
+            <td>
                 <a th:href="@{/updateaccessery(id=${accessories.accessory_id})}"><button class="btn-ed">Update</button></a>
                 <a th:href="@{/deleteaccessory(id=${accessories.accessory_id})}"><button class="btn-del">Delete</button></a>
             </td>

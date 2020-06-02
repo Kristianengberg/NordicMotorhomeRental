@@ -5,14 +5,14 @@ public class Employee {
     private String empName;
     private String position;
     private String address;
-    private int zipCode;
+    private String zipCode;
     private int phone;
     private String email;
 
     public Employee() {
     }
 
-    public Employee(int employeeId, String empName, String position, String address, int zipCode, int phone, String email) {
+    public Employee(int employeeId, String empName, String position, String address, String zipCode, int phone, String email) {
         this.employeeId = employeeId;
         this.empName = empName;
         this.position = position;
@@ -54,11 +54,11 @@ public class Employee {
         this.address = address;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 

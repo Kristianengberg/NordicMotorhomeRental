@@ -66,6 +66,31 @@ public class CustomerRepository implements IRepository<Customer> {
         return customerToReturn;
     }
 
+
+    public Customer readPhone(int id) {
+        Customer customerToReturn = new Customer();
+        try {
+
+            System.out.println("This is read phone id " + id);
+            PreparedStatement getSingleCustomer = conn.prepareStatement("SELECT * FROM Customer WHERE Phone=" + id);
+            ResultSet rs = getSingleCustomer.executeQuery();
+            while(rs.next()){
+                customerToReturn.setCustomerId(rs.getInt(1));
+                customerToReturn.setCustomerName(rs.getString(2));
+                customerToReturn.setAddress(rs.getString(3));
+                customerToReturn.setZipCode(rs.getString(4));
+                customerToReturn.setPhone(rs.getInt(5));
+                customerToReturn.setEmail(rs.getString(6));
+                customerToReturn.setCustomerType(rs.getString(7));
+            }
+        }
+        catch(SQLException s){
+            s.printStackTrace();
+        }
+
+        return customerToReturn;
+    }
+
     @Override
     public List<Customer> readAll() {
         List<Customer> allCustomer = new ArrayList<Customer>();

@@ -28,7 +28,7 @@ public class AccessoryRepository implements IRepository<Accessories>{
     public boolean create(Accessories model) {
         try {
             PreparedStatement CreateAccessory = conn.prepareStatement("INSERT INTO accessories" + "(accessoryType,price)VALUES" + "(?,?);");
-            CreateAccessory.setString(1,model.getAccessoriesType());
+            CreateAccessory.setString(1,model.getAccessoryType());
             CreateAccessory.setDouble(2,model.getPrice());
 
 
@@ -47,14 +47,12 @@ public class AccessoryRepository implements IRepository<Accessories>{
     public Accessories read(int id) {
         Accessories AccessoriesToReturn = new Accessories();
         try {
-
-            PreparedStatement getSingleAccessory = conn.prepareStatement("SELECT * FROM accessories WHERE accessory_id=" + id);
+            PreparedStatement getSingleAccessory = conn.prepareStatement("SELECT * FROM accessories WHERE Accessory_id=" + id);
             ResultSet rs = getSingleAccessory.executeQuery();
             while(rs.next()){
                 AccessoriesToReturn.setAccessory_id(rs.getInt(1));
-                AccessoriesToReturn.setType(rs.getString(2));
+                AccessoriesToReturn.setAccessoryType(rs.getString(2));
                 AccessoriesToReturn.setPrice(rs.getDouble(3));
-
             }
         }
         catch(SQLException s){
@@ -72,7 +70,7 @@ public class AccessoryRepository implements IRepository<Accessories>{
             while(rs.next()){
                 Accessories tempAccessories = new Accessories();
                 tempAccessories.setAccessory_id(rs.getInt(1));
-                tempAccessories.setType(rs.getString(2));
+                tempAccessories.setAccessoryType(rs.getString(2));
                 tempAccessories.setPrice(rs.getDouble(3));
                 allAccessories.add(tempAccessories);
             }
@@ -85,15 +83,11 @@ public class AccessoryRepository implements IRepository<Accessories>{
     @Override
     public boolean update(Accessories accessories) {
         try {
-            System.out.println(1);
-           PreparedStatement myStmt = conn.prepareStatement("UPDATE Accessories SET accessory_id = ?, price = ?, accessoryType = ? WHERE accessory_id =" + Accessories.getAccessory_id());
-            System.out.println(2);
+           PreparedStatement myStmt = conn.prepareStatement("UPDATE Accessories SET accessory_id = ?, price = ?, type = ? WHERE accessory_id =" + accessories.getAccessory_id());
            myStmt.setInt(1, accessories.getAccessory_id());
-            System.out.println(3);
-           myStmt.setString(2,accessories.getAccessoriesType());
-            System.out.println(4);
-            myStmt.setDouble(3, accessories.getPrice());
-            System.out.println(5);
+           myStmt.setDouble(2, accessories.getPrice());
+
+
             System.out.println(myStmt);
             myStmt.executeUpdate();
 
@@ -105,7 +99,8 @@ public class AccessoryRepository implements IRepository<Accessories>{
 
     @Override
     public boolean delete(int id) {
-        if(Accessories.getAccessory_id() == id) {
+
+
             String sql = "DELETE FROM Invoice WHERE Accessory_id = ?";
 
             try {
@@ -119,12 +114,14 @@ public class AccessoryRepository implements IRepository<Accessories>{
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
-        }else{
+
             System.out.println("Fail");
-        }
+
         return false;
 
     }
+
+
 
 
 

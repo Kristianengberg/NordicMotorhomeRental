@@ -17,19 +17,26 @@
         <br>
         <br>
         <label for="licensePlateNo">Nummerplade</label>
-        <input type="text" th:field="*{licensePlateNo}" name="licensePlateNo" id="licensePlateNo" /><br><br>
+        <input type="text" th:field="*{licensePlateNo}" name="licensePlateNo" id="licensePlateNo" pattern="[A-Z]{0,2}( )[0-9]{0,5}" title="Opret nummerpladen på det enkelte køretøj. EKS: AA 12345(.)"
+               required/><br><br>
         <label for="model">Model</label>
-        <input type="text" th:field="*{model}" name="model" id="model" /><br><br>
+        <input type="text" th:field="*{model}" name="model" id="model" pattern="[A-Ha-h]{1}" title="Indsæt modellen for det valgte køretøj A-H(.)"
+               required/><br><br>
         <label for="beds">Antal senge</label>
-        <input type="text" th:field="*{beds}" name="beds" id="beds" /><br><br>
+        <input type="text" th:field="*{beds}" name="beds" id="beds" pattern="[0-9]{2,10}" title="Vælg antal sengepladser: 2-8(.)"
+               required /><br><br>
         <label for="accessible">Tilgængelig</label>
-        <input type="text" th:field="*{accessible}" name="accessible" id="accessible" /><br><br>
+        <input type="text" th:field="*{accessible}" name="accessible" id="accessible" pattern="[A-Za-z]{2,3}" title="Indsæt YES/NO(.)"
+               required/><br><br>
         <label for="kilometers">Km</label>
-        <input type="text" th:field="*{kilometers}" name="kilometers" id="kilometers" /><br><br>
+        <input type="text" th:field="*{kilometers}" name="kilometers" id="kilometers" pattern="[0-9]{0,}" title="Antal kilometer køretøjet har kørt, vælg et heltal.(.)"
+               required /><br><br>
         <label for="price">Pris pr uge</label>
-        <input type="text" th:field="*{price}" name="price" id="price" /><br><br>
+        <input type="text" th:field="*{price}" name="price" id="price" pattern="[0-9]{0,}" title="Indsæt en pris på køretøjet(.)"
+               required /><br><br>
         <label for="engineBlockNo">Motorblok nr</label>
-        <input type="text" th:field="*{engineBlockNo}" name="engineBlockNo" id="engineBlockNo" /><br><br>
+        <input type="text" th:field="*{engineBlockNo}" name="engineBlockNo" id="engineBlockNo" pattern="[0-9]{0,}" title="Serienummeret må kun bestå af tal(.)"
+               required /><br><br>
 
         <input type="submit" class="btn-ed" value="Update">
     </form>

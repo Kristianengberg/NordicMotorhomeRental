@@ -3,22 +3,23 @@ package nmr.demo.models;
 import java.util.Date;
 
 public class Invoice {
-    private static int invoiceId;
+    private int invoiceId;
     private Date dateStart;
     private Date dateEnd;
     private String pickUp;
     private String dropOff;
     private double totalPrice;
-    Employee employeeId;
-    Customer customerId;
-    Accessories accessoriesId;
-    MotorHome licensePlateNo;
+    private int employeeId = 1;
+    private int customerId;
+    private int accessoriesId;
+    private String licensePlateNo;
+    private Boolean invoiceDone;
 
 
     public Invoice() {
     }
 
-    public Invoice(int invoiceId, Date dateStart, Date dateEnd, String pickUp, String dropOff, double totalPrice, Employee employeeId, Customer customerId, Accessories accessoriesId, MotorHome licensePlateNo) {
+    public Invoice(int invoiceId, Date dateStart, Date dateEnd, String pickUp, String dropOff, double totalPrice, int employeeId, int customerId, int accessoriesId, String licensePlateNo) {
         this.invoiceId = invoiceId;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
@@ -31,7 +32,7 @@ public class Invoice {
         this.licensePlateNo = licensePlateNo;
     }
 
-    public static int getInvoiceId() {
+    public int getInvoiceId() {
         return invoiceId;
     }
 
@@ -79,35 +80,60 @@ public class Invoice {
         this.totalPrice = totalPrice;
     }
 
-    public Employee getEmployeeId() {
+    public int getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(Employee employeeId) {
+    public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
     }
 
-    public Customer getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Customer customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
-    public Accessories getAccessoriesId() {
+    public int getAccessoriesId() {
         return accessoriesId;
     }
 
-    public void setAccessoriesId(Accessories accessoriesId) {
+    public void setAccessoriesId(int accessoriesId) {
         this.accessoriesId = accessoriesId;
     }
 
-    public MotorHome getLicensePlateNo() {
+    public String getLicensePlateNo() {
         return licensePlateNo;
     }
 
-    public void setLicensePlateNo(MotorHome licensePlateNo) {
+    public void setLicensePlateNo(String licensePlateNo) {
         this.licensePlateNo = licensePlateNo;
+    }
+
+    public Boolean getInvoiceDone() {
+        return invoiceDone;
+    }
+
+    public void setInvoiceDone(Boolean invoiceDone) {
+        this.invoiceDone = invoiceDone;
+    }
+
+    @Override
+    public String toString() {
+        return "Invoice{" +
+                "invoiceId=" + invoiceId +
+                ", dateStart=" + dateStart +
+                ", dateEnd=" + dateEnd +
+                ", pickUp='" + pickUp + '\'' +
+                ", dropOff='" + dropOff + '\'' +
+                ", totalPrice=" + totalPrice +
+                ", employeeId=" + employeeId +
+                ", customerId=" + customerId +
+                ", accessoriesId=" + accessoriesId +
+                ", licensePlateNo='" + licensePlateNo + '\'' +
+                ", invoiceDone=" + invoiceDone +
+                '}';
     }
 }

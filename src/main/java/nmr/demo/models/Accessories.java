@@ -1,21 +1,20 @@
 package nmr.demo.models;
 
 public class Accessories {
-    private static int accessory_id;
-    private String accessoryType;
+    private int accessory_id;
     private double price;
-
+    private String accessoryType;
 
     public Accessories() {
     }
 
-    public Accessories(int accessory_id,String accessoryType, double price) {
+    public Accessories(int accessory_id, String accessoryType, double price) {
         this.accessory_id = accessory_id;
-        this.accessoryType = accessoryType;
         this.price = price;
+        this.accessoryType = accessoryType;
     }
 
-    public static int getAccessory_id() {
+    public int getAccessory_id() {
         return accessory_id;
     }
 
@@ -31,11 +30,20 @@ public class Accessories {
         this.price = price;
     }
 
-    public  String getAccessoriesType() {
+    public String getAccessoryType() {
         return accessoryType;
     }
 
-    public void setType(String accessoriesType) {
-        this.accessoryType = accessoriesType;
+    public void setAccessoryType(String accessoryType) {
+        this.accessoryType = accessoryType;
+    }
+
+    @Override
+    public String toString() {
+        return "Accessories{" +
+                "accessory_id=" + accessory_id +
+                ", price=" + price +
+                ", accessoryType='" + accessoryType + '\'' +
+                '}';
     }
 }

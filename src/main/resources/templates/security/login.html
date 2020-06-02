@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body style="height: 100%;">
+
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
+<form action=# th:action="@{/login}" method="post">
+    <div class="imgcontainer">
+        <img src="css/images/alien.jpg" alt="avatar" class="avatar">
+        <h1>Nordic MotorHome Rental System V.03</h1>
+        <h3>Please log in</h3>
+        <h3 style="color: #f44336"; th:if="${param.error}">
+            Invalid username and password!</h3>
+
+    </div>
+
+    <div style="padding: 10px;">
+        <label><b>Username</b></label>
+        <input type="username" placeholder="Enter Username" name="username" required>
+
+        <label><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+
+        <button class="loginbtn" type="submit">Login</button>
+
+        <button class="cancelbtn" type="button" >Cancel</button>
+
+    </div>
+</form>
+</body>
+</html>

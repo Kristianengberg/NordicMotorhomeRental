@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>findesingleinvoice</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+
+<body>
+<div th:insert="fragments/top_menu"></div>
+
+<table id="customerDetails">
+    <tr>
+        <td>Telefonnummer:</td>
+        <td th:text="${customer.phone}"></td>
+    <tr>
+        <td>Kundenavn</td>
+        <td th:text="${customer.customerName}"></td>
+    </tr>
+    <tr>
+        <td>Adresse</td>
+        <td th:text="${customer.address}"></td>
+    </tr>
+    <tr>
+        <td>Postnummer - By</td>
+        <td th:text="${customer.zipCode}"></td>
+    </tr>
+    <tr>
+        <td>E-mail</td>
+        <td th:text="${customer.email}"></td>
+    </tr>
+    <tr>
+        <td>Kundetype</td>
+        <td th:text="${customer.customerType}"></td>
+    </tr>
+
+</table>
+
+
+<div>
+    <form action="/mapped-costumer">
+        <table>
+
+            <label for="start">Start</label>
+            <input type="date" name="start" id="start"/><br>
+            <label for="finish">Slut</label>
+            <input type="date" name="finish" id="finish"/>
+
+            <p>Sengepladser</p>
+            <select name="beds">
+                <option value="2">2</option>
+                <option value="4">4</option>
+                <option value="6">6</option>
+            </select>
+
+            <input type="submit">Næste</input>
+
+
+        </table>
+
+    </form>
+
+    <div id="chooseVehicle">
+        <table>
+            <tr th:each="motorhome : ${motorhomes}">
+                <td th:text="${motorhome.model}"></td>
+                <td th:text="${motorhome.licensePlateNo}"></td>
+                <td th:text="${motorhome.beds}"></td>
+                <td th:text="${motorhome.price}"></td>
+                <td> <a th:href="@{'/invoice/existing-customer-invoice/' + ${motorhome.engineBlockNo} + '/' +${motorhome.licensePlateNo}}"><button>Vælg</button></a></td>
+                </td>
+            </tr>
+        </table>
+
+
+        <table >
+
+
+            <tr th:each="accessory : ${accessories}">
+                <td th:text="${accessory.accessoryType}"></td>
+                <td th:text="${accessory.price}"></td>
+                <td> <a th:href="@{'/invoice/existing-customer-invoice/' + ${accessory.getAccessory_id()}}"><button>Vælg</button></a></td>
+                </td>
+            </tr>
+
+
+        </table>
+
+    </div>
+
+</div>
+
+<div>
+
+
+    <table id="invoiceDetails" th:if="${chosenMotorhome != null}">
+        <tr>
+            <td>Model: </td>
+            <td th:text="${chosenMotorhome.model}"></td>
+        <tr>
+            <td>Nummerplade: </td>
+            <td th:text="${chosenMotorhome.licensePlateNo}"></td>
+        </tr>
+        <tr>
+            <td>Senge: </td>
+            <td th:text="${chosenMotorhome.beds}"></td>
+        </tr>
+        <tr>
+            <td>Pris/dag: </td>
+            <td th:text="${chosenMotorhome.price}"></td>
+        </tr>
+        <tr>
+            <td>Fra: </td>
+            <td th:text="${invoice.dateStart}"></td>
+        </tr>
+        <tr>
+            <td>Til: </td>
+            <td th:text="${invoice.dateEnd}"></td>
+        </tr>
+
+        <tr th:if="${accessory != null}">
+        <td>Valgt Tilbehør: </td>
+        <td th:text="${accessory.accessoryType}"></td>
+        </tr>
+        <tr th:if="${accessory != null}">
+            <td>Tilbehørs Pris: </td>
+            <td th:text="${accessory.price}"></td>
+        </tr>
+        <tr>
+            <td>Total Pris: </td>
+            <td th:text="${invoice.totalPrice}"></td>
+        </tr>
+
+
+
+        <form action="/submit-invoice">
+            <tr>
+                <input type="text" id="pris" name="pris" th:object="${invoice}" th:value="${invoice.totalPrice}">
+            </tr>
+            <button>CLICK ME</button>
+
+        </form>
+
+    </table>
+
+
+<table>
+
+
+</table>
+
+</div>
+
+
+</body>
+</html>
