@@ -17,25 +17,46 @@
 <form class="forms" action="#" style="position: absolute" th:action="@{/createmotorhome}" th:object="${autocamper}"
       method="post">
     <label for="fname">licensePlateNo</label>
-    <input type="text" th:field="*{licensePlateNo}" name="fname" id="fname" pattern="[A-Z]{0,2}( )[0-9]{5,5}" title="Opret nummerpladen på det enkelte køretøj. EKS: AA 12345(.)"
+    <input type="text" th:field="*{licensePlateNo}" name="fname" id="fname"
+           pattern="[A-Z]{2,2}( )[0-9]{5,5}"
+           placeholder="eks. AA 12345"
+           title="Opret nummerpladen på det enkelte køretøj. eks. AA 12345(.)"
            required/><br><br>
     <label for="lname">model</label>
-    <input type="text" th:field="*{model}" name="lname" id="lname" pattern="[A-Ha-h]{1}" title="Indsæt modellen for det valgte køretøj A-H(.)"
+    <input type="text" th:field="*{model}" name="lname" id="lname"
+           pattern="[A-Ha-h]{1,1}"
+           placeholder="eks. C"
+           title="Indsæt modellen for det valgte køretøj A-H. Bogstaver uden for scoped accepteres ikke(.)"
            required/><br><br>
     <label for="enroll">beds</label>
-    <input type="text" th:field="*{beds}" name="enroll" id="enroll" pattern="[0-9]{2,10}" title="Vælg antal sengepladser: 2-8(.)"
+    <input type="text" th:field="*{beds}" name="enroll" id="enroll"
+           pattern="[0-9]{0,6}"
+           placeholder="eks. 4"
+           title="Vælg antal sengepladser: 2,4 eller 6(.)"
            required/><br><br>
     <label for="accessible">Tilgængelig</label>
-    <input type="text" th:field="*{accessible}" name="accessible" id="accessible" pattern="[A-Za-z]{2,3}" title="Indsæt YES/NO(.)"
+    <input type="text" th:field="*{accessible}" name="accessible" id="accessible"
+           pattern="[A-Za-z]{2,3}"
+           placeholder="eks. YES"
+           title="Indsæt YES/NO. æ,ø,å er ikke brugbart i denne version(.)(.)"
            required /><br><br>
     <label for="fname">kilometers</label>
-    <input type="text" th:field="*{kilometers}" name="fname" id="fname1" pattern="[0-9]{0,}" title="Antal kilometer køretøjet har kørt, vælg et heltal.(.)"
+    <input type="text" th:field="*{kilometers}" name="fname" id="fname1"
+           pattern="[0-9\.]{0,}"
+           placeholder="eks. 2000"
+           title="Antal kilometer køretøjet har kørt, vælg et heltal.(.)"
            required/><br><br>
     <label for="fname">price</label>
-    <input type="text" th:field="*{price}" name="fname" id="fname2" pattern="[0-9]{0,}" title="Indsæt en pris på køretøjet(.)"
+    <input type="text" th:field="*{price}" name="fname" id="fname2"
+           pattern="[0-9]{0,}"
+           placeholder="eks. 450"
+           title="Indsæt en dagspris på køretøjet. Vælg et heltal(.)"
            required/><br><br>
     <label for="fname">engineBlockNo</label>
-    <input type="text" th:field="*{engineBlockNo}" name="fname" id="fname3" pattern="[0-9]{0,}" title="Serienummeret må kun bestå af tal(.)"
+    <input type="text" th:field="*{engineBlockNo}" name="fname" id="fname3"
+           pattern="[0-9]{0,}"
+           placeholder="eks. 123456789"
+           title="Serienummeret må kun bestå af tal fra 0-9(.)"
            required/><br><br>
     <input type="submit" class="btn-create-form" value="Opret autocamper">
     <input type="reset" class="btn-ed" value="Fortryd">
