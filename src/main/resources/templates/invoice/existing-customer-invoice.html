@@ -78,7 +78,7 @@
 
 
             <tr th:each="accessory : ${accessories}">
-                <td th:text="${accessory.getAccessoriesType()}"></td>
+                <td th:text="${accessory.accessoryType}"></td>
                 <td th:text="${accessory.price}"></td>
                 <td> <a th:href="@{'/invoice/existing-customer-invoice/' + ${accessory.getAccessory_id()}}"><button>Vælg</button></a></td>
                 </td>
@@ -121,7 +121,7 @@
 
         <tr th:if="${accessory != null}">
         <td>Valgt Tilbehør: </td>
-        <td th:text="${accessory.getAccessoriesType()}"></td>
+        <td th:text="${accessory.accessoryType}"></td>
         </tr>
         <tr th:if="${accessory != null}">
             <td>Tilbehørs Pris: </td>
