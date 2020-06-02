@@ -50,7 +50,7 @@ public class ReservationService {
     }
 
     public void setCustomer(int id) {
-        this.customer = customerRepository.readPhone(id);
+        this.customer = customerRepository.read(id);
     }
 
     public void setCustomerByPhone(int id) {
@@ -149,6 +149,12 @@ public class ReservationService {
 
         return 0;
 
+    }
+
+    public int returnEngineBlockNo(String license){
+        int engineBlockNo = motorhomeRepository.readByLicense(license).getEngineBlockNo();
+
+        return engineBlockNo;
     }
 
     public double calculatePrice(Invoice invoice){
