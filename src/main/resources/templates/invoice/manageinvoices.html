@@ -24,6 +24,10 @@
             <td th:text="${invoice.invoiceId}"></td>
             <td>Kunde ID: </td>
             <td th:text="${invoice.getCustomerId()}"></td>
+            <td>Start Dato: </td>
+            <td th:text="${invoice.dateStart}"></td>
+            <td>Slut Dato: </td>
+            <td th:text="${invoice.dateEnd}"></td>
             <td>Tilbehørs ID: </td>
             <td th:text="${invoice.getAccessoriesId()}"></td>
             <td>Total Pris: </td>
