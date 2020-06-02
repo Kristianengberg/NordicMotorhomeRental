@@ -130,10 +130,7 @@ public class InvoiceRepository implements IRepository<Invoice> {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Invoice tempInvoice = new Invoice();
-                Employee tempEmployee = new Employee();
-                Customer tempCustomer = new Customer();
-                Accessories tempAccessory = new Accessories();
-                MotorHome tempLicensePlateNo = new MotorHome();
+
 
                 tempInvoice.setInvoiceId(rs.getInt(1));
                 tempInvoice.setDateStart(rs.getDate(2));
@@ -141,10 +138,11 @@ public class InvoiceRepository implements IRepository<Invoice> {
                 tempInvoice.setPickUp(rs.getString(4));
                 tempInvoice.setDropOff(rs.getString(5));
                 tempInvoice.setTotalPrice(rs.getInt(6));
-                tempEmployee.setEmployeeId(rs.getInt(7));
-                tempCustomer.setCustomerId(rs.getInt(8));
-                tempAccessory.setAccessory_id(rs.getInt(9));
-                tempLicensePlateNo.setLicensePlateNo(rs.getString(10));
+                tempInvoice.setEmployeeId(rs.getInt(7));
+                tempInvoice.setCustomerId(rs.getInt(8));
+                tempInvoice.setAccessoriesId(rs.getInt(9));
+                tempInvoice.setLicensePlateNo(rs.getString(10));
+                tempInvoice.setInvoiceDone(rs.getBoolean(11));
 
 
                 allInvoices.add(tempInvoice);

@@ -133,6 +133,20 @@ public class ReservationService {
         return returnList;
     }
 
+    public List<Invoice> getInvoicesForCustomer(int id){
+        List<Invoice> tempList = new ArrayList<Invoice>();
+        List<Invoice> returnList = new ArrayList<Invoice>();
+        int customerId = customerRepository.readPhone(id).getCustomerId();
+        tempList = invoiceRepository.readAll();
+        for (Invoice invoice : tempList) {
+            if(customerId == invoice.getCustomerId()){
+                returnList.add(invoice);
+            }
+        }
+        return returnList;
+
+    }
+
     public int getDays(Date start, Date finish){
 
         return 0;

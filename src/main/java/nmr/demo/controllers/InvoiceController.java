@@ -125,7 +125,10 @@ public class InvoiceController {
     public String submitInvoice(Model model, @RequestParam("pris") double price){
 
         invoice.setTotalPrice(price);
+        service.getMotorhome().setStart((Date) invoice.getDateStart());
+        service.getMotorhome().setFinish((Date) invoice.getDateEnd());
         service.getInvoiceRepository().create(invoice);
+        service.getMotorhomeRepository().update(service.getMotorhome());
         model.addAttribute("invoice", invoice);
         model.addAttribute("customer", service.getCustomer());
         model.addAttribute("motorhome", service.getMotorhome());
@@ -138,6 +141,27 @@ public class InvoiceController {
     public String returnHome(){
 
         return "index";
+    }
+
+
+
+
+    @GetMapping("/managereservations")
+    public String manageReservations(Model model){
+        model.addAttribute("invoice" , invoiceRepository.readAll());
+
+
+
+        return "invoice/manageinvoices";
+    }
+
+    @GetMapping("/search-for-invoice")
+    public String searchedReservation(Model model, @RequestParam("id") int id){
+
+        model.addAttribute("invoice", service.getInvoicesForCustomer(id));
+
+
+        return "invoice/manageinvoices";
     }
 
 }
