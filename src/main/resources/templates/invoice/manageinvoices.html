@@ -7,14 +7,29 @@
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 
+<div id="searchFieldInvoice">
+    <form action="/search-for-invoice/">
+        <label for="id">Søg på telefonnummer</label>
+        <input type="text" id="id" name="id"/><br>
+        <input type="submit" value="Submit">Næste</input>
+    </form>
+
+</div>
+
 <div>
-    <table>
+    <table th:if="${invoice != null}">
 
         <tr th:each="invoice : ${invoice}">
+            <td>Reservations ID: </td>
             <td th:text="${invoice.invoiceId}"></td>
-            <td th:text="${invoice.pickUp}"></td>
-            <td th:text="${invoice.dropOff}"></td>
+            <td>Kunde ID: </td>
+            <td th:text="${invoice.getCustomerId()}"></td>
+            <td>Tilbehørs ID: </td>
+            <td th:text="${invoice.getAccessoriesId()}"></td>
+            <td>Total Pris: </td>
             <td th:text="${invoice.totalPrice}"></td>
+            <td>Reservation Fuldendt: </td>
+            <td th:text="${invoice.invoiceDone}"></td>
             <td><a th:href="@{/findsingleinvoice(id=${invoice.invoiceId})}"><button class="btn-create">Details</button></a>
                 <a th:href="@{/updateinvoice(id=${invoice.invoiceId})}"><button class="btn-ed">Update</button></a>
                 <a th:href="@{/deleteinvoice(id=${invoice.invoiceId})}"><button class="btn-del">Delete</button></a>

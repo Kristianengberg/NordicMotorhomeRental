@@ -1,7 +1,7 @@
 package nmr.demo.models;
 
 public class Accessories {
-    private static int accessory_id;
+    private int accessory_id;
     private double price;
     private String accessoryType;
 
@@ -14,12 +14,7 @@ public class Accessories {
         this.accessoryType = accessoryType;
     }
 
-    @Override
-    public String toString(){
-        return accessory_id + accessoryType + price;
-    }
-
-    public static int getAccessory_id() {
+    public int getAccessory_id() {
         return accessory_id;
     }
 
@@ -41,5 +36,14 @@ public class Accessories {
 
     public void setAccessoryType(String accessoryType) {
         this.accessoryType = accessoryType;
+    }
+
+    @Override
+    public String toString() {
+        return "Accessories{" +
+                "accessory_id=" + accessory_id +
+                ", price=" + price +
+                ", accessoryType='" + accessoryType + '\'' +
+                '}';
     }
 }

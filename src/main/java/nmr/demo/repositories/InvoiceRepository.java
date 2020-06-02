@@ -24,8 +24,18 @@ public class InvoiceRepository implements IRepository<Invoice> {
     @Override
     public boolean create(Invoice model) {
         try {
-            PreparedStatement CreateInvoice = conn.prepareStatement("INSERT INTO Invoice" + "(invoiceId)VALUES" + "(?);");
-            CreateInvoice.setInt(1, model.getInvoiceId());
+            PreparedStatement CreateInvoice = conn.prepareStatement("INSERT INTO Invoice" + "(DateStart,DateEnd,PickUp,DropOff,TotalPrice,Employee_id_fk,Customer_id_fk,Accessory_id_fk,Motorhome_LicensPlateNo,InvoiceDone)VALUES" + "( ?, ?, ?,?, ?, ?,?, ?, ?, ?);");
+            //CreateInvoice.setInt(1, model.getInvoiceId());
+            CreateInvoice.setDate(1, (Date) model.getDateStart());
+            CreateInvoice.setDate(2, (Date) model.getDateEnd());
+            CreateInvoice.setString(3, model.getPickUp());
+            CreateInvoice.setString(4, model.getDropOff());
+            CreateInvoice.setDouble(5, model.getTotalPrice());
+            CreateInvoice.setInt(6, model.getEmployeeId());
+            CreateInvoice.setInt(7, model.getCustomerId());
+            CreateInvoice.setInt(8, model.getAccessoriesId());
+            CreateInvoice.setString(9, model.getLicensePlateNo());
+            CreateInvoice.setBoolean(10, model.getInvoiceDone());
 
             CreateInvoice.executeUpdate();
             return true;
@@ -87,37 +97,22 @@ public class InvoiceRepository implements IRepository<Invoice> {
     public Invoice readByCustomerID(int id) {
         Invoice invoiceToReturn = new Invoice();
 
-
         try {
-            System.out.print(id);
+
             PreparedStatement getSingleInvoice = conn.prepareStatement("SELECT * FROM Invoice WHERE Customer_id_fk=" + id);
             ResultSet rs = getSingleInvoice.executeQuery();
             while(rs.next()){
                 invoiceToReturn.setInvoiceId(rs.getInt(1));
-
                 invoiceToReturn.setDateStart(rs.getDate(2));
-
-
                 invoiceToReturn.setDateEnd(rs.getDate(3));
-
-
                 invoiceToReturn.setPickUp(rs.getString(4));
-
-
                 invoiceToReturn.setDropOff(rs.getString(5));
-
-
                 invoiceToReturn.setTotalPrice(rs.getDouble(6));
-
-
                 invoiceToReturn.setEmployeeId(rs.getInt(7));
-
-
                 invoiceToReturn.setCustomerId(rs.getInt(8));
-
                 invoiceToReturn.setAccessoriesId(rs.getInt(9));
-
                 invoiceToReturn.setLicensePlateNo(rs.getString(10));
+                invoiceToReturn.setInvoiceDone(rs.getBoolean(11));
 
             }
         }
@@ -135,10 +130,7 @@ public class InvoiceRepository implements IRepository<Invoice> {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Invoice tempInvoice = new Invoice();
-                Employee tempEmployee = new Employee();
-                Customer tempCustomer = new Customer();
-                Accessories tempAccessory = new Accessories();
-                MotorHome tempLicensePlateNo = new MotorHome();
+
 
                 tempInvoice.setInvoiceId(rs.getInt(1));
                 tempInvoice.setDateStart(rs.getDate(2));
@@ -146,10 +138,12 @@ public class InvoiceRepository implements IRepository<Invoice> {
                 tempInvoice.setPickUp(rs.getString(4));
                 tempInvoice.setDropOff(rs.getString(5));
                 tempInvoice.setTotalPrice(rs.getInt(6));
-                tempEmployee.setEmployeeId(rs.getInt(7));
-                tempCustomer.setCustomerId(rs.getInt(8));
-                tempAccessory.setAccessory_id(rs.getInt(9));
-                tempLicensePlateNo.setLicensePlateNo(rs.getString(10));
+                tempInvoice.setEmployeeId(rs.getInt(7));
+                tempInvoice.setCustomerId(rs.getInt(8));
+                tempInvoice.setAccessoriesId(rs.getInt(9));
+                tempInvoice.setLicensePlateNo(rs.getString(10));
+                tempInvoice.setInvoiceDone(rs.getBoolean(11));
+
 
                 allInvoices.add(tempInvoice);
             }
@@ -168,7 +162,7 @@ public class InvoiceRepository implements IRepository<Invoice> {
         MotorHome motorHomeToReturn = new MotorHome();
 
         try {
-            PreparedStatement myStmt = conn.prepareStatement("UPDATE Invoice SET invoiceId = ?, dateStart = ?, dateEnd = ?, pickUp = ?,  dropOff = ?, totalPrice = ?, employeeId = ?, customerId = ?, accessoriesId = ?, licensePlateNo = ? WHERE invoiceId =" + Invoice.getInvoiceId());
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Invoice SET invoiceId = ?, dateStart = ?, dateEnd = ?, pickUp = ?,  dropOff = ?, totalPrice = ?, employeeId = ?, customerId = ?, accessoriesId = ?, licensePlateNo = ? WHERE invoiceId =" + invoice.getInvoiceId());
             myStmt.setInt(1, invoice.getInvoiceId());
             myStmt.setDate(2, (Date) invoice.getDateStart());
             myStmt.setDate(3, (Date) invoice.getDateEnd());
@@ -190,7 +184,7 @@ public class InvoiceRepository implements IRepository<Invoice> {
 
     @Override
     public boolean delete(int id) {
-        if(Invoice.getInvoiceId() == id) {
+
             String sql = "DELETE FROM Invoice WHERE Invoice_id = ?";
 
             try {
@@ -200,13 +194,14 @@ public class InvoiceRepository implements IRepository<Invoice> {
 
                 pstmt.executeUpdate();
 
+                return true;
+
 
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
-        }else{
             System.out.println("Fail");
-        }
+
         return false;
 
 
