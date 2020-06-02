@@ -2,16 +2,17 @@ package nmr.demo.models;
 
 public class Accessories {
     private static int accessory_id;
-    private double price;
     private String accessoryType;
+    private double price;
+
 
     public Accessories() {
     }
 
-    public Accessories(int accessory_id, double price, String accessoryType) {
+    public Accessories(int accessory_id,String accessoryType, double price) {
         this.accessory_id = accessory_id;
-        this.price = price;
         this.accessoryType = accessoryType;
+        this.price = price;
     }
 
     public static int getAccessory_id() {

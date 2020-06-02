@@ -50,11 +50,5 @@ public class AccessoriesController {
         model.addAttribute("accessory", accessories);
         return "accessories/findsingleaccessory";
     }
-/*
-    @GetMapping("/accessories")
-    public String index(Model model) {
-        model.addAttribute("accessories", accessoriesRepository.readAll());
-        return "accessories";
-    }*/
 }
 

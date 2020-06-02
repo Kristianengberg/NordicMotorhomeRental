@@ -47,6 +47,7 @@ public class AccessoryRepository implements IRepository<Accessories>{
     public Accessories read(int id) {
         Accessories AccessoriesToReturn = new Accessories();
         try {
+
             PreparedStatement getSingleAccessory = conn.prepareStatement("SELECT * FROM accessories WHERE accessory_id=" + id);
             ResultSet rs = getSingleAccessory.executeQuery();
             while(rs.next()){
@@ -84,11 +85,15 @@ public class AccessoryRepository implements IRepository<Accessories>{
     @Override
     public boolean update(Accessories accessories) {
         try {
-           PreparedStatement myStmt = conn.prepareStatement("UPDATE Accessories SET accessory_id = ?, price = ?, type = ? WHERE accessory_id =" + Accessories.getAccessory_id());
+            System.out.println(1);
+           PreparedStatement myStmt = conn.prepareStatement("UPDATE Accessories SET accessory_id = ?, price = ?, accessoryType = ? WHERE accessory_id =" + Accessories.getAccessory_id());
+            System.out.println(2);
            myStmt.setInt(1, accessories.getAccessory_id());
-           myStmt.setDouble(2, accessories.getPrice());
-           myStmt.setString(3,accessories.getAccessoriesType());
-
+            System.out.println(3);
+           myStmt.setString(2,accessories.getAccessoriesType());
+            System.out.println(4);
+            myStmt.setDouble(3, accessories.getPrice());
+            System.out.println(5);
             System.out.println(myStmt);
             myStmt.executeUpdate();
 
