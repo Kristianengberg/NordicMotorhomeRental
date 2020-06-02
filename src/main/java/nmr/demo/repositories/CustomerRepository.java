@@ -70,6 +70,8 @@ public class CustomerRepository implements IRepository<Customer> {
     public Customer readPhone(int id) {
         Customer customerToReturn = new Customer();
         try {
+
+            System.out.println("This is read phone id " + id);
             PreparedStatement getSingleCustomer = conn.prepareStatement("SELECT * FROM Customer WHERE Phone=" + id);
             ResultSet rs = getSingleCustomer.executeQuery();
             while(rs.next()){

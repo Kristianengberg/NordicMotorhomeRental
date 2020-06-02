@@ -5,10 +5,7 @@ import nmr.demo.utilities.DatabaseConnectionManager;
 
 import nmr.demo.models.MotorHome;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,6 +53,8 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
                 MotorHomeToReturn.setKilometers(rs.getDouble(5));
                 MotorHomeToReturn.setPrice(rs.getDouble(6));
                 MotorHomeToReturn.setEngineBlockNo(rs.getInt(7));
+                MotorHomeToReturn.setStart(rs.getDate(8));
+                MotorHomeToReturn.setFinish(rs.getDate(9));
 
 
             }
@@ -81,12 +80,40 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
                 tempMotorHome.setKilometers(rs.getDouble(5));
                 tempMotorHome.setPrice(rs.getDouble(6));
                 tempMotorHome.setEngineBlockNo(rs.getInt(7));
+                tempMotorHome.setStart(rs.getDate(8));
+                tempMotorHome.setFinish(rs.getDate(9));
                 allMotorHome.add(tempMotorHome);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return allMotorHome;
+    }
+
+    public MotorHome readByLicense(String licensePlateNo) {
+        MotorHome MotorHomeToReturn = new MotorHome();
+        try {
+            PreparedStatement getSingleMotorHome = conn.prepareStatement("SELECT * FROM Motorhome WHERE LicensPlateNo=?");
+            getSingleMotorHome.setString(1, licensePlateNo);
+            ResultSet rs = getSingleMotorHome.executeQuery();
+            while(rs.next()){
+                MotorHomeToReturn.setLicensePlateNo(rs.getString(1));
+                MotorHomeToReturn.setModel(rs.getString(2));
+                MotorHomeToReturn.setBeds(rs.getInt(3));
+                MotorHomeToReturn.setAccessible(rs.getString(4));
+                MotorHomeToReturn.setKilometers(rs.getDouble(5));
+                MotorHomeToReturn.setPrice(rs.getDouble(6));
+                MotorHomeToReturn.setEngineBlockNo(rs.getInt(7));
+                MotorHomeToReturn.setStart(rs.getDate(8));
+                MotorHomeToReturn.setFinish(rs.getDate(9));
+
+
+            }
+        }
+        catch(SQLException s){
+            s.printStackTrace();
+        }
+        return MotorHomeToReturn;
     }
 
     @Override
@@ -100,6 +127,8 @@ public class MotorhomeRepository implements IRepository<MotorHome> {
             myStmt.setDouble(5, motorHome.getKilometers());
             myStmt.setDouble(6, motorHome.getPrice());
             myStmt.setInt(7, motorHome.getEngineBlockNo());
+            myStmt.setDate(8, motorHome.getStart());
+            myStmt.setDate(9, motorHome.getFinish());
             myStmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
