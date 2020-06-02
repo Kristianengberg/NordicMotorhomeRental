@@ -26,6 +26,10 @@ public class ReservationService {
     private Invoice invoice;
     private MotorHome motorhome;
 
+    private double extraKilometerPrice = 1;
+    private double maxKilometerPerDay = 400;
+    private double fullTankPrice = 70;
+
     public ReservationService() {
         this.accessoryRepository = new AccessoryRepository();
         this.customerRepository = new CustomerRepository();
@@ -145,9 +149,10 @@ public class ReservationService {
 
     }
 
-    public int getDays(Date start, Date finish){
-
-        return 0;
+    public double getDays(Date start, Date finish){
+        double diff = start.getTime() - finish.getTime();
+        double days = (diff / (1000*60*60*24))*-1+1;
+        return days;
 
     }
 
@@ -159,14 +164,33 @@ public class ReservationService {
 
     public double calculatePrice(Invoice invoice){
         double price = 0;
-        double diff = invoice.getDateStart().getTime() - invoice.getDateEnd().getTime();
+
+        double days = getDays((Date) invoice.getDateStart(), (Date) invoice.getDateEnd());
+       /* double diff = invoice.getDateStart().getTime() - invoice.getDateEnd().getTime();
         double days = (diff / (1000*60*60*24))*-1+1;
+
+        */
         price = motorhomeRepository.readByLicense(invoice.getLicensePlateNo()).getPrice();
 
         price = price * days;
         if(accessories != null) {
             price += accessories.getPrice();
         }
+        return price;
+    }
+
+    public double calculateExtraPrice(double kilometer, Invoice invoice, String gas) {
+
+        double price = 0;
+
+        double kilometersPerDay = (kilometer - this.motorhome.getKilometers()) / getDays((Date)invoice.getDateStart(),(Date) invoice.getDateEnd()) ;
+
+        if( kilometersPerDay > maxKilometerPerDay )
+            price = extraKilometerPrice * (kilometersPerDay - maxKilometerPerDay);
+        if(gas == "true"){
+            price += fullTankPrice;
+        }
+
         return price;
     }
 }

@@ -156,22 +156,21 @@ public class InvoiceRepository implements IRepository<Invoice> {
 
     @Override
     public boolean update(Invoice invoice) {
-        Employee employeeToReturn = new Employee();
-        Customer customerToReturn = new Customer();
-        Accessories accessoriesToReturn = new Accessories();
-        MotorHome motorHomeToReturn = new MotorHome();
+
 
         try {
-            PreparedStatement myStmt = conn.prepareStatement("UPDATE Invoice SET invoiceId = ?, dateStart = ?, dateEnd = ?, pickUp = ?,  dropOff = ?, totalPrice = ?, employeeId = ?, customerId = ?, accessoriesId = ?, licensePlateNo = ? WHERE invoiceId =" + invoice.getInvoiceId());
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Invoice SET Invoice_Id = ?, DateStart = ?, DateEnd = ?, PickUp = ?,  DropOff = ?, TotalPrice = ?, Employee_id_fk = ?, Customer_id_fk = ?, Accessory_id_fk = ?, Motorhome_LicensPlateNo = ?, InvoiceDone = ? WHERE Invoice_Id =" + invoice.getInvoiceId());
             myStmt.setInt(1, invoice.getInvoiceId());
             myStmt.setDate(2, (Date) invoice.getDateStart());
             myStmt.setDate(3, (Date) invoice.getDateEnd());
             myStmt.setString(4, invoice.getPickUp());
             myStmt.setString(5, invoice.getDropOff());
-            myStmt.setInt(7, employeeToReturn.getEmployeeId());
-            myStmt.setInt(8, customerToReturn.getCustomerId());
-            myStmt.setInt(9, accessoriesToReturn.getAccessory_id());
-            myStmt.setString(10, motorHomeToReturn.getLicensePlateNo());
+            myStmt.setDouble(6, invoice.getTotalPrice());
+            myStmt.setInt(7, invoice.getEmployeeId());
+            myStmt.setInt(8, invoice.getCustomerId());
+            myStmt.setInt(9, invoice.getAccessoriesId());
+            myStmt.setString(10, invoice.getLicensePlateNo());
+            myStmt.setBoolean(11, invoice.getInvoiceDone());
 
             System.out.println(myStmt);
             myStmt.executeUpdate();
