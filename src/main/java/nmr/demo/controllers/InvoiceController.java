@@ -2,6 +2,7 @@ package nmr.demo.controllers;
 
 
 import nmr.demo.businessLogic.ReservationService;
+import nmr.demo.models.Customer;
 import nmr.demo.models.Invoice;
 import nmr.demo.repositories.IRepository;
 import nmr.demo.repositories.InvoiceRepository;
@@ -43,7 +44,10 @@ public class InvoiceController {
         System.out.println(service.getCustomerRepository().readPhone(id));
         if (service.getCustomerRepository().readPhone(id).getPhone() != id){
             System.out.println("phone is null");
-            ModelAndView mav = new ModelAndView("customer/createcustomer");
+            ModelAndView mav = new ModelAndView("reservations/createcustomerreservation");
+            Customer customer = new Customer();
+            customer.setPhone(id);
+            mav.addObject("customer", customer);
 
             return mav;
         } else {
