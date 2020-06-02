@@ -76,7 +76,6 @@ public class InvoiceController {
         invoice.setLicensePlateNo(licensePlateNo);
         service.setMotorhome(id);
         model.addAttribute("customer", service.getCustomer());
-       // model.addAttribute("chosenMotorhome", service.getMotorhomeRepository().read(id));
         model.addAttribute("chosenMotorhome", service.getMotorhome());
         model.addAttribute("accessories", service.getAccessoryRepository().readAll());
         model.addAttribute("service", service);
@@ -91,8 +90,6 @@ public class InvoiceController {
             System.out.println("invoice is null");
         }
         System.out.println(invoice.toString());
-
-
 
         return "invoice/existing-customer-invoice";
    }
@@ -136,7 +133,6 @@ public class InvoiceController {
 
         return "invoice/invoice";
     }
-
     @GetMapping("/return-home")
     public String returnHome(){
 
@@ -150,8 +146,6 @@ public class InvoiceController {
     public String manageReservations(Model model){
         model.addAttribute("invoice" , invoiceRepository.readAll());
 
-
-
         return "invoice/manageinvoices";
     }
 
@@ -160,8 +154,27 @@ public class InvoiceController {
 
         model.addAttribute("invoice", service.getInvoicesForCustomer(id));
 
-
         return "invoice/manageinvoices";
+    }
+
+    @GetMapping("findsingleinvoice")
+    public String findSingleInvoice(Model model, @RequestParam("id") int id){
+
+
+
+        service.setInvoice(id);
+        service.setCustomer(service.getInvoice().getCustomerId());
+
+        service.setAccessories(service);
+
+        service.getMotorhome().
+
+        model.addAttribute("invoice", invoice);
+        model.addAttribute("customer", service.getCustomer());
+        model.addAttribute("motorhome", service.getMotorhome());
+        model.addAttribute("accessory", service.getAccessories());
+
+        return "invoice/updateinvoice";
     }
 
 }

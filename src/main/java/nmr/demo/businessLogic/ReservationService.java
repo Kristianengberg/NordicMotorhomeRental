@@ -120,8 +120,6 @@ public class ReservationService {
                             && !finish.after(motorhome.getStart()) && !finish.before(motorhome.getFinish())) {
                         System.out.println(start + " + " + finish);
                         returnList.add(motorhome);
-
-
                     }
                 }
                 else{
