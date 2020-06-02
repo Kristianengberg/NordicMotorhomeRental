@@ -122,17 +122,23 @@ public class InvoiceController {
         return "invoice/existing-customer-invoice";
     }
     @GetMapping("/submit-invoice")
-    public String submitInvoice(){
+    public String submitInvoice(Model model, @RequestParam("pris") double price){
 
+        invoice.setTotalPrice(price);
         service.getInvoiceRepository().create(invoice);
+        model.addAttribute("invoice", invoice);
+        model.addAttribute("customer", service.getCustomer());
+        model.addAttribute("motorhome", service.getMotorhome());
+        model.addAttribute("accessory", service.getAccessories());
+
+        return "invoice/invoice";
+    }
+
+    @GetMapping("/return-home")
+    public String returnHome(){
 
         return "index";
     }
-
-
-
-
-
 
 }
 
