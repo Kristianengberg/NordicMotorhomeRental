@@ -14,5 +14,61 @@
 </div>
 <div class="top"><h1>Nordic MotorHome Rental System V.03</h1></div>
 
+<table id="invoiceDetails">
+    <tr>
+        <td>Telefonnummer:</td>
+        <td th:text="${customer.phone}"></td>
+    <tr>
+        <td>Kundenavn</td>
+        <td th:text="${customer.customerName}"></td>
+    </tr>
+    <tr>
+        <td>Adresse</td>
+        <td th:text="${customer.address}"></td>
+    </tr>
+    <tr>
+        <td>Postnummer - By</td>
+        <td th:text="${customer.zipCode}"></td>
+    </tr>
+    <tr>
+        <td>E-mail</td>
+        <td th:text="${customer.email}"></td>
+    </tr>
+    <tr>
+        <td>Kundetype</td>
+        <td th:text="${customer.customerType}"></td>
+    </tr>
+
+    <tr>
+        <td>Start Dato: </td>
+        <td th:text="${invoice.dateStart}"></td>
+    <tr>
+        <td>Slut Dato: </td>
+        <td th:text="${invoice.dateEnd}"></td>
+    </tr>
+    <tr>
+        <td>Autocamper Model: </td>
+        <td th:text="${motorhome.model}"></td>
+    </tr>
+    <tr>
+        <td>Senge: </td>
+        <td th:text="${motorhome.beds}"></td>
+    </tr>
+    <tr>
+        <td>Nummerplade: </td>
+        <td th:text="${motorhome.licensePlateNo}"></td>
+    </tr>
+    <tr>
+        <td>Tilbehør: </td>
+        <td th:text="${accessory.accessoryType}"></td>
+    </tr>
+    <tr>
+        <td>Pris: </td>
+        <td th:text="${invoice.totalPrice}"></td>
+    </tr>
+
+
+</table>
+
 </body>
 </html>
