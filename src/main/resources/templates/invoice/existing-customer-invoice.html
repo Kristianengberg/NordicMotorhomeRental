@@ -132,7 +132,12 @@
             <td th:text="${invoice.totalPrice}"></td>
         </tr>
 
+
+
         <form action="/submit-invoice">
+            <tr>
+                <input type="text" id="pris" name="pris" th:object="${invoice}" th:value="${invoice.totalPrice}">
+            </tr>
             <button>CLICK ME</button>
 
         </form>
