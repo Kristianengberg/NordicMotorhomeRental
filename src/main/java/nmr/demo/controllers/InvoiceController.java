@@ -2,6 +2,7 @@ package nmr.demo.controllers;
 
 
 import nmr.demo.businessLogic.ReservationService;
+import nmr.demo.models.Customer;
 import nmr.demo.models.Invoice;
 import nmr.demo.repositories.IRepository;
 import nmr.demo.repositories.InvoiceRepository;
@@ -43,7 +44,10 @@ public class InvoiceController {
         System.out.println(service.getCustomerRepository().readPhone(id));
         if (service.getCustomerRepository().readPhone(id).getPhone() != id){
             System.out.println("phone is null");
-            ModelAndView mav = new ModelAndView("customer/createcustomer");
+            ModelAndView mav = new ModelAndView("reservations/createcustomerreservation");
+            Customer customer = new Customer();
+            customer.setPhone(id);
+            mav.addObject("customer", customer);
 
             return mav;
         } else {
@@ -124,6 +128,7 @@ public class InvoiceController {
         invoice.setTotalPrice(price);
         service.getMotorhome().setStart((Date) invoice.getDateStart());
         service.getMotorhome().setFinish((Date) invoice.getDateEnd());
+        System.out.println(invoice.getInvoiceDone());
         service.getInvoiceRepository().create(invoice);
         service.getMotorhomeRepository().update(service.getMotorhome());
         model.addAttribute("invoice", invoice);
@@ -175,8 +180,49 @@ public class InvoiceController {
         model.addAttribute("motorhome", service.getMotorhome());
         model.addAttribute("accessory", service.getAccessories());
 
+        return "invoice/detailinvoice";
+    }
+
+    @GetMapping("/updateinvoice")
+    public String updateInvoice(Model model, @RequestParam("id") int id){
+
+
+
+        service.setInvoice(id);
+
+        service.setCustomer(service.getInvoice().getCustomerId());
+
+        service.setAccessories(service.getInvoice().getAccessoriesId());
+
+        service.setMotorhome(service.returnEngineBlockNo(service.getInvoice().getLicensePlateNo()));
+
+        model.addAttribute("invoice", service.getInvoice());
+        model.addAttribute("customer", service.getCustomer());
+        model.addAttribute("motorhome", service.getMotorhome());
+        model.addAttribute("accessory", service.getAccessories());
+
         return "invoice/updateinvoice";
     }
+
+   @GetMapping("/updated-invoice")
+    public String updatedInvoice(Model model, @RequestParam("gas") String gas, @RequestParam("kilometer") int kilometer){
+
+
+
+        double kilometerPrice = service.calculateExtraPrice(kilometer, service.getInvoice(), gas);
+        service.getInvoice().setTotalPrice(service.getInvoice().getTotalPrice() + kilometerPrice);
+        service.getInvoice().setInvoiceDone(true);
+        service.getInvoiceRepository().update(service.getInvoice());
+        service.getMotorhomeRepository().update(service.getMotorhome());
+        model.addAttribute("invoice", service.getInvoice());
+        model.addAttribute("customer", service.getCustomer());
+        model.addAttribute("motorhome", service.getMotorhome());
+        model.addAttribute("accessory", service.getAccessories());
+
+        return "invoice/invoice";
+    }
+
+
 
 }
 

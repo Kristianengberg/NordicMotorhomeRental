@@ -13,7 +13,7 @@ public class Invoice {
     private int customerId;
     private int accessoriesId;
     private String licensePlateNo;
-    private Boolean invoiceDone;
+    private Boolean invoiceDone = false;
 
 
     public Invoice() {

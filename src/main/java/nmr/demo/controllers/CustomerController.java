@@ -66,6 +66,13 @@ public class CustomerController {
         model.addAttribute("customer",customer);
         return "customer/findsinglecustomer";
     }
+    @PostMapping("/createcustomerreservation")
+    public String createCustomerreservatioDB(@ModelAttribute Customer customer) {
+        customerRpository.create(customer);
+        int id = customer.getPhone();
+        System.out.println(customer.getPhone());
+        return "invoice/existing-customer-invoice";
+    }
 
 
 }
