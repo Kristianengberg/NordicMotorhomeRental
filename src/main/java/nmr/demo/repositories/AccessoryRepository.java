@@ -99,22 +99,15 @@ public class AccessoryRepository implements IRepository<Accessories>{
 
     @Override
     public boolean delete(int id) {
-
-
             String sql = "DELETE FROM Invoice WHERE Accessory_id = ?";
-
             try {
                 PreparedStatement pstmt = conn.prepareStatement(sql);
-
                 pstmt.setInt(1, id);
-
                 pstmt.executeUpdate();
-
 
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
-
             System.out.println("Fail");
 
         return false;
