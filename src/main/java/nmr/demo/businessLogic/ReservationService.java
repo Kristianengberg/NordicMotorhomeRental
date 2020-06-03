@@ -152,7 +152,13 @@ public class ReservationService {
 
     public double getDays(Date start, Date finish){
         double diff = start.getTime() - finish.getTime();
+        double startTime = start.getTime();
+        System.out.println(startTime + "starttime");
+        double endTime = finish.getTime();
+        System.out.println(endTime + "endtime");
+        System.out.println(diff);
         double days = (diff / (1000*60*60*24))*-1+1;
+        System.out.println(days);
         return days;
 
     }
