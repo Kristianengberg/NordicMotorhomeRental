@@ -62,23 +62,25 @@
         <td>Pris: </td>
         <td th:text="${invoice.totalPrice}"></td>
     </tr>
-
+<div>
     <form action="/updated-invoice">
         <tr>
             <td>Under halv tank: </td>
-            <select name="gas">
+            <td><select name="gas">
                 <option value="true">Under</option>
                 <option value="false">Over</option>
-            </select>
+            </select></td>
             <td>Bilens Kilometer Antal: </td>
-            <input id="kilometer" type="text" name="kilometer">
+            <td><input id="kilometer" type="text" name="kilometer"></td>
 
            <!-- <input type="text" id="pris" name="pris" th:object="${invoice}" th:value="${invoice.totalPrice}"> -->
         </tr>
-        <input  type="submit" value="Opdater">
+        <tr>
+        <td><input  type="submit" value="Opdater"></td>
+        </tr>
 
     </form>
-
+</div>
 
 
 </table>
