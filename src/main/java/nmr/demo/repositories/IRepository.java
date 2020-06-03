@@ -2,6 +2,8 @@ package nmr.demo.repositories;
 
 import java.util.List;
 
+//Skrevet af Kristian
+
 public interface IRepository<T> {
     // CRUD operations
     public boolean create(T model);

@@ -15,6 +15,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.sql.Date;
 
+// Skrevet af Jesper og Kristian
+
 @Controller
 public class InvoiceController {
 
