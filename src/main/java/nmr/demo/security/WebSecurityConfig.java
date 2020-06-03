@@ -15,7 +15,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-       /* http
+        http
 
                 .authorizeRequests()
                 .antMatchers("/resources/**", "/", "/static/**", "/css/**", "/img/**", "/icon/**").permitAll()
@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                .permitAll();*/
+                .permitAll();
 
     }
 
