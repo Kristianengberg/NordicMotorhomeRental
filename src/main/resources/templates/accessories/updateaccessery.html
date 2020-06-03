@@ -19,7 +19,7 @@
         <br>
         <label for="accessoryType">Type</label>
         <input type="text" th:field="*{accessoryType}" name="accessoryType" id="accessoryType"
-               pattern="[A-Za-z]{1,25}( )[A-Za-z]{1,25}"
+               pattern="[A-Za-z]{1,25}( )[A-Za-z]{1,25}||[A-Za-z]{1,25}"
                placeholder="eks. Kuglegril"
                title="Indsæt navnet på genstanden der skal oprettes. æ,ø,å er ikke brugbart i denne version(.)(.)"
                required/><br><br>
