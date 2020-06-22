@@ -24,8 +24,10 @@ public class InvoiceRepository implements IRepository<Invoice> {
     @Override
     public boolean create(Invoice model) {
         try {
-            PreparedStatement CreateInvoice = conn.prepareStatement("INSERT INTO Invoice" + "(DateStart,DateEnd,PickUp,DropOff,TotalPrice,Employee_id_fk,Customer_id_fk,Accessory_id_fk,Motorhome_LicensPlateNo,InvoiceDone)VALUES" + "( ?, ?, ?,?, ?, ?,?, ?, ?, ?);");
-            //CreateInvoice.setInt(1, model.getInvoiceId());
+            PreparedStatement CreateInvoice = conn.prepareStatement("INSERT INTO Invoice" + "(DateStart,DateEnd,PickUp,DropOff," +
+                    "TotalPrice,Employee_id_fk,Customer_id_fk,Accessory_id_fk," +
+                    "Motorhome_LicensPlateNo,InvoiceDone)VALUES" + "( ?, ?, ?,?, ?, ?,?, ?, ?, ?);");
+
             CreateInvoice.setDate(1, (Date) model.getDateStart());
             CreateInvoice.setDate(2, (Date) model.getDateEnd());
             CreateInvoice.setString(3, model.getPickUp());
@@ -39,7 +41,6 @@ public class InvoiceRepository implements IRepository<Invoice> {
 
             CreateInvoice.executeUpdate();
             return true;
-
         }
         catch (SQLException e){
             e.printStackTrace();
@@ -130,8 +131,6 @@ public class InvoiceRepository implements IRepository<Invoice> {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Invoice tempInvoice = new Invoice();
-
-
                 tempInvoice.setInvoiceId(rs.getInt(1));
                 tempInvoice.setDateStart(rs.getDate(2));
                 tempInvoice.setDateEnd(rs.getDate(3));
@@ -143,8 +142,6 @@ public class InvoiceRepository implements IRepository<Invoice> {
                 tempInvoice.setAccessoriesId(rs.getInt(9));
                 tempInvoice.setLicensePlateNo(rs.getString(10));
                 tempInvoice.setInvoiceDone(rs.getBoolean(11));
-
-
                 allInvoices.add(tempInvoice);
             }
         } catch (SQLException e) {
@@ -156,10 +153,10 @@ public class InvoiceRepository implements IRepository<Invoice> {
 
     @Override
     public boolean update(Invoice invoice) {
-
-
         try {
-            PreparedStatement myStmt = conn.prepareStatement("UPDATE Invoice SET Invoice_Id = ?, DateStart = ?, DateEnd = ?, PickUp = ?,  DropOff = ?, TotalPrice = ?, Employee_id_fk = ?, Customer_id_fk = ?, Accessory_id_fk = ?, Motorhome_LicensPlateNo = ?, InvoiceDone = ? WHERE Invoice_Id =" + invoice.getInvoiceId());
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Invoice SET Invoice_Id = ?, DateStart = ?," +
+                    " DateEnd = ?, PickUp = ?,  DropOff = ?, TotalPrice = ?, Employee_id_fk = ?, Customer_id_fk = ?, Accessory_id_fk = ?," +
+                    " Motorhome_LicensPlateNo = ?, InvoiceDone = ? WHERE Invoice_Id =" + invoice.getInvoiceId());
             myStmt.setInt(1, invoice.getInvoiceId());
             myStmt.setDate(2, (Date) invoice.getDateStart());
             myStmt.setDate(3, (Date) invoice.getDateEnd());
